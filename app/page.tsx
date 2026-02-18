@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import LeadModal from "@/components/LeadModal";
 import CalendlyModal from "@/components/CalendlyModal";
 import ScrollTracker from "@/components/ScrollTracker";
+import VideoSection from "@/components/VideoSection";
 
 
 
@@ -101,6 +102,7 @@ export default function Home() {
         </div>
         </section>
 
+        <VideoSection />
 
         {/* HOW IT WORKS */}
         <section

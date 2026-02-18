@@ -4,17 +4,80 @@ import { ReactNode } from "react";
 import { Heebo } from "next/font/google";
 import Script from "next/script";
 
-
 const heebo = Heebo({
   subsets: ["hebrew"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
+const canonicalUrl = "https://boteam.org";
+const youtubeEmbedUrl = "https://www.youtube.com/embed/ajluMwsHUY0";
+const youtubeWatchUrl = "https://youtu.be/ajluMwsHUY0";
+const youtubeThumbnailUrl = "https://img.youtube.com/vi/ajluMwsHUY0/maxresdefault.jpg";
+
+const siteTitle = "מחולל הבוטים לפריוריטי | Boteam";
+const siteDescription =
+  "מחולל הבוטים לפריוריטי מחבר את פריוריטי ERP לוואטסאפ ואימייל: אוטומציה שמקדמת תהליכים, סוגרת משימות ומעדכנת שדות בזמן אמת. פתרון enterprise לארגונים.";
+
 export const metadata: Metadata = {
-  title: "מחולל הבוטים לפריוריטי | Boteam",
+  metadataBase: new URL(canonicalUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | Boteam",
+  },
+  description: siteDescription,
+  keywords: [
+    "פריוריטי",
+    "ERP",
+    "וואטסאפ",
+    "אוטומציה",
+    "מחולל בוטים",
+    "Boteam",
+    "אינטגרציה",
+    "מערכות ניהול",
+  ],
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  openGraph: {
+    type: "website",
+    url: canonicalUrl,
+    title: siteTitle,
+    description: siteDescription,
+    images: [{ url: "/og-boteam.jpg", width: 1200, height: 630, alt: siteTitle }],
+    videos: [
+      {
+        url: youtubeEmbedUrl,
+        type: "text/html",
+        width: 1280,
+        height: 720,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/og-boteam.jpg"],
+  },
+};
+
+const videoStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "מחולל הבוטים לפריוריטי – אוטומציה בוואטסאפ שמחזירה נתונים ל-ERP",
   description:
-    "מחולל הבוטים לפריוריטי מאפשר ל-ERP ליזום שיחות בוואטסאפ ובאימייל, לאסוף מידע ולעדכן שדות אוטומטית במערכת.",
+    "דמו מוצר: איך מחולל הבוטים של Boteam מחבר את פריוריטי ERP לוואטסאפ, מאפשר למערכת ליזום שיחות, לאסוף מידע ולעדכן שדות אוטומטית. פתרון enterprise לארגונים.",
+  thumbnailUrl: youtubeThumbnailUrl,
+  uploadDate: "2025-02-18T00:00:00.000Z",
+  duration: "PT1M24S",
+  contentUrl: youtubeWatchUrl,
+  embedUrl: youtubeEmbedUrl,
+  publisher: {
+    "@type": "Organization",
+    name: "Boteam",
+    url: canonicalUrl,
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +90,13 @@ export default function RootLayout({
       <body
         className={`${heebo.className} bg-[#F8FAFC] text-[#243B53] antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(videoStructuredData),
+          }}
+        />
+
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=G-6232ZJTFVF`}
           strategy="afterInteractive"

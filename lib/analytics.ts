@@ -20,3 +20,7 @@ export const trackEvent = (
     });
   }
 };
+
+export const trackVideoProgress = (percent: number) => {
+  trackEvent("video_progress", "engagement", `${percent}%`);
+};

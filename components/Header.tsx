@@ -18,7 +18,7 @@ export default function Header() {
             <a href="#usecases" className="hover:text-black transition">
               שימושים
             </a>
-            <a href="#faq" className="hover:text-black transition">
+            <a href="/faq" className="hover:text-black transition">
               שאלות נפוצות
             </a>
           </nav>
