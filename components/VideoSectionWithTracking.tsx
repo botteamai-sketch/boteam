@@ -17,12 +17,10 @@ declare global {
 
 const YT_PLAYING = 1;
 
+/** Minimal type for YT player instance; matches what Window.YT.Player returns and what this component uses. */
 type YTPlayer = {
   getCurrentTime: () => number;
-  getDuration: () => number;
   getPlayerState: () => number;
-  playVideo: () => void;
-  pauseVideo: () => void;
   destroy?: () => void;
 };
 
