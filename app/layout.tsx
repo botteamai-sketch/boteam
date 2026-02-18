@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${heebo.className} bg-[#F8FAFC] text-[#243B53] antialiased`}
       >
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-6232ZJTFVF`}
           strategy="afterInteractive"
         />
 
@@ -37,7 +37,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXX');
+            gtag('config', 'G-6232ZJTFVF');
           `}
         </Script>
 
