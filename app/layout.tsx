@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { Heebo } from "next/font/google";
 import Script from "next/script";
+import Footer from "@/components/Footer";
 
 const heebo = Heebo({
   subsets: ["hebrew"],
@@ -112,6 +113,7 @@ export default function RootLayout({
         </Script>
 
         {children}
+        <Footer />
       </body>
     </html>
   );
