@@ -17,9 +17,18 @@ declare global {
 
 const YT_PLAYING = 1;
 
+type YTPlayer = {
+  getCurrentTime: () => number;
+  getDuration: () => number;
+  getPlayerState: () => number;
+  playVideo: () => void;
+  pauseVideo: () => void;
+  destroy?: () => void;
+};
+
 export default function VideoSectionWithTracking() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<ReturnType<NonNullable<typeof window.YT>>["Player"] | null>(null);
+  const playerRef = useRef<YTPlayer | null>(null);
   const firedRef = useRef<Set<number>>(new Set());
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [apiReady, setApiReady] = useState(false);
