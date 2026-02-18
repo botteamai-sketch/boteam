@@ -55,9 +55,7 @@ export default function Home() {
             <div className="flex gap-4 pt-4">
               <CalendlyModal />
 
-              <button className="rounded-xl border border-[#3AA0D8] text-[#3AA0D8] hover:bg-[#3AA0D8]/10 transition px-8 py-3 text-lg">
-                ראו איך זה עובד
-              </button>
+              <LeadModal />
             </div>
 
           </motion.div>

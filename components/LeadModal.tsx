@@ -60,9 +60,9 @@ export default function LeadModal() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-xl border border-white px-8 py-3 text-lg"
+        className="rounded-xl border-2 border-[#243B53] px-8 py-3 text-lg hover:bg-[#243B53]/5 transition"
       >
-        השאירו פרטים, נדבר בטלפון
+        השאירו פרטים ונדבר בטלפון
       </button>
 
       {open && (
