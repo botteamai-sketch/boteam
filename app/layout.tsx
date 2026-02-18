@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { Heebo } from "next/font/google";
+import Script from "next/script";
+
 
 const heebo = Heebo({
   subsets: ["hebrew"],
@@ -25,6 +27,20 @@ export default function RootLayout({
       <body
         className={`${heebo.className} bg-[#F8FAFC] text-[#243B53] antialiased`}
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXX');
+          `}
+        </Script>
+
         {children}
       </body>
     </html>
