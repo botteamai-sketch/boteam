@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const initialForm = {
   name: "",
@@ -28,6 +29,7 @@ export default function LeadModal() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error("Failed to send");
+      trackEvent("submit_lead", "conversion", "Lead Form");
       setForm(initialForm);
       setOpen(false);
       alert("הפרטים נשלחו בהצלחה!");

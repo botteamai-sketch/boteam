@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import LeadModal from "@/components/LeadModal";
 import CalendlyModal from "@/components/CalendlyModal";
+import ScrollTracker from "@/components/ScrollTracker";
 
 
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
 
       <main className="min-h-screen">
+        <ScrollTracker />
 
         {/* HERO */}
         <section className="relative overflow-hidden py-32">
