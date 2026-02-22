@@ -86,14 +86,6 @@ export default function Footer() {
             </nav>
             <p className="mt-4 pt-4 border-t border-white/10 text-white/80 text-sm text-right">
               <a
-                href="mailto:info@boteam.org"
-                className="hover:text-white transition"
-              >
-                info@boteam.org
-              </a>
-            </p>
-            <p className="mt-1 text-white/80 text-sm text-right">
-              <a
                 href="https://boteam.org"
                 target="_blank"
                 rel="noopener noreferrer"

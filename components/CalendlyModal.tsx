@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { trackEvent } from "@/lib/analytics";
 
-export default function CalendlyModal() {
+type CalendlyModalProps = { size?: "default" | "lg" };
+
+export default function CalendlyModal({ size = "default" }: CalendlyModalProps) {
   const [open, setOpen] = useState(false);
+  const isLarge = size === "lg";
   const [panelVisible, setPanelVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -76,9 +79,12 @@ export default function CalendlyModal() {
           trackEvent("open_calendly", "engagement", "Calendly Modal");
           setOpen(true);
         }}
-        className="rounded-xl bg-[#243B53] hover:bg-[#1b2c3e] transition px-8 py-3 text-white text-lg shadow-lg"
+        className={`rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition text-white shadow-md flex flex-col items-center justify-center text-center leading-tight ${
+          isLarge ? "px-6 py-3" : "px-5 py-2"
+        }`}
       >
-        לתיאום שיחת הדגמה ללא עלות
+        <span className={isLarge ? "text-base font-medium" : "text-sm font-medium"}>לתיאום שיחת הדגמה</span>
+        <span className={isLarge ? "text-sm opacity-90" : "text-xs opacity-90"}>ללא עלות</span>
       </button>
 
       {mounted &&

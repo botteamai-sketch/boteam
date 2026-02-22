@@ -56,28 +56,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-6">
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8 text-sm">
-            <a href="#how" className="text-gray-600 hover:text-black transition">
-              איך זה עובד
-            </a>
-            <a href="#usecases" className="text-gray-600 hover:text-black transition">
-              שימושים
-            </a>
-            <Link
-              href="/faq"
-              className={`transition ${pathname === "/faq" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
-            >
-              שאלות נפוצות
-            </Link>
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <CalendlyModal />
-          </div>
-
-          {/* Hamburger — mobile only */}
+          {/* Hamburger — mobile only; ראשון כדי שיופיע בצד ימין ב-RTL */}
           <button
             type="button"
             className="md:hidden flex items-center justify-center p-2 text-gray-600 hover:text-black transition"
@@ -98,30 +77,52 @@ export default function Header() {
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
+
+          {/* Desktop nav – /#... כדי שיעבדו גם מעמודים אחרים */}
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            <a href="/#how" className="text-gray-600 hover:text-black transition">
+              איך זה עובד
+            </a>
+            <a href="/#usecases" className="text-gray-600 hover:text-black transition">
+              שימושים
+            </a>
+            <Link
+              href="/faq"
+              className={`transition ${pathname === "/faq" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
+            >
+              שאלות נפוצות
+            </Link>
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:block">
+            <CalendlyModal />
+          </div>
         </div>
       </div>
 
-      {/* Overlay — click closes */}
+      {/* Overlay — כהה יותר כדי שהתפריט יבלוט; לחיצה סוגרת */}
       <button
         type="button"
         aria-hidden
         tabIndex={-1}
-        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-200 ${
+        className={`fixed inset-0 z-40 bg-black/60 transition-opacity duration-200 ${
           menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* Drawer — RTL from right */}
+      {/* Drawer — RTL מימין; רקע לבן אטום (#fff) ללא שקיפות */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transition-transform duration-200 ease-out ${
+        className={`fixed top-0 right-0 h-full w-64 shadow-2xl border-r border-gray-200 z-[60] transition-transform duration-200 ease-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ backgroundColor: "#ffffff" }}
         role="dialog"
         aria-modal="true"
         aria-label={ARIA_NAV_MENU}
       >
-        <div className="flex flex-col h-full pt-16">
+        <div className="flex flex-col h-full pt-16 min-h-full bg-[#ffffff]">
           {DRAWER_LINKS.map(({ href, label }) => (
             <Link
               key={label}

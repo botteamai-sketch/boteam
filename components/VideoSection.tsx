@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { trackEvent } from "@/lib/analytics";
 
@@ -29,7 +28,7 @@ export default function VideoSection() {
     <motion.section
       ref={sectionRef}
       id="demo"
-      className="relative overflow-x-hidden bg-gradient-to-b from-white to-[#F8FAFC] py-32 border-t border-gray-100"
+      className="relative overflow-x-hidden bg-gradient-to-b from-white to-[#F8FAFC] py-20 border-t border-gray-100"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -43,14 +42,14 @@ export default function VideoSection() {
 
       <div className="relative mx-auto max-w-6xl px-6 text-right">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#243B53]">
-          הדגמה אמיתית מתוך פריוריטי
+          סרטון הדגמה מתוך פריוריטי
         </h2>
-        <p className="text-lg text-gray-600 mb-14 max-w-2xl mx-auto">
-          תהליך עסקי מלא – מהאירוע במערכת, דרך שיחת וואטסאפ חכמה ועד לעדכון אוטומטי של השדות הנכונים ב-ERP.
+        <p className="text-lg text-gray-600 mb-14 max-w-2xl me-auto ms-0 text-right">
+          תהליך עסקי מלא – מהאירוע במערכת, דרך שיחת וואטסאפ חכמה ועד לעדכון אוטומטי של השדות הנכונים בפריוריטי.
         </p>
 
         {/* Product Window Frame */}
-        <div className="rounded-3xl border border-gray-200 shadow-xl bg-white mb-6 overflow-hidden">
+        <div className="rounded-3xl border border-gray-200 shadow-xl bg-white mb-4 overflow-hidden">
           {/* Top Bar */}
           <div className="h-10 bg-gray-100 flex items-center justify-start px-4 gap-2">
             <span className="w-3 h-3 rounded-full bg-gray-400/80" aria-hidden />
@@ -104,8 +103,8 @@ export default function VideoSection() {
         </div>
 
         {/* Progress bar — disabled temporarily (no API); kept for future re-enable */}
-        <div className="mb-14" aria-hidden>
-          <div className="mt-6 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+        <div className="mb-0" aria-hidden>
+          <div className="mt-4 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
             <div
               className="h-full bg-[#3AA0D8] transition-all duration-300"
               style={{ width: "0%" }}
@@ -114,47 +113,6 @@ export default function VideoSection() {
           <p className="mt-2 text-sm text-gray-500 text-right">
             צפיתם ב-0% מההדגמה
           </p>
-        </div>
-
-        {/* Value bullets */}
-        <ul className="grid gap-8 md:grid-cols-3 text-right mb-12" role="list">
-          <li className="flex flex-col items-start gap-3">
-            <div className="w-12 h-12 rounded-full bg-[#3AA0D8]/10 flex items-center justify-center shrink-0">
-              <span className="text-[#3AA0D8] font-bold text-lg" aria-hidden>1</span>
-            </div>
-            <h3 className="font-bold text-[#243B53]">יוזם תהליך</h3>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-              אירוע עסקי בפריוריטי מפעיל שיחה אוטומטית
-            </p>
-          </li>
-          <li className="flex flex-col items-start gap-3">
-            <div className="w-12 h-12 rounded-full bg-[#3AA0D8]/10 flex items-center justify-center shrink-0">
-              <span className="text-[#3AA0D8] font-bold text-lg" aria-hidden>2</span>
-            </div>
-            <h3 className="font-bold text-[#243B53]">מבין שפה חופשית</h3>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-              המערכת שואלת, מבהירה ומעדכנת שדות מדויקים
-            </p>
-          </li>
-          <li className="flex flex-col items-start gap-3">
-            <div className="w-12 h-12 rounded-full bg-[#3AA0D8]/10 flex items-center justify-center shrink-0">
-              <span className="text-[#3AA0D8] font-bold text-lg" aria-hidden>3</span>
-            </div>
-            <h3 className="font-bold text-[#243B53]">סוגר מעגל</h3>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-              סטטוסים, תאריכים ואישורים נשמרים אוטומטית
-            </p>
-          </li>
-        </ul>
-
-        {/* CTA */}
-        <div className="flex justify-center">
-          <Link
-            href="/demo"
-            className="inline-flex items-center justify-center rounded-xl bg-[#243B53] hover:bg-[#1b2c3e] transition px-8 py-3 text-white font-medium shadow-lg"
-          >
-            לצפייה בהדגמה מלאה ותיאום פגישה
-          </Link>
         </div>
       </div>
     </motion.section>

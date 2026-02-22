@@ -1,12 +1,16 @@
 "use client";
 
 import Header from "@/components/Header";
+import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import LeadModal from "@/components/LeadModal";
 import CalendlyModal from "@/components/CalendlyModal";
 import ScrollTracker from "@/components/ScrollTracker";
 import VideoSection from "@/components/VideoSection";
+import HeroVideo from "@/components/HeroVideo";
+import DemoCTASection from "@/components/DemoCTASection";
+import HowItWorksSection from "@/components/HowItWorksSection";
 
 
 
@@ -21,99 +25,44 @@ export default function Home() {
       <main className="min-h-screen">
         <ScrollTracker />
 
-        {/* HERO */}
-        <section className="relative overflow-hidden py-32">
+        {/* Hero קולנועי – לא לשנות */}
+        <HeroVideo />
 
-        {/* רקע גרדיאנט עדין */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F8FAFC] via-white to-[#eaf3f9] -z-10" />
+        {/* Funnel: CTA להדגמה */}
+        <DemoCTASection />
 
-        <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-16 items-center">
-
-          {/* צד ימין – טקסט */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-right space-y-8"
-          >
-
-
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-              לו רק <span className="text-[#3AA0D8]">פריוריטי</span> היה יכול לדבר.
-            </h1>
-
-            <p className="text-2xl font-medium">
-              עכשיו הוא יוזם, שואל, מאשר וסוגר מעגל —
-              <span className="text-[#4CAF50]"> ישירות בוואטסאפ ובאימייל.</span>
-            </p>
-
-            <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-              מחולל הבוטים מחבר את ה־ERP ישירות לערוצי התקשורת,
-              מאפשר למערכת ליזום שיחות, להבין שפה חופשית
-              ולהחזיר מידע אוטומטית לשדות הנכונים.
-            </p>
-
-            <div className="flex gap-4 pt-4">
-              <CalendlyModal />
-
-              <LeadModal />
-            </div>
-
-          </motion.div>
-
-
-          {/* צד שמאל – Mockup */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-
-
-            {/* כרטיס ERP */}
-            <div className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100">
-
-              <div className="text-sm text-gray-400 mb-4">
-                אירוע במערכת
-              </div>
-
-              <div className="space-y-3">
-                <div className="h-3 bg-gray-200 rounded w-3/4" />
-                <div className="h-3 bg-gray-200 rounded w-1/2" />
-                <div className="h-3 bg-gray-200 rounded w-2/3" />
-              </div>
-
-              <div className="mt-6 text-sm text-[#3AA0D8] font-semibold">
-                סטטוס: ממתין לאישור
-              </div>
-            </div>
-
-            {/* בועת וואטסאפ */}
-            <div className="absolute -bottom-10 -left-10 bg-[#4CAF50] text-white rounded-2xl shadow-xl px-6 py-4 max-w-xs">
-              <div className="text-sm">
-                שלום, ההזמנה מוכנה. ניתן לאשר?
-              </div>
-            </div>
-
-          </motion.div>
-
-
-        </div>
-        </section>
+        {/* הסבר טכני – איך עובד בוט AI */}
+        <HowItWorksSection />
 
         <VideoSection />
 
         {/* HOW IT WORKS */}
         <section
           id="how"
-          className="bg-white py-28 border-t border-gray-100"
+          className="bg-white pt-16 pb-28 border-t border-gray-100"
         >
           <div className="mx-auto max-w-6xl px-6 text-right">
-
-            <h2 className="text-3xl font-bold mb-16">
-              כך זה עובד
-            </h2>
+            {/* כותרת + תמונה – ימין: כותרת, שמאל: תמונה */}
+            <div className="grid gap-10 md:grid-cols-2 md:gap-12 items-center mb-16">
+              <div className="order-2 md:order-1">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#243B53] mb-3">
+                  כך זה עובד
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-md">
+                  שיחה ב-WhatsApp מתעדכנת ישירות ב-Priority — בלי העתקה, בלי טעויות.
+                </p>
+              </div>
+              <div className="order-1 md:order-2 relative overflow-hidden rounded-2xl shadow-xl border border-gray-100 bg-gray-50">
+                <Image
+                  src="/whatsapp-erp-sync.png"
+                  alt="סנכרון וואטסאפ ל-ERP: שיחה בוואטסאפ מתעדכנת במערכת Priority"
+                  width={640}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority={false}
+                />
+              </div>
+            </div>
 
             <div className="grid gap-14 md:grid-cols-2">
 
@@ -144,7 +93,7 @@ export default function Home() {
                   שפה חופשית והבהרות חכמות
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  הלקוח או העובד כותבים רגיל. הבוט מבין, שואל ומקדם את התהליך.
+                  הלקוח או העובד כותבים כרגיל. הבוט מבין, שואל ומקדם את התהליך.
                 </p>
               </div>
 
@@ -154,10 +103,21 @@ export default function Home() {
                   סגירת מעגל מלאה
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  סטטוסים מתעדכנים, תאריכים נקבעים והשדות מתמלאים אוטומטית ב־ERP.
+                  סטטוסים מתעדכנים, תאריכים נקבעים והשדות מתמלאים אוטומטית בפריוריטי.
                 </p>
               </div>
 
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-16">
+              <Link
+                href="/demo"
+                className="inline-flex flex-col items-center justify-center text-center rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition px-5 py-2 text-white shadow-md leading-tight"
+              >
+                <span className="text-sm font-medium">לתיאום שיחת הדגמה</span>
+                <span className="text-xs opacity-90">ללא עלות</span>
+              </Link>
+              <LeadModal variant="light" />
             </div>
           </div>
         </section>
@@ -181,7 +141,7 @@ export default function Home() {
                   פריוריטי נשארת במרכז
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  לא מערכת חיצונית ולא כלי צדדי. הבוט הוא הרחבה טבעית של ה־ERP שלכם.
+                  לא מערכת חיצונית ולא כלי צדדי. מחולל הבוטים הינו מסך נוסף כחלק מתפריט פריוריטי.
                 </p>
               </div>
 
@@ -264,47 +224,47 @@ export default function Home() {
 
               {/* Use Case Card */}
               <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 right-0 h-full w-1 bg-[#3AA0D8] rounded-r-2xl" />
+                <div className="absolute top-0 left-0 h-full w-1 bg-[#3AA0D8] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   מעקב הצעות מחיר
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  הצעה פתוחה → הבוט יוזם בירור → התשובה חוזרת לשדה הנכון בפריוריטי.
+                  הצעה פתוחה ← הבוט יוזם בירור ← התשובה חוזרת לשדה הנכון בפריוריטי.
                 </p>
               </div>
 
               <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 right-0 h-full w-1 bg-[#4CAF50] rounded-r-2xl" />
+                <div className="absolute top-0 left-0 h-full w-1 bg-[#4CAF50] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   אישורי הנהלה
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  הזמנה מעל סכום מסוים → אישור בוואטסאפ → סטטוס מתעדכן אוטומטית.
+                  הזמנה מעל סכום מסוים ← אישור בוואטסאפ ← סטטוס מתעדכן אוטומטית.
                 </p>
               </div>
 
               <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 right-0 h-full w-1 bg-[#3AA0D8] rounded-r-2xl" />
+                <div className="absolute top-0 left-0 h-full w-1 bg-[#3AA0D8] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   גבייה חכמה
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  תזכורת אוטומטית → תיאום תשלום → עדכון סטטוס במערכת.
+                  תזכורת אוטומטית ← תיאום תשלום ← עדכון סטטוס במערכת.
                 </p>
               </div>
 
               <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 right-0 h-full w-1 bg-[#4CAF50] rounded-r-2xl" />
+                <div className="absolute top-0 left-0 h-full w-1 bg-[#4CAF50] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   תיאום התקנות
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  הזמנה מוכנה → תיאום תאריך מול הלקוח → קביעת מועד במערכת.
+                  הזמנה מוכנה ← תיאום תאריך מול הלקוח ← קביעת מועד במערכת.
                 </p>
               </div>
 
               <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 right-0 h-full w-1 bg-[#3AA0D8] rounded-r-2xl" />
+                <div className="absolute top-0 left-0 h-full w-1 bg-[#3AA0D8] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   ספקים
                 </h3>
@@ -314,12 +274,12 @@ export default function Home() {
               </div>
 
               <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 right-0 h-full w-1 bg-[#4CAF50] rounded-r-2xl" />
+                <div className="absolute top-0 left-0 h-full w-1 bg-[#4CAF50] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   לידים חדשים
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  תגובה אוטומטית לליד → איסוף מידע → רישום מלא בפריוריטי.
+                  תגובה אוטומטית לליד ← איסוף מידע ← רישום מלא בפריוריטי.
                 </p>
               </div>
 
@@ -431,13 +391,10 @@ export default function Home() {
               הגדירו בוט ראשון תוך דקות ותנו לפריוריטי לנהל גם את השיחות שלכם.
             </p>
 
-            <CalendlyModal />
-
-            <div className="mt-6">
-              <LeadModal />
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <CalendlyModal size="lg" />
+              <LeadModal size="lg" />
             </div>
-
-
           </div>
         </section>
 

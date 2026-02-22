@@ -10,8 +10,12 @@ const initialForm = {
   phone: "",
 };
 
-export default function LeadModal() {
+type LeadModalProps = { size?: "default" | "lg"; variant?: "light" | "dark" };
+
+export default function LeadModal({ size = "default", variant = "dark" }: LeadModalProps) {
   const [open, setOpen] = useState(false);
+  const isLarge = size === "lg";
+  const isLight = variant === "light";
   const [form, setForm] = useState(initialForm);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,9 +64,16 @@ export default function LeadModal() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-xl border-2 border-[#243B53] px-8 py-3 text-lg hover:bg-[#243B53]/5 transition"
+        className={`rounded-lg border-2 shadow-md flex flex-col items-center justify-center text-center leading-tight transition ${
+          isLarge ? "px-6 py-3" : "px-5 py-2"
+        } ${
+          isLight
+            ? "border-[#243B53] bg-transparent text-[#243B53] hover:bg-[#243B53]/5"
+            : "border-white bg-transparent text-white hover:bg-white/10"
+        }`}
       >
-        השאירו פרטים ונדבר בטלפון
+        <span className={isLarge ? "text-base font-medium" : "text-sm font-medium"}>השאירו פרטים</span>
+        <span className={`${isLarge ? "text-sm" : "text-xs"} ${isLight ? "opacity-80" : "opacity-90"}`}>ונדבר בטלפון</span>
       </button>
 
       {open && (
