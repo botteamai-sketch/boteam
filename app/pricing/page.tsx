@@ -1,9 +1,9 @@
 "use client";
 
 import Header from "@/components/Header";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import CalendlyModal from "@/components/CalendlyModal";
+import LeadModal from "@/components/LeadModal";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -13,14 +13,13 @@ const fadeUp = {
 };
 
 const INCLUDED = [
-  "חיבור ישיר ל-Priority (Web Services / XML)",
+  "חיבור ישיר ל-Priority",
   "תקשורת WhatsApp דו־כיוונית",
   "מנוע AI מתקדם",
   "אינדוקס מסמכים (PDF, קבצים)",
   "מנגנון RAG חכם",
   "ניהול משתנים וטפסים דינמיים",
   "עד 1,000 שיחות בחודש",
-  "תמיכה שוטפת",
 ] as const;
 
 const STEPS = [
@@ -36,7 +35,7 @@ const FAQ = [
   },
   {
     q: "למה יש דמי הקמה?",
-    a: "חיבור מלא ל-Priority, התאמה לתהליכים שלכם והטמעה מלאה. פעם אחת – ואז רק חודשי.",
+    a: "דמי הקמה (₪2,500, חד-פעמי) כוללים חיבור מלא ל-Priority, התאמה לתהליכים שלכם והטמעה מלאה. תשלום אחד – ואז רק חודשי.",
   },
   {
     q: "האם יש התחייבות ארוכת טווח?",
@@ -44,7 +43,7 @@ const FAQ = [
   },
   {
     q: "מה קורה אחרי 3 חודשים?",
-    a: "הבוט הראשון מצטרף לתמחור הרגיל – ₪120 לחודש.",
+    a: "הבוט הראשון מצטרף למחיר הרגיל – ₪120 לחודש.",
   },
   {
     q: "אפשר להוסיף בוטים?",
@@ -58,7 +57,6 @@ const FAQ = [
 
 const WHO_IS_IT_FOR = [
   "חברות שעובדות עם Priority",
-  "ארגונים עם צוות מכירות פעיל",
   "עסקים שרוצים להפוך WhatsApp לכלי תפעולי",
   "חברות שרוצות להוסיף שכבת AI אמיתית למערכת",
 ] as const;
@@ -69,101 +67,65 @@ export default function PricingPage() {
       <Header />
 
       <main>
-        {/* HERO */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[var(--background-soft)] to-white pt-24 pb-20 md:pt-32 md:pb-28">
+        {/* מחיר מרכזי – מסלול יחיד במסגרת */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-[var(--background-soft)] to-white pt-20 pb-14 md:pt-24 md:pb-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(63,169,245,0.12),transparent)]" />
-          <div className="relative mx-auto max-w-4xl px-6 text-center">
-            <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--text-primary)] mb-6 leading-[1.1]"
-              initial={{ opacity: 0, y: 20 }}
+          <div className="relative mx-auto max-w-2xl px-6 flex flex-col items-center">
+            <motion.div
+              className="w-full text-center mb-10"
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
-              שכבת ה-AI של Priority.
-              <br />
-              <span className="text-[var(--primary-dark)]">תמחור פשוט.</span>
-            </motion.h1>
-
-            <motion.div
-              className="mt-12 mb-6"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <p className="text-4xl md:text-5xl font-bold text-[var(--primary-dark)]">
-                ₪120 <span className="text-2xl md:text-3xl font-semibold text-[var(--text-secondary)]">לחודש לכל בוט פעיל</span>
-              </p>
+              <h1 className="text-2xl md:text-4xl font-bold text-[var(--text-primary)]" dir="rtl">
+                שכבת ה-AI של Priority
+              </h1>
             </motion.div>
-
             <motion.div
-              className="max-w-xl mx-auto mb-10 px-5 py-4 rounded-xl bg-[var(--primary-dark)]/5 border border-[var(--primary-dark)]/10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <p className="text-[var(--text-primary)] font-medium leading-relaxed text-right">
-                ברוב הארגונים, בוט אחד מחזיר את העלות שלו כבר בחודש הראשון.
-                <br />
-                <span className="text-[var(--text-secondary)]">מעבר לכך – הוא מייצר חיסכון מתמשך בזמן ובמשאבים.</span>
-              </p>
-            </motion.div>
-
-            <motion.p
-              className="text-lg md:text-xl text-[var(--text-secondary)] max-w-xl mx-auto mb-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              דמי הקמה חד פעמיים: <strong className="text-[var(--text-primary)]">₪2,500</strong>
-              <br />
-              חיבור מלא ל-Priority. התאמה לתהליכים שלכם. הפעלה מלאה.
-            </motion.p>
-
-            <motion.div
-              className="inline-flex flex-col items-center gap-1 rounded-2xl bg-[var(--accent-green)]/10 border border-[var(--accent-green)]/20 px-6 py-4 mb-12"
-              initial={{ opacity: 0, y: 10 }}
+              className="w-full max-w-xl rounded-2xl border-2 border-[var(--border-soft)] bg-white p-8 md:p-10 shadow-[var(--shadow-medium)] text-right"
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ duration: 0.5 }}
             >
-              <span className="text-[var(--accent-green)] font-semibold text-lg">
-                בוט ראשון עלינו.
-              </span>
-              <span className="text-[var(--text-primary)] font-medium">
-                3 חודשים מלאים.
-              </span>
-              <span className="text-[var(--text-secondary)] text-sm">
-                בלי התחייבות.
-              </span>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-col items-center justify-center gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <span className="text-xl font-semibold text-[var(--text-primary)]">🚀 קבעו הדגמה</span>
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <CalendlyModal size="lg" />
-                <Link
-                  href="/demo"
-                  className="text-[var(--primary-light)] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--primary-light)] focus:ring-offset-2 rounded-lg px-4 py-2"
-                >
-                  הפעילו בוט ראשון ללא עלות
-                </Link>
-              </div>
+              <p className="mb-2 flex flex-wrap items-baseline gap-x-2">
+                <span className="text-[6rem] md:text-[2.0rem] font-bold text-[var(--primary-dark)] leading-none">₪120</span>
+                <span className="text-xl md:text-2xl font-semibold text-[var(--text-secondary)]">לחודש לבוט</span>
+              </p>
+              <p className="text-lg text-[var(--text-secondary)] mb-4">
+                בוטים לפי צורך
+              </p>
+              <p className="text-[var(--text-secondary)] text-base mb-8">
+                דמי הקמה: ₪2,500 חד-פעמי
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "ללא צורך בכתיבת קוד",
+                  "חיבור ישיר ל-Priority",
+                  "תמיכה מלאה ב-WhatsApp ואימייל",
+                  "יצירת בוטים עתידיים באופן עצמאי",
+                  "עד 1,000 שיחות לחודש לבוט (ניתן להרחיב)",
+                  "ליווי והטמעה מותאמת",
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-center gap-2 justify-start">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs">
+                      ✔
+                    </span>
+                    <span className="text-right">{feature}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </section>
 
         {/* SECTION 2 – הצהרה */}
-        <section className="py-20 md:py-28 bg-white border-t border-[var(--border-soft)]">
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.h2
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6 leading-tight"
               {...fadeUp}
             >
-              לא חבילות. לא גרסאות.
+               אין אותיות קטנות.
               <br />
               <span className="text-[var(--primary-dark)]">מערכת מלאה מהיום הראשון.</span>
             </motion.h2>
@@ -186,7 +148,7 @@ export default function PricingPage() {
         </section>
 
         {/* SECTION 3 – מה כלול */}
-        <section className="py-20 md:py-28 bg-[var(--background-soft)]">
+        <section className="py-14 md:py-20 bg-[var(--background-soft)]">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
               className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center"
@@ -215,13 +177,47 @@ export default function PricingPage() {
             >
               אין גרסת Lite. אין שדרוגים בתשלום.
               <br />
-              <span className="text-[var(--text-primary)]">כל לקוח מקבל את היכולות המלאות.</span>
+              <span className="text-[var(--text-primary)]"> אתם מקבלים את היכולות המלאות.</span>
             </motion.p>
           </div>
         </section>
 
+        {/* שקיפות בעלויות – דמי הקמה + Meta */}
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]" aria-labelledby="transparency-heading">
+          <div className="mx-auto max-w-3xl px-6">
+            <motion.h2
+              id="transparency-heading"
+              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-8 text-center"
+              {...fadeUp}
+            >
+              שקיפות בעלויות
+            </motion.h2>
+            <div className="space-y-6">
+              <motion.div
+                className="rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] p-6 md:p-8"
+                {...fadeUp}
+              >
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">דמי הקמה / הטמעה (חד-פעמי)</h3>
+                <p className="text-[var(--text-secondary)] leading-relaxed">
+                  <span className="font-semibold text-[var(--text-primary)]">₪2,500</span> חד-פעמי – כולל חיבור מלא ל-Priority, התאמה לתהליכים שלכם והפעלה מלאה. תשלום אחד, ולאחר מכן רק תשלום חודשי קבוע לבוטים פעילים.
+                </p>
+              </motion.div>
+              <motion.div
+                className="rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] p-6 md:p-8"
+                {...fadeUp}
+                transition={{ delay: 0.05 }}
+              >
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2"> Meta (WhatsApp Business רשמי)</h3>
+                <p className="text-[var(--text-secondary)] leading-relaxed">
+                  הודעות שיוזם הבוט נשלחות דרך WhatsApp Business של Meta. עלויות ה-API (לפי מדיניות Meta) אינן כלולות במנוי – הן מחויבות ישירות מול Meta בהתאם לנפח ההודעות. בדרך כלל מדובר בדולרים בודדים. נעזור בהגדרה ובחיבור.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 4 – איך זה עובד */}
-        <section className="py-20 md:py-28 bg-white">
+        <section className="py-14 md:py-20 bg-white">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
               className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-16 text-center"
@@ -257,7 +253,7 @@ export default function PricingPage() {
         </section>
 
         {/* SECTION 5 – FAQ */}
-        <section className="py-20 md:py-28 bg-[var(--background-soft)]">
+        <section className="py-14 md:py-20 bg-[var(--background-soft)]">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
               className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-14 text-center"
@@ -286,7 +282,7 @@ export default function PricingPage() {
         </section>
 
         {/* SECTION 5b – למי זה מתאים */}
-        <section className="py-20 md:py-28 bg-white border-t border-[var(--border-soft)]">
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
               className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center"
@@ -313,37 +309,38 @@ export default function PricingPage() {
               className="mt-12 text-center text-xl font-semibold text-[var(--primary-dark)]"
               {...fadeUp}
             >
-              אם Priority הוא הליבה – Boteam הוא שכבת ה-AI שמעליו.
+              אם Priority הוא הליבה – מחולל הבוטים הוא שכבת ה-AI שמעליו.
             </motion.p>
           </div>
         </section>
 
         {/* SECTION 6 – CTA סופי */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary-light)] text-white">
+        <section className="py-14 md:py-20 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary-light)] text-white">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.p
-              className="text-base md:text-lg font-medium text-white/95 mb-6"
+              className="text-base md:text-lg font-medium !text-white mb-6"
               {...fadeUp}
             >
               נבנה במיוחד עבור ארגונים שעובדים עם Priority.
             </motion.p>
             <motion.h2
-              className="text-3xl md:text-5xl font-bold mb-8"
+              className="text-3xl md:text-5xl font-bold text-white mb-8"
               {...fadeUp}
             >
               רוצים לראות את Priority עובד עם AI אמיתי?
             </motion.h2>
             <motion.div
-              className="mb-6"
+              className="mb-6 flex flex-wrap gap-4 justify-center items-center"
               {...fadeUp}
             >
               <CalendlyModal size="lg" variant="outline" />
+              <LeadModal size="lg" variant="dark" />
             </motion.div>
             <motion.p
-              className="text-white/90 text-sm md:text-base"
+              className="!text-white text-sm md:text-base"
               {...fadeUp}
             >
-              AI הוא לא תוסף. הוא שכבה חדשה במערכת שלכם.
+              מחולל הבוטים הוא לא תוסף. הוא שכבה חדשה במערכת שלכם.
             </motion.p>
           </div>
         </section>

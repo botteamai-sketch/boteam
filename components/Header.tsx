@@ -6,11 +6,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
-/* קישורים זהים לדסקטופ – איך זה עובד, שימושים, תמחור, תהליך ההטמעה, שאלות נפוצות */
+/* קישורים זהים לדסקטופ – איך זה עובד, שימושים, מחיר, תהליך ההטמעה, שאלות נפוצות */
 const DRAWER_LINKS = [
   { href: "/#how", label: "איך זה עובד" },
   { href: "/#usecases", label: "שימושים" },
-  { href: "/pricing", label: "תמחור" },
+  { href: "/pricing", label: "מחיר" },
   { href: "/onboarding", label: "תהליך ההטמעה" },
   { href: "/faq", label: "שאלות נפוצות" },
 ] as const;
@@ -72,7 +72,7 @@ export default function Header() {
             href="/pricing"
             className={`transition whitespace-nowrap ${pathname === "/pricing" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
           >
-            תמחור
+            מחיר
           </Link>
           <Link
             href="/onboarding"

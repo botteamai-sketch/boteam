@@ -18,7 +18,6 @@ type StepItem = {
   desc: string;
   yours: string;
   ours: string;
-  hasChat?: boolean;
 };
 
 const STEPS: StepItem[] = [
@@ -31,9 +30,9 @@ const STEPS: StepItem[] = [
   },
   {
     id: 2,
-    title: "בחירת חבילה והתארגנות מסחרית",
+    title: "בחירת מסלול",
     desc: "מתאימים את כמות רישיונות הבוטים לקצב הצמיחה שלכם.",
-    yours: "בחירת מסלול, חתימה דיגיטלית והסדרת תשלום.",
+    yours: "חתימה על הסכם התקשרות והסדרת תשלום.",
     ours: "הקמת החשבון ושחרור הרישיונות.",
   },
   {
@@ -45,18 +44,17 @@ const STEPS: StepItem[] = [
   },
   {
     id: 4,
-    title: "התקנת המודול בפריוריטי (Plug & Play)",
+    title: "התקנת המודול בפריוריטי",
     desc: "המודול מותקן כתוסף טבעי בפריוריטי שלכם, ללא כתיבת קוד.",
     yours: "מתן הרשאות גישה בסיסיות לצוות הטכני.",
     ours: "התקנה, הגדרה ווידאו חיבור חלק ומאובטח.",
   },
   {
     id: 5,
-    title: "יוצאים לדרך! (Go Live)",
+    title: "יוצאים לדרך!",
     desc: "מגדירים יחד את הבוט הראשון מתוך תבניות מוכנות.",
     yours: "לבחור את התהליך הראשון לאוטומציה.",
-    ours: "קינפוג הבוט.",
-    hasChat: true,
+    ours: "הגדרת הבוט.",
   },
 ];
 
@@ -97,14 +95,6 @@ const FAQ_ITEMS = [
   },
 ] as const;
 
-const CHAT_MESSAGES = [
-  { type: "bot", text: "שלום מאור, האם לאשר את הצעת מחיר PQ2600067 שניתנה לך בשבוע שעבר?" },
-  { type: "client", text: "מה תאריך האספקה הצפוי?" },
-  { type: "bot", text: "15 לפברואר" },
-  { type: "client", text: "אני מאשר" },
-  { type: "bot", text: "תודה מאור, אישור ההצעה נקלט בהצלחה. שיהיה לך יום נעים" },
-] as const;
-
 function IconCode() {
   return (
     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -136,12 +126,12 @@ export default function OnboardingPage() {
       <Header />
 
       <main>
-        {/* Hero – כותרת ותת-כותרת בלבד, בלי כפתור תיאום */}
+        {/* Hero – כותרת ותגית */}
         <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white to-[var(--background-soft)]" />
           <div className="relative mx-auto max-w-5xl px-6 text-center">
             <motion.h1
-              className="text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--text-primary)] mb-6 leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--text-primary)] mb-4 leading-tight"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -149,12 +139,12 @@ export default function OnboardingPage() {
               הדרך לבוט הראשון שלכם בפריוריטי – פשוטה, מהירה וללא פיתוח
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              מחולל הבוטים שלנו רודף אחרי התשובות, כדי שהצוות שלכם לא יצטרך. אנחנו מלווים אתכם משלב האפיון ועד שהבוט הראשון עובד. אפס קוד, מקסימום תוצאות.
+              מחולל הבוטים משיג את התשובות, כדי שהצוות שלכם לא יצטרך.
             </motion.p>
           </div>
         </section>
@@ -203,32 +193,6 @@ export default function OnboardingPage() {
                         <p className="text-[var(--text-primary)] text-sm leading-relaxed">{step.ours}</p>
                       </div>
                     </div>
-
-                    {step.hasChat && (
-                      <div className="mt-8 rounded-2xl overflow-hidden border border-[var(--border-soft)] shadow-medium bg-[#e5ddd5]" style={{ maxWidth: 340 }}>
-                        <div className="bg-[#075e54] text-white px-4 py-3 text-sm font-medium text-center">
-                          שיחת WhatsApp – דוגמה
-                        </div>
-                        <div className="p-3 space-y-2 min-h-[200px]">
-                          {CHAT_MESSAGES.map((msg, j) => (
-                            <div
-                              key={j}
-                              className={`flex ${msg.type === "client" ? "justify-start" : "justify-end"}`}
-                            >
-                              <div
-                                className={`max-w-[90%] rounded-lg px-3 py-2 text-sm shadow-sm ${
-                                  msg.type === "client"
-                                    ? "bg-[#dcf8c6] text-[#111] rounded-br-none"
-                                    : "bg-[#ffffff] text-[#111] rounded-bl-none border border-[var(--border-soft)]"
-                                }`}
-                              >
-                                {msg.text}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </motion.article>
               ))}

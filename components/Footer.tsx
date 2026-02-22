@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
 
@@ -98,12 +97,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom section – לוגו באותה שורה עם זכויות יוצרים */}
+        {/* Bottom section – זכויות יוצרים */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center text-sm text-white/80 text-right">
           <span className="inline-flex items-center gap-2 flex-wrap justify-end">
-            <Link href="/" className="inline-flex items-center opacity-70 hover:opacity-100 transition-opacity" aria-label="Boteam – דף הבית">
-              <Image src="/boteam-logo.svg" alt="Boteam" width={88} height={22} className="h-[22px] w-auto object-contain bg-transparent" />
-            </Link>
             <span>© {currentYear} Boteam. כל הזכויות שמורות.</span>
           </span>
           <span>מערכת אוטומציה מתקדמת לפריוריטי ERP</span>
