@@ -102,7 +102,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center text-sm text-white/80 text-right">
           <span className="inline-flex items-center gap-2 flex-wrap justify-end">
             <Link href="/" className="inline-flex items-center opacity-70 hover:opacity-100 transition-opacity" aria-label="Boteam – דף הבית">
-              <Image src="/logo-boteam.png" alt="Boteam" width={88} height={22} className="h-[22px] w-auto object-contain bg-transparent" />
+              <Image src="/boteam-logo.svg" alt="Boteam" width={88} height={22} className="h-[22px] w-auto object-contain bg-transparent" />
             </Link>
             <span>© {currentYear} Boteam. כל הזכויות שמורות.</span>
           </span>

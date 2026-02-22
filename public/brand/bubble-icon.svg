@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Bubble body -->
+  <path fill="#47B649" d="M20 2H4C2.9 2 2 2.9 2 4v12c0 1.1.9 2 2 2h2l2 3 2-3h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+  <!-- 3 dots -->
+  <circle cx="8" cy="11" r="1.5" fill="#fff"/>
+  <circle cx="12" cy="11" r="1.5" fill="#fff"/>
+  <circle cx="16" cy="11" r="1.5" fill="#fff"/>
+</svg>

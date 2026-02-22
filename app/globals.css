@@ -98,7 +98,7 @@ p {
 .header-logo-wrap,
 .header-logo-wrap img,
 .header-logo-img {
-  background: transparent !important;
+  background: transparent;
 }
 
 /* סקשן CTA – שני הכפתורים באותו רוחב (כך זה עובד + סיום) */
