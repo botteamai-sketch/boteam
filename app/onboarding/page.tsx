@@ -12,7 +12,16 @@ const fadeUp = {
   transition: { duration: 0.45 },
 };
 
-const STEPS = [
+type StepItem = {
+  id: number;
+  title: string;
+  desc: string;
+  yours: string;
+  ours: string;
+  hasChat?: boolean;
+};
+
+const STEPS: StepItem[] = [
   {
     id: 1,
     title: "שיחת היכרות והדגמה",
@@ -49,7 +58,7 @@ const STEPS = [
     ours: "קינפוג הבוט.",
     hasChat: true,
   },
-] as const;
+];
 
 const BENEFITS = [
   {
