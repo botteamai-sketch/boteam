@@ -6,11 +6,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
+/* קישורים זהים לדסקטופ – איך זה עובד, שימושים, שאלות נפוצות */
 const DRAWER_LINKS = [
-  { href: "/", label: "בית" },
-  { href: "/demo", label: "הדגמה" },
+  { href: "/#how", label: "איך זה עובד" },
+  { href: "/#usecases", label: "שימושים" },
   { href: "/faq", label: "שאלות נפוצות" },
-  { href: "/demo", label: "צור קשר" },
 ] as const;
 
 const ARIA_OPEN_MENU = "פתח תפריט";
@@ -31,8 +31,10 @@ export default function Header() {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("menu-open");
     } else {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
     }
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMenuOpen(false);
@@ -40,6 +42,7 @@ export default function Header() {
     document.addEventListener("keydown", handleEscape);
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
       document.removeEventListener("keydown", handleEscape);
     };
   }, [menuOpen]);
@@ -72,7 +75,7 @@ export default function Header() {
         </nav>
         <Link
           href="/"
-          className="header-logo-wrap flex-shrink-0 ms-auto flex items-center transition-opacity duration-200 hover:opacity-85"
+          className="header-logo-wrap flex-shrink-0 md:ms-auto flex items-center transition-opacity duration-200 hover:opacity-85"
           aria-label="Boteam – דף הבית"
         >
           <Image
@@ -84,62 +87,57 @@ export default function Header() {
             priority
           />
         </Link>
-        <button
-          type="button"
-          className="md:hidden flex items-center justify-center p-2 text-gray-600 hover:text-black transition flex-shrink-0"
-          onClick={() => setMenuOpen(true)}
-          aria-label={ARIA_OPEN_MENU}
-          aria-expanded={menuOpen}
-        >
-          <svg
-            width={24}
-            height={24}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            aria-hidden
+        {/* במובייל RTL: ms-auto דוחף את ההמבורגר לקצה הימני; 3 קווים → X באנימציה */}
+        <div className="md:hidden flex-shrink-0 ms-auto">
+          <button
+            type="button"
+            className={`hamburger ${menuOpen ? "active" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "סגור תפריט" : ARIA_OPEN_MENU}
+            aria-expanded={menuOpen}
           >
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
 
-      {/* Overlay — כהה יותר כדי שהתפריט יבלוט; לחיצה סוגרת */}
+      {/* Overlay — רק במובייל, לחיצה סוגרת */}
       <button
         type="button"
         aria-hidden
         tabIndex={-1}
-        className={`fixed inset-0 z-40 bg-black/60 transition-opacity duration-200 ${
+        className={`mobile-menu-overlay fixed inset-0 z-40 bg-black/60 transition-opacity duration-200 ${
           menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* Drawer — RTL מימין; רקע לבן אטום (#fff) ללא שקיפות */}
+      {/* תפריט מובייל — רקע מלא, אנימציה, CTA בולט */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 shadow-2xl border-r border-gray-200 z-[60] transition-transform duration-200 ease-out ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
+        className={`mobile-menu fixed top-0 right-0 h-full w-full max-w-sm z-[60] ${
+          menuOpen ? "open" : ""
         }`}
-        style={{ backgroundColor: "#ffffff" }}
         role="dialog"
         aria-modal="true"
         aria-label={ARIA_NAV_MENU}
       >
-        <div className="flex flex-col h-full pt-16 min-h-full bg-[#ffffff]">
-          {DRAWER_LINKS.map(({ href, label }) => (
-            <Link
-              key={label}
-              href={href}
-              className="py-4 px-6 border-b border-gray-100 text-right text-[var(--text-primary)] hover:bg-gray-50 hover:text-black transition"
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-          <div className="p-4 mt-auto border-t border-gray-100">
-            <CalendlyModal />
+        <div className="flex flex-col h-full pt-20 pb-6 px-6 bg-white">
+          <nav className="flex flex-col flex-1">
+            {DRAWER_LINKS.map(({ href, label }) => (
+              <Link
+                key={label}
+                href={href}
+                className="mobile-menu-link py-4 px-0 border-b border-gray-100 text-right text-[var(--text-primary)] hover:bg-gray-50 hover:text-black transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="mobile-menu-cta pt-4 mt-auto border-t border-gray-200">
+            <CalendlyModal size="lg" />
           </div>
         </div>
       </div>
