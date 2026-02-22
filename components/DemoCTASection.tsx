@@ -26,10 +26,10 @@ export default function DemoCTASection({ demoHref = "/demo" }: DemoCTASectionPro
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-white py-24"
+      className="section bg-white"
     >
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#243B53] mb-4 text-right md:whitespace-nowrap">
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 text-right md:whitespace-nowrap">
           הגיע הזמן ש-Priority יעבוד בשבילך – לא להפך
         </h2>
         <p className="text-lg text-gray-600 mb-10 leading-relaxed text-right">
@@ -41,9 +41,9 @@ export default function DemoCTASection({ demoHref = "/demo" }: DemoCTASectionPro
             {bullets.map(({ icon, text }) => (
               <li
                 key={text}
-                className="flex items-center gap-2 text-[#243B53] font-medium"
+                className="flex items-center gap-2 text-[var(--text-primary)] font-medium"
               >
-                <span className="text-[#3AA0D8]" aria-hidden>✔</span>
+                <span className="text-[var(--primary-light)]" aria-hidden>✔</span>
                 <span>{text}</span>
               </li>
             ))}
@@ -52,16 +52,16 @@ export default function DemoCTASection({ demoHref = "/demo" }: DemoCTASectionPro
 
         <Link
           href={demoHref}
-          className="inline-flex flex-col items-center justify-center text-center rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition px-5 py-2 text-white shadow-md leading-tight"
+          className="button-primary"
         >
           <span className="text-sm font-medium">לתיאום שיחת הדגמה</span>
           <span className="text-xs opacity-90">ללא עלות</span>
         </Link>
 
-        <p className="mt-6 text-sm text-[#243B53] opacity-60 text-right flex flex-wrap justify-center gap-x-6 gap-y-1">
+        <p className="mt-6 text-sm text-[var(--text-primary)] opacity-60 text-right flex flex-wrap justify-center gap-x-6 gap-y-1">
           {microTrust.map((t) => (
             <span key={t} className="flex items-center gap-1">
-              <span className="text-[#3AA0D8]" aria-hidden>✔</span>
+              <span className="text-[var(--primary-light)]" aria-hidden>✔</span>
               {t}
             </span>
           ))}

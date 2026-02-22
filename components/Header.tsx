@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
@@ -45,13 +46,13 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 backdrop-blur bg-white/80 border-b border-gray-200 transition-shadow ${scrolled ? "shadow-md" : ""}`}
+      className={`navbar sticky top-0 z-50 border-b border-gray-200 ${scrolled ? "scrolled" : ""}`}
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center">
-        {/* לוגו / שם */}
-        <div className="flex-1">
-          <Link href="/" className="text-lg font-semibold">
-            מחולל הבוטים לפריוריטי
+        {/* לוגו אופקי – 36px, hover עדין */}
+        <div className="flex-1 flex justify-end">
+          <Link href="/" className="inline-block transition-opacity duration-200 ease-out hover:opacity-85 me-6" aria-label="Boteam – דף הבית">
+            <Image src="/logo-boteam.png" alt="Boteam" width={120} height={36} className="h-9 w-auto object-contain bg-transparent" priority />
           </Link>
         </div>
 
@@ -127,7 +128,7 @@ export default function Header() {
             <Link
               key={label}
               href={href}
-              className="py-4 px-6 border-b border-gray-100 text-right text-[#243B53] hover:bg-gray-50 hover:text-black transition"
+              className="py-4 px-6 border-b border-gray-100 text-right text-[var(--text-primary)] hover:bg-gray-50 hover:text-black transition"
               onClick={() => setMenuOpen(false)}
             >
               {label}

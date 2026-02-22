@@ -9,13 +9,13 @@ const linkClass =
 export default function Footer() {
   return (
     <footer
-      className="bg-[#243B53] text-white/80 py-20"
+      className="bg-[var(--primary-dark)] text-white/80 py-20"
       role="contentinfo"
     >
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 flex justify-end">
-          <Link href="/" className="inline-block transition opacity-90 hover:opacity-100" aria-label="Boteam – דף הבית">
-            <Image src="/logo-boteam.png" alt="Boteam" width={160} height={48} className="h-10 w-auto object-contain" priority />
+          <Link href="/" className="inline-block opacity-85 hover:opacity-100 transition-opacity" aria-label="Boteam – דף הבית">
+            <Image src="/logo-boteam.png" alt="Boteam" width={112} height={28} className="h-7 w-auto object-contain bg-transparent" priority />
           </Link>
         </div>
         <div className="grid gap-12 md:grid-cols-4 text-right">

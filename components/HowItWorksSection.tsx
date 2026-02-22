@@ -22,7 +22,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="bg-gray-900 text-white py-28">
+    <section className="section bg-gray-900 text-white">
       <div className="mx-auto max-w-6xl px-6 text-right">
         <h2 className="text-3xl md:text-4xl font-bold mb-8">
           שליטה מלאה בתהליכים – בלי לרדוף אחרי אנשים
@@ -41,7 +41,7 @@ export default function HowItWorksSection() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="rounded-2xl bg-gray-800/60 border border-gray-700 p-6 text-right"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#3AA0D8]/20 flex items-center justify-center text-[#3AA0D8] font-bold text-lg mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[var(--primary-light)]/20 flex items-center justify-center text-[var(--primary-light)] font-bold text-lg mb-4">
                 {i + 1}
               </div>
               <h3 className="text-xl font-semibold mb-2">{step.label}</h3>

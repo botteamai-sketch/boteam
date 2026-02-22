@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function DemoPage() {
   return (
-    <div dir="rtl" className="min-h-screen bg-[#F8FAFC] text-[#243B53]">
+    <div dir="rtl" className="min-h-screen bg-[var(--background-soft)] text-[var(--text-primary)]">
       <div className="mx-auto max-w-4xl px-6 py-20 text-right">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           דמו מחולל הבוטים לפריוריטי
@@ -48,15 +48,15 @@ export default function DemoPage() {
 
         <ul className="space-y-4 text-lg text-gray-700 border-t border-gray-200 pt-10">
           <li className="flex items-center gap-3">
-            <span className="text-[#4CAF50]">✔</span>
+            <span className="text-[var(--accent-green)]">✔</span>
             הדגמה חיה של תהליך אמיתי
           </li>
           <li className="flex items-center gap-3">
-            <span className="text-[#4CAF50]">✔</span>
+            <span className="text-[var(--accent-green)]">✔</span>
             שאלות ותשובות טכניות
           </li>
           <li className="flex items-center gap-3">
-            <span className="text-[#4CAF50]">✔</span>
+            <span className="text-[var(--accent-green)]">✔</span>
             התאמה לתהליך שלכם
           </li>
         </ul>

@@ -64,12 +64,12 @@ export default function LeadModal({ size = "default", variant = "dark" }: LeadMo
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`rounded-lg border-2 shadow-md flex flex-col items-center justify-center text-center leading-tight transition ${
+        className={`button-secondary flex-col text-center leading-tight ${
           isLarge ? "px-6 py-3" : "px-5 py-2"
         } ${
           isLight
-            ? "border-[#243B53] bg-transparent text-[#243B53] hover:bg-[#243B53]/5"
-            : "border-white bg-transparent text-white hover:bg-white/10"
+            ? ""
+            : "!border-white !bg-transparent !text-white hover:!bg-white/10"
         }`}
       >
         <span className={isLarge ? "text-base font-medium" : "text-sm font-medium"}>השאירו פרטים</span>
@@ -85,7 +85,7 @@ export default function LeadModal({ size = "default", variant = "dark" }: LeadMo
           aria-labelledby="lead-modal-title"
         >
           <div
-            className="bg-white rounded-2xl p-8 w-full max-w-md text-right shadow-xl relative"
+            className="modal-panel bg-white p-8 w-full max-w-md text-right relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -114,7 +114,7 @@ export default function LeadModal({ size = "default", variant = "dark" }: LeadMo
                   onChange={handleChange}
                   required
                   placeholder="הכנס את שמך המלא"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3AA0D8] focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export default function LeadModal({ size = "default", variant = "dark" }: LeadMo
                   value={form.company}
                   onChange={handleChange}
                   placeholder="שם הארגון או החברה"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3AA0D8] focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent"
                 />
               </div>
 
@@ -145,7 +145,7 @@ export default function LeadModal({ size = "default", variant = "dark" }: LeadMo
                   onChange={handleChange}
                   required
                   placeholder="example@company.com"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3AA0D8] focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent"
                 />
               </div>
 
@@ -160,14 +160,14 @@ export default function LeadModal({ size = "default", variant = "dark" }: LeadMo
                   value={form.phone}
                   onChange={handleChange}
                   placeholder="050-0000000"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3AA0D8] focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent"
                 />
               </div>
 
               <div className="pt-2 flex gap-3">
                 <button
                   type="submit"
-                  className="flex-1 bg-[#243B53] text-white rounded-xl py-3 font-medium hover:bg-[#1b2c3e] transition"
+                  className="flex-1 bg-[var(--primary-dark)] text-white rounded-xl py-3 font-medium hover:opacity-90 transition"
                 >
                   שליחה
                 </button>

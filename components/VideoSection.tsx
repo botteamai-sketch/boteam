@@ -28,7 +28,7 @@ export default function VideoSection() {
     <motion.section
       ref={sectionRef}
       id="demo"
-      className="relative overflow-x-hidden bg-gradient-to-b from-white to-[#F8FAFC] py-20 border-t border-gray-100"
+      className="section relative overflow-x-hidden bg-gradient-to-b from-white to-[var(--background-soft)] border-t border-gray-100"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -36,7 +36,7 @@ export default function VideoSection() {
     >
       {/* Decorative background blur */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[#3AA0D8]/10 blur-3xl pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[var(--primary-light)]/10 blur-3xl pointer-events-none"
         aria-hidden
       />
 
@@ -88,7 +88,7 @@ export default function VideoSection() {
               <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-105 transition-transform duration-200">
                 <svg
                   viewBox="0 0 24 24"
-                  fill="#3AA0D8"
+                  fill="var(--primary-light)"
                   className="w-10 h-10"
                   aria-hidden
                 >
@@ -106,7 +106,7 @@ export default function VideoSection() {
         <div className="mb-0" aria-hidden>
           <div className="mt-4 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
             <div
-              className="h-full bg-[#3AA0D8] transition-all duration-300"
+              className="h-full bg-[var(--primary-light)] transition-all duration-300"
               style={{ width: "0%" }}
             />
           </div>

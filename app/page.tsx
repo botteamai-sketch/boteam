@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,13 +13,54 @@ import HeroVideo from "@/components/HeroVideo";
 import DemoCTASection from "@/components/DemoCTASection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 
+/** Intersection Observer – הופעת סקשנים בעת גלילה (חד־פעמי) */
+function useRevealOnScroll() {
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    let observed: Element[] = [];
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll(".reveal");
+      if (els.length === 0) return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0, rootMargin: "50px 0px 50px 0px" }
+      );
+      els.forEach((el) => {
+        observer!.observe(el);
+        observed.push(el);
+      });
+    }, 0);
+    return () => {
+      clearTimeout(t);
+      const obs = observer;
+      if (obs) observed.forEach((el) => obs.unobserve(el));
+    };
+  }, []);
+}
 
-
+/** אייקון בועה ירוקה ליד כותרות סקשן (16–18px) */
+function GreenBubbleIcon() {
+  return (
+    <span className="shrink-0 w-[18px] h-[18px] inline-block text-[var(--accent-green)]" aria-hidden>
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+        <path d="M20 2H4C2.9 2 2 2.9 2 4v12c0 1.1.9 2 2 2h2l2 3 2-3h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+      </svg>
+    </span>
+  );
+}
 
 
 export default function Home() {
+  useRevealOnScroll();
+
   return (
-    <div dir="rtl" className="bg-[#F8FAFC] text-[#243B53]">
+    <div dir="rtl" className="bg-[var(--background-soft)] text-[var(--text-primary)]">
 
       <Header />
 
@@ -39,20 +81,21 @@ export default function Home() {
         {/* HOW IT WORKS */}
         <section
           id="how"
-          className="bg-white pt-16 pb-28 border-t border-gray-100"
+          className="section reveal bg-white border-t border-gray-100"
         >
           <div className="mx-auto max-w-6xl px-6 text-right">
             {/* כותרת + תמונה – ימין: כותרת, שמאל: תמונה */}
             <div className="grid gap-10 md:grid-cols-2 md:gap-12 items-center mb-16">
               <div className="order-2 md:order-1">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#243B53] mb-3">
+                <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2 justify-start text-right">
+                  <GreenBubbleIcon />
                   כך זה עובד
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-md">
                   שיחה ב-WhatsApp מתעדכנת ישירות ב-Priority — בלי העתקה, בלי טעויות.
                 </p>
               </div>
-              <div className="order-1 md:order-2 relative overflow-hidden rounded-2xl shadow-xl border border-gray-100 bg-gray-50">
+              <div className="order-1 md:order-2 relative overflow-hidden rounded-2xl shadow-medium border border-gray-100 bg-gray-50">
                 <Image
                   src="/whatsapp-erp-sync.png"
                   alt="סנכרון וואטסאפ ל-ERP: שיחה בוואטסאפ מתעדכנת במערכת Priority"
@@ -67,7 +110,7 @@ export default function Home() {
             <div className="grid gap-14 md:grid-cols-2">
 
               <div className="space-y-3">
-                <div className="text-sm text-[#3AA0D8] font-semibold">01</div>
+                <div className="text-sm text-[var(--primary-light)] font-semibold">01</div>
                 <h3 className="text-xl font-semibold">
                   אירוע עסקי מתרחש בפריוריטי
                 </h3>
@@ -78,7 +121,7 @@ export default function Home() {
               </div>
 
               <div className="space-y-3">
-                <div className="text-sm text-[#3AA0D8] font-semibold">02</div>
+                <div className="text-sm text-[var(--primary-light)] font-semibold">02</div>
                 <h3 className="text-xl font-semibold">
                   הבוט יוזם שיחה אוטומטית
                 </h3>
@@ -88,7 +131,7 @@ export default function Home() {
               </div>
 
               <div className="space-y-3">
-                <div className="text-sm text-[#3AA0D8] font-semibold">03</div>
+                <div className="text-sm text-[var(--primary-light)] font-semibold">03</div>
                 <h3 className="text-xl font-semibold">
                   שפה חופשית והבהרות חכמות
                 </h3>
@@ -98,7 +141,7 @@ export default function Home() {
               </div>
 
               <div className="space-y-3">
-                <div className="text-sm text-[#3AA0D8] font-semibold">04</div>
+                <div className="text-sm text-[var(--primary-light)] font-semibold">04</div>
                 <h3 className="text-xl font-semibold">
                   סגירת מעגל מלאה
                 </h3>
@@ -112,7 +155,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-4 mt-16">
               <Link
                 href="/demo"
-                className="inline-flex flex-col items-center justify-center text-center rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition px-6 py-3 text-white shadow-md leading-tight"
+                className="button-primary flex-col"
               >
                 <span className="text-base font-medium">לתיאום שיחת הדגמה</span>
                 <span className="text-sm opacity-90">ללא עלות</span>
@@ -123,9 +166,9 @@ export default function Home() {
         </section>
 
         {/* INCOMING FLOW – בוט מגיב (הרחבה, לא החלפת המסר המרכזי) */}
-        <section className="pt-28 pb-20 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="section reveal bg-[var(--background-soft)] border-t border-gray-100">
           <div className="mx-auto max-w-6xl px-6 text-right">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#243B53] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
               ומה קורה כשמישהו פונה אליכם ראשון?
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -142,44 +185,44 @@ export default function Home() {
                 לא מדובר במענה אוטומטי כללי — אלא בשכבת תקשורת חכמה שמחוברת ישירות לפריוריטי שלכם.
               </p>
             </div>
-            <p className="text-lg font-semibold text-[#243B53] mb-16 max-w-3xl">
+            <p className="text-lg font-semibold text-[var(--text-primary)] mb-16 max-w-3xl">
               כל שיחה — בין אם יזומה על ידי המערכת ובין אם נפתחה על ידי אדם — הופכת לחלק מתהליך עסקי מובנה בתוך Priority.
             </p>
 
             {/* שני מסלולים – ויזואל מינימלי */}
             <div className="grid gap-12 md:grid-cols-2 mb-20">
-              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
-                <h3 className="text-lg font-semibold text-[#243B53] mb-6 pb-2 border-b border-gray-200">
+              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-soft">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-6 pb-2 border-b border-gray-200">
                   בוט יוזם
                 </h3>
                 <div className="flex flex-col gap-4 text-gray-600 text-right">
                   <span>אירוע ב-Priority</span>
-                  <span className="text-[#3AA0D8]">↓</span>
+                  <span className="text-[var(--primary-light)]">↓</span>
                   <span>הבוט יוזם שיחה</span>
-                  <span className="text-[#3AA0D8]">↓</span>
+                  <span className="text-[var(--primary-light)]">↓</span>
                   <span>מתקבלת תשובה</span>
-                  <span className="text-[#3AA0D8]">↓</span>
-                  <span className="font-medium text-[#243B53]">Priority מתעדכן</span>
+                  <span className="text-[var(--primary-light)]">↓</span>
+                  <span className="font-medium text-[var(--text-primary)]">Priority מתעדכן</span>
                 </div>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
-                <h3 className="text-lg font-semibold text-[#243B53] mb-6 pb-2 border-b border-gray-200">
+              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-soft">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-6 pb-2 border-b border-gray-200">
                   בוט מגיב
                 </h3>
                 <div className="flex flex-col gap-4 text-gray-600 text-right">
                   <span>הודעה נכנסת ב-WhatsApp / אימייל</span>
-                  <span className="text-[#4CAF50]">↓</span>
+                  <span className="text-[var(--accent-green)]">↓</span>
                   <span>הבוט מזהה ומבין</span>
-                  <span className="text-[#4CAF50]">↓</span>
+                  <span className="text-[var(--accent-green)]">↓</span>
                   <span>מחלץ נתונים</span>
-                  <span className="text-[#4CAF50]">↓</span>
-                  <span className="font-medium text-[#243B53]">Priority מתעדכן</span>
+                  <span className="text-[var(--accent-green)]">↓</span>
+                  <span className="font-medium text-[var(--text-primary)]">Priority מתעדכן</span>
                 </div>
               </div>
             </div>
 
             {/* שימושים לבוט מגיב */}
-            <h3 className="text-2xl font-bold text-[#243B53] mb-6">שימושים לבוט מגיב</h3>
+            <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">שימושים לבוט מגיב</h3>
             <ul className="space-y-2 text-gray-600 mb-6 list-disc list-inside max-w-3xl">
               <li>פניות שירות לקוחות נכנסות</li>
               <li>ליד חדש שמתחיל שיחה ביוזמתו</li>
@@ -197,18 +240,19 @@ export default function Home() {
         </section>
 
         {/* DIFFERENTIATION */}
-        <section className="py-28 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="reveal py-28 bg-[var(--background-soft)] border-t border-gray-100">
           <div className="mx-auto max-w-6xl px-6 text-right">
 
-            <h2 className="text-3xl font-bold mb-16">
+            <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right text-[var(--text-primary)]">
+              <GreenBubbleIcon />
               למה זה שונה מכל בוט אחר?
             </h2>
 
             <div className="grid gap-8 md:grid-cols-3">
 
               {/* Card */}
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#3AA0D8]/10 flex items-center justify-center mb-6 text-[#3AA0D8] font-bold">
+              <div className="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                <div className="feature-card-icon w-12 h-12 rounded-full bg-[var(--primary-light)]/10 flex items-center justify-center mb-6 text-[var(--primary-light)] font-bold">
                   ERP
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -219,8 +263,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center mb-6 text-[#4CAF50] font-bold">
+              <div className="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                <div className="feature-card-icon w-12 h-12 rounded-full bg-[var(--accent-green)]/10 flex items-center justify-center mb-6 text-[var(--accent-green)] font-bold">
                   AI
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -231,8 +275,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#3AA0D8]/10 flex items-center justify-center mb-6 text-[#3AA0D8] font-bold">
+              <div className="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                <div className="feature-card-icon w-12 h-12 rounded-full bg-[var(--primary-light)]/10 flex items-center justify-center mb-6 text-[var(--primary-light)] font-bold">
                   💬
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -243,8 +287,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center mb-6 text-[#4CAF50] font-bold">
+              <div className="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                <div className="feature-card-icon w-12 h-12 rounded-full bg-[var(--accent-green)]/10 flex items-center justify-center mb-6 text-[var(--accent-green)] font-bold">
                   ✔
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -255,8 +299,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#3AA0D8]/10 flex items-center justify-center mb-6 text-[#3AA0D8] font-bold">
+              <div className="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                <div className="feature-card-icon w-12 h-12 rounded-full bg-[var(--primary-light)]/10 flex items-center justify-center mb-6 text-[var(--primary-light)] font-bold">
                   ⚙
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -267,8 +311,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center mb-6 text-[#4CAF50]">
+              <div className="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
+                <div className="feature-card-icon w-12 h-12 rounded-full bg-[var(--accent-green)]/10 flex items-center justify-center mb-6 text-[var(--accent-green)]">
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                     <path d="M18 6v12H6" />
                     <path d="M8 16l-2 2 2 2" />
@@ -289,7 +333,7 @@ export default function Home() {
         {/* USE CASES */}
         <section
           id="usecases"
-          className="py-28 bg-white border-t border-gray-100"
+          className="section reveal bg-white border-t border-gray-100"
         >
           <div className="mx-auto max-w-6xl px-6 text-right">
 
@@ -300,8 +344,8 @@ export default function Home() {
             <div className="grid gap-8 md:grid-cols-2">
 
               {/* Use Case Card */}
-              <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 left-0 h-full w-1 bg-[#3AA0D8] rounded-l-2xl" />
+              <div className="relative bg-[var(--background-soft)] p-8 rounded-2xl border border-gray-100 hover:shadow-medium transition">
+                <div className="absolute top-0 left-0 h-full w-1 bg-[var(--primary-light)] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   מעקב הצעות מחיר
                 </h3>
@@ -310,8 +354,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 left-0 h-full w-1 bg-[#4CAF50] rounded-l-2xl" />
+              <div className="relative bg-[var(--background-soft)] p-8 rounded-2xl border border-gray-100 hover:shadow-medium transition">
+                <div className="absolute top-0 left-0 h-full w-1 bg-[var(--accent-green)] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   אישורי הנהלה
                 </h3>
@@ -320,8 +364,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 left-0 h-full w-1 bg-[#3AA0D8] rounded-l-2xl" />
+              <div className="relative bg-[var(--background-soft)] p-8 rounded-2xl border border-gray-100 hover:shadow-medium transition">
+                <div className="absolute top-0 left-0 h-full w-1 bg-[var(--primary-light)] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   גבייה חכמה
                 </h3>
@@ -330,8 +374,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 left-0 h-full w-1 bg-[#4CAF50] rounded-l-2xl" />
+              <div className="relative bg-[var(--background-soft)] p-8 rounded-2xl border border-gray-100 hover:shadow-medium transition">
+                <div className="absolute top-0 left-0 h-full w-1 bg-[var(--accent-green)] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   תיאום התקנות
                 </h3>
@@ -340,8 +384,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 left-0 h-full w-1 bg-[#3AA0D8] rounded-l-2xl" />
+              <div className="relative bg-[var(--background-soft)] p-8 rounded-2xl border border-gray-100 hover:shadow-medium transition">
+                <div className="absolute top-0 left-0 h-full w-1 bg-[var(--primary-light)] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   ספקים
                 </h3>
@@ -350,8 +394,8 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative bg-[#F8FAFC] p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition">
-                <div className="absolute top-0 left-0 h-full w-1 bg-[#4CAF50] rounded-l-2xl" />
+              <div className="relative bg-[var(--background-soft)] p-8 rounded-2xl border border-gray-100 hover:shadow-medium transition">
+                <div className="absolute top-0 left-0 h-full w-1 bg-[var(--accent-green)] rounded-l-2xl" />
                 <h3 className="text-xl font-semibold mb-3">
                   לידים חדשים
                 </h3>
@@ -366,17 +410,18 @@ export default function Home() {
 
 
         {/* BENEFITS / ROI */}
-        <section className="py-28 bg-[#243B53] text-white">
+        <section className="py-28 bg-[var(--primary-dark)] text-white">
           <div className="mx-auto max-w-6xl px-6 text-right">
 
-            <h2 className="text-3xl font-bold mb-16">
+            <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right text-white">
+              <GreenBubbleIcon />
               מה הארגון מרוויח?
             </h2>
 
             <div className="grid gap-12 md:grid-cols-3">
 
               <div>
-                <div className="text-4xl font-extrabold text-[#3AA0D8] mb-4">
+                <div className="text-4xl font-extrabold text-[var(--primary-light)] mb-4">
                   ⏱
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -389,7 +434,7 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="text-4xl font-extrabold text-[#4CAF50] mb-4">
+                <div className="text-4xl font-extrabold text-[var(--accent-green)] mb-4">
                   📉
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -402,7 +447,7 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="text-4xl font-extrabold text-[#3AA0D8] mb-4">
+                <div className="text-4xl font-extrabold text-[var(--primary-light)] mb-4">
                   📊
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -415,7 +460,7 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="text-4xl font-extrabold text-[#4CAF50] mb-4">
+                <div className="text-4xl font-extrabold text-[var(--accent-green)] mb-4">
                   💬
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -428,7 +473,7 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="text-4xl font-extrabold text-[#3AA0D8] mb-4">
+                <div className="text-4xl font-extrabold text-[var(--primary-light)] mb-4">
                   🔁
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -441,7 +486,7 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="text-4xl font-extrabold text-[#4CAF50] mb-4">
+                <div className="text-4xl font-extrabold text-[var(--accent-green)] mb-4">
                   🚀
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
@@ -457,7 +502,7 @@ export default function Home() {
         </section>
 
         {/* FINAL CTA */}
-        <section className="py-28 bg-gradient-to-br from-[#3AA0D8] to-[#243B53] text-white">
+        <section className="section reveal bg-gradient-to-br from-[var(--primary-light)] to-[var(--primary-dark)] text-white">
           <div className="mx-auto max-w-4xl px-6 text-center">
 
             <h2 className="text-4xl font-bold mb-6">

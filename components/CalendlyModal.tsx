@@ -79,7 +79,7 @@ export default function CalendlyModal({ size = "default" }: CalendlyModalProps) 
           trackEvent("open_calendly", "engagement", "Calendly Modal");
           setOpen(true);
         }}
-        className={`rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition text-white shadow-md flex flex-col items-center justify-center text-center leading-tight ${
+        className={`button-primary flex-col text-center leading-tight ${
           isLarge ? "px-6 py-3" : "px-5 py-2"
         }`}
       >

@@ -145,13 +145,13 @@ const faqStructuredData = {
 
 export default function FAQPage() {
   return (
-    <div dir="rtl" className="min-h-screen bg-[#F8FAFC] text-[#243B53]">
+    <div dir="rtl" className="min-h-screen bg-[var(--background-soft)] text-[var(--text-primary)]">
       <Header />
 
       {/* Breadcrumb */}
       <div className="mx-auto max-w-4xl px-6 mt-6">
         <nav className="text-sm text-gray-500" aria-label="ניווט">
-          <Link href="/" className="hover:text-[#3AA0D8] transition">
+          <Link href="/" className="hover:text-[var(--primary-light)] transition">
             בית
           </Link>
           <span className="mx-2">/</span>
@@ -161,7 +161,7 @@ export default function FAQPage() {
 
       <section className="py-32 bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#243B53]">
+          <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#1F2F46]">
             שאלות נפוצות
           </h1>
           <p className="text-lg text-gray-600 text-center mb-14 max-w-2xl mx-auto leading-relaxed">
@@ -175,7 +175,7 @@ export default function FAQPage() {
       {/* Minimal footer */}
       <footer className="border-t border-gray-200 bg-white py-8">
         <div className="mx-auto max-w-4xl px-6 text-center text-sm text-gray-500">
-          <Link href="/" className="hover:text-[#3AA0D8] transition">
+          <Link href="/" className="hover:text-[var(--primary-light)] transition">
             מחולל הבוטים לפריוריטי
           </Link>
           <span className="mx-2">·</span>

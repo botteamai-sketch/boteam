@@ -185,7 +185,7 @@ export default function FAQSearch({ faqs }: Props) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="חפשו שאלה או נושא..."
-          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 pl-10 text-right focus:outline-none focus:ring-2 focus:ring-[#3AA0D8]/40 focus:border-[#3AA0D8] transition-shadow"
+          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 pl-10 text-right focus:outline-none focus:ring-2 focus:ring-[var(--primary-light)]/40 focus:border-[var(--primary-light)] transition-shadow"
           aria-label="חיפוש בשאלות נפוצות"
         />
         {hasQuery && (
@@ -225,7 +225,7 @@ export default function FAQSearch({ faqs }: Props) {
 
           return (
             <div key={cat} className="pt-6 first:pt-0">
-              <h2 className="text-lg font-semibold text-[#3AA0D8] mb-4">
+              <h2 className="text-lg font-semibold text-[#3FA9F5] mb-4">
                 {cat}
               </h2>
               <ul
@@ -247,13 +247,13 @@ export default function FAQSearch({ faqs }: Props) {
                       }}
                     >
                       <details className="group">
-                        <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none text-right font-medium text-[#243B53] hover:text-[#3AA0D8] transition-colors">
+                        <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none text-right font-medium text-[var(--text-primary)] hover:text-[#3FA9F5] transition-colors">
                           <span className="flex-1">
                             {hasQuery && query.trim()
                               ? highlightText(faq.question, query)
                               : faq.question}
                           </span>
-                          <span className="shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 group-open:bg-[#3AA0D8]/10 group-open:text-[#3AA0D8] transition-colors">
+                          <span className="shrink-0 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 group-open:bg-[var(--primary-light)]/10 group-open:text-[var(--primary-light)] transition-colors">
                             <span
                               className="group-open:rotate-180 transition-transform duration-200 inline-block"
                               aria-hidden

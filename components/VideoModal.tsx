@@ -59,7 +59,7 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
             className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="relative w-full max-w-[1100px] aspect-video rounded-lg overflow-hidden shadow-2xl bg-black pointer-events-auto"
+              className="modal-panel relative w-full max-w-[1100px] aspect-video overflow-hidden bg-black pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button

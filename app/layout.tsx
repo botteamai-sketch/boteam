@@ -1,13 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { Heebo } from "next/font/google";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import Footer from "@/components/Footer";
 
-const heebo = Heebo({
-  subsets: ["hebrew"],
-  weight: ["400", "500", "600", "700", "800"],
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -92,7 +92,8 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <body
-        className={`${heebo.className} bg-[#F8FAFC] text-[#243B53] antialiased`}
+        className={`${inter.className} antialiased`}
+        style={{ background: "var(--background-soft)", color: "var(--text-primary)" }}
       >
         <script
           type="application/ld+json"
