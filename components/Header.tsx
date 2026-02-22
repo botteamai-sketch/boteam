@@ -48,58 +48,62 @@ export default function Header() {
     <header
       className={`navbar sticky top-0 z-50 border-b border-gray-200 ${scrolled ? "scrolled" : ""}`}
     >
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center">
-        {/* לוגו אופקי – 36px, hover עדין */}
-        <div className="flex-1 flex justify-end">
-          <Link href="/" className="inline-block transition-opacity duration-200 ease-out hover:opacity-85 me-6" aria-label="Boteam – דף הבית">
-            <Image src="/logo-boteam.png" alt="Boteam" width={120} height={36} className="h-9 w-auto object-contain bg-transparent" priority />
-          </Link>
+      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center w-full gap-6">
+        {/* סדר מימין לשמאל: כותרת → כפתור הדגמה → איך זה עובד → שימושים → שאלות נפוצות → לוגו */}
+        <Link href="/" className="header-title flex-shrink-0">
+          מחולל בוטים לפריוריטי
+        </Link>
+        <div className="hidden md:block flex-shrink-0">
+          <CalendlyModal />
         </div>
-
-        <div className="flex items-center gap-6">
-          {/* Hamburger — mobile only; ראשון כדי שיופיע בצד ימין ב-RTL */}
-          <button
-            type="button"
-            className="md:hidden flex items-center justify-center p-2 text-gray-600 hover:text-black transition"
-            onClick={() => setMenuOpen(true)}
-            aria-label={ARIA_OPEN_MENU}
-            aria-expanded={menuOpen}
+        <nav className="hidden md:flex items-center gap-8 text-sm flex-shrink-0">
+          <a href="/#how" className="text-gray-600 hover:text-black transition whitespace-nowrap">
+            איך זה עובד
+          </a>
+          <a href="/#usecases" className="text-gray-600 hover:text-black transition whitespace-nowrap">
+            שימושים
+          </a>
+          <Link
+            href="/faq"
+            className={`transition whitespace-nowrap ${pathname === "/faq" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
           >
-            <svg
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              aria-hidden
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-
-          {/* Desktop nav – /#... כדי שיעבדו גם מעמודים אחרים */}
-          <nav className="hidden md:flex items-center gap-8 text-sm">
-            <a href="/#how" className="text-gray-600 hover:text-black transition">
-              איך זה עובד
-            </a>
-            <a href="/#usecases" className="text-gray-600 hover:text-black transition">
-              שימושים
-            </a>
-            <Link
-              href="/faq"
-              className={`transition ${pathname === "/faq" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
-            >
-              שאלות נפוצות
-            </Link>
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <CalendlyModal />
-          </div>
-        </div>
+            שאלות נפוצות
+          </Link>
+        </nav>
+        <Link
+          href="/"
+          className="header-logo-wrap flex-shrink-0 ms-auto flex items-center transition-opacity duration-200 hover:opacity-85"
+          aria-label="Boteam – דף הבית"
+        >
+          <Image
+            src="/logo-boteam.png"
+            alt="Boteam"
+            width={120}
+            height={36}
+            className="h-9 w-auto object-contain header-logo-img"
+            priority
+          />
+        </Link>
+        <button
+          type="button"
+          className="md:hidden flex items-center justify-center p-2 text-gray-600 hover:text-black transition flex-shrink-0"
+          onClick={() => setMenuOpen(true)}
+          aria-label={ARIA_OPEN_MENU}
+          aria-expanded={menuOpen}
+        >
+          <svg
+            width={24}
+            height={24}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            aria-hidden
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
 
       {/* Overlay — כהה יותר כדי שהתפריט יבלוט; לחיצה סוגרת */}

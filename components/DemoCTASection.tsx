@@ -52,10 +52,10 @@ export default function DemoCTASection({ demoHref = "/demo" }: DemoCTASectionPro
 
         <Link
           href={demoHref}
-          className="button-primary"
+          className="button-primary flex-col text-center leading-tight inline-flex px-6 py-3"
         >
-          <span className="text-sm font-medium">לתיאום שיחת הדגמה</span>
-          <span className="text-xs opacity-90">ללא עלות</span>
+          <span className="text-base font-medium">לתיאום שיחת הדגמה</span>
+          <span className="text-sm opacity-90">ללא עלות</span>
         </Link>
 
         <p className="mt-6 text-sm text-[var(--text-primary)] opacity-60 text-right flex flex-wrap justify-center gap-x-6 gap-y-1">

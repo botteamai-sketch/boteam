@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { trackEvent } from "@/lib/analytics";
+import GreenBubbleIcon from "@/components/GreenBubbleIcon";
 
 const EMBED_URL =
   "https://www.youtube.com/embed/ajluMwsHUY0?enablejsapi=1&playsinline=1";
@@ -41,8 +42,9 @@ export default function VideoSection() {
       />
 
       <div className="relative mx-auto max-w-6xl px-6 text-right">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#243B53]">
-          סרטון הדגמה מתוך פריוריטי
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)] flex items-center gap-2 justify-start text-right">
+          <GreenBubbleIcon />
+          <span>סרטון הדגמה מתוך פריוריטי</span>
         </h2>
         <p className="text-lg text-gray-600 mb-14 max-w-2xl me-auto ms-0 text-right">
           תהליך עסקי מלא – מהאירוע במערכת, דרך שיחת וואטסאפ חכמה ועד לעדכון אוטומטי של השדות הנכונים בפריוריטי.

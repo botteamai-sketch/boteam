@@ -22,12 +22,12 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="section bg-gray-900 text-white">
+    <section className="section section-dark">
       <div className="mx-auto max-w-6xl px-6 text-right">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
           שליטה מלאה בתהליכים – בלי לרדוף אחרי אנשים
         </h2>
-        <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mb-16">
+        <p className="text-lg leading-relaxed max-w-3xl mb-16">
           הבוט מתחבר ל-Priority ומנהל עבורכם את התהליך מול הלקוח: הוא יוזם שיחה, משלים מידע חסר, מוודא אישורים ומעדכן את השדות הרלוונטית בפריוריטי באופן אוטומטי.
         </p>
 

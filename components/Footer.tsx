@@ -13,11 +13,6 @@ export default function Footer() {
       role="contentinfo"
     >
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 flex justify-end">
-          <Link href="/" className="inline-block opacity-85 hover:opacity-100 transition-opacity" aria-label="Boteam – דף הבית">
-            <Image src="/logo-boteam.png" alt="Boteam" width={112} height={28} className="h-7 w-auto object-contain bg-transparent" priority />
-          </Link>
-        </div>
         <div className="grid gap-12 md:grid-cols-4 text-right">
           {/* Column 1 – המוצר */}
           <div>
@@ -103,9 +98,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom section */}
+        {/* Bottom section – לוגו באותה שורה עם זכויות יוצרים */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center text-sm text-white/80 text-right">
-          <span>© {currentYear} Boteam. כל הזכויות שמורות.</span>
+          <span className="inline-flex items-center gap-2 flex-wrap justify-end">
+            <Link href="/" className="inline-flex items-center opacity-70 hover:opacity-100 transition-opacity" aria-label="Boteam – דף הבית">
+              <Image src="/logo-boteam.png" alt="Boteam" width={88} height={22} className="h-[22px] w-auto object-contain bg-transparent" />
+            </Link>
+            <span>© {currentYear} Boteam. כל הזכויות שמורות.</span>
+          </span>
           <span>מערכת אוטומציה מתקדמת לפריוריטי ERP</span>
         </div>
       </div>

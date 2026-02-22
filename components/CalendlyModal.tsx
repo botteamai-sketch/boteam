@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { trackEvent } from "@/lib/analytics";
 
-type CalendlyModalProps = { size?: "default" | "lg" };
+type CalendlyModalProps = { size?: "default" | "lg"; variant?: "default" | "solid" | "outline" };
 
-export default function CalendlyModal({ size = "default" }: CalendlyModalProps) {
+export default function CalendlyModal({ size = "default", variant = "default" }: CalendlyModalProps) {
   const [open, setOpen] = useState(false);
   const isLarge = size === "lg";
+  const isSolid = variant === "solid";
+  const isOutline = variant === "outline";
   const [panelVisible, setPanelVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -79,9 +81,15 @@ export default function CalendlyModal({ size = "default" }: CalendlyModalProps) 
           trackEvent("open_calendly", "engagement", "Calendly Modal");
           setOpen(true);
         }}
-        className={`button-primary flex-col text-center leading-tight ${
-          isLarge ? "px-6 py-3" : "px-5 py-2"
-        }`}
+        className={
+          isOutline
+            ? `button-secondary flex-col text-center leading-tight ${isLarge ? "px-6 py-3" : "px-5 py-2"} !border-white !bg-transparent !text-white hover:!bg-white/10`
+            : `button-primary flex-col text-center leading-tight ${isLarge ? "px-6 py-3" : "px-5 py-2"} ${
+                isSolid
+                  ? "!bg-[var(--primary-dark)] shadow-medium hover:!bg-[var(--primary-light)] text-white"
+                  : ""
+              }`
+        }
       >
         <span className={isLarge ? "text-base font-medium" : "text-sm font-medium"}>לתיאום שיחת הדגמה</span>
         <span className={isLarge ? "text-sm opacity-90" : "text-xs opacity-90"}>ללא עלות</span>

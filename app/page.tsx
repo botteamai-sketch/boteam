@@ -12,6 +12,7 @@ import VideoSection from "@/components/VideoSection";
 import HeroVideo from "@/components/HeroVideo";
 import DemoCTASection from "@/components/DemoCTASection";
 import HowItWorksSection from "@/components/HowItWorksSection";
+import GreenBubbleIcon from "@/components/GreenBubbleIcon";
 
 /** Intersection Observer – הופעת סקשנים בעת גלילה (חד־פעמי) */
 function useRevealOnScroll() {
@@ -43,18 +44,6 @@ function useRevealOnScroll() {
     };
   }, []);
 }
-
-/** אייקון בועה ירוקה ליד כותרות סקשן (16–18px) */
-function GreenBubbleIcon() {
-  return (
-    <span className="shrink-0 w-[18px] h-[18px] inline-block text-[var(--accent-green)]" aria-hidden>
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-        <path d="M20 2H4C2.9 2 2 2.9 2 4v12c0 1.1.9 2 2 2h2l2 3 2-3h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-      </svg>
-    </span>
-  );
-}
-
 
 export default function Home() {
   useRevealOnScroll();
@@ -89,7 +78,7 @@ export default function Home() {
               <div className="order-2 md:order-1">
                 <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2 justify-start text-right">
                   <GreenBubbleIcon />
-                  כך זה עובד
+                  <span>כך זה עובד</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-md">
                   שיחה ב-WhatsApp מתעדכנת ישירות ב-Priority — בלי העתקה, בלי טעויות.
@@ -152,7 +141,7 @@ export default function Home() {
 
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-16">
+            <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mt-16">
               <Link
                 href="/demo"
                 className="button-primary flex-col"
@@ -245,7 +234,7 @@ export default function Home() {
 
             <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right text-[var(--text-primary)]">
               <GreenBubbleIcon />
-              למה זה שונה מכל בוט אחר?
+              <span>למה זה שונה מכל בוט אחר?</span>
             </h2>
 
             <div className="grid gap-8 md:grid-cols-3">
@@ -415,7 +404,7 @@ export default function Home() {
 
             <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right text-white">
               <GreenBubbleIcon />
-              מה הארגון מרוויח?
+              <span>מה הארגון מרוויח?</span>
             </h2>
 
             <div className="grid gap-12 md:grid-cols-3">
@@ -509,12 +498,12 @@ export default function Home() {
               המערכת כבר חכמה. עכשיו היא גם מתקשרת.
             </h2>
 
-            <p className="text-xl text-gray-100 mb-10">
+            <p className="text-xl mb-10" style={{ color: "#ffffff" }}>
               הגדירו בוט ראשון תוך דקות ותנו לפריוריטי לנהל גם את השיחות שלכם.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <CalendlyModal size="lg" />
+            <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
+              <CalendlyModal size="lg" variant="outline" />
               <LeadModal size="lg" />
             </div>
           </div>

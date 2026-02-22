@@ -32,6 +32,9 @@ export default function HeroVideo() {
         />
         <div className="absolute inset-0 bg-black/40" aria-hidden />
 
+        {/* Overlay כהה לקריאות – WCAG AA */}
+        <div className="hero-overlay absolute inset-0 z-[1]" aria-hidden />
+
         {/* עומק – gradient כחול עדין מעל ה-overlay */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
@@ -40,37 +43,18 @@ export default function HeroVideo() {
           }}
           aria-hidden
         />
-        {/* Accent blur – ירוק עדין (עומק) */}
-        <div
-          className="absolute w-[500px] h-[500px] -top-[100px] -right-[100px] z-[2] pointer-events-none"
-          style={{
-            background: "rgba(71, 182, 73, 0.06)",
-            filter: "blur(120px)",
-          }}
-          aria-hidden
-        />
 
-        {/* רמז מיתוגי – בועת דיבור ירוקה עדינה (opacity 6%) */}
-        <div className="hero-accent absolute top-1/2 left-[12%] -translate-y-1/2 w-40 h-40 pointer-events-none z-[1]" aria-hidden>
-          <svg viewBox="0 0 56 48" fill="none" className="w-full h-full opacity-[0.06]" style={{ color: "var(--accent-green)" }}>
-            <path fill="currentColor" d="M44 4H12C6.5 4 2 8.5 2 14v14c0 5.5 4.5 10 10 10h2l4 6 4-6h22c5.5 0 10-4.5 10-10V14c0-5.5-4.5-10-10-10z" />
-            <circle cx="20" cy="22" r="2.5" fill="white" className="dot" />
-            <circle cx="28" cy="22" r="2.5" fill="white" className="dot" style={{ animationDelay: "0.5s" }} />
-            <circle cx="36" cy="22" r="2.5" fill="white" className="dot" style={{ animationDelay: "1s" }} />
-          </svg>
-        </div>
-
-        {/* Content: כניסה אחת fade-up, כפתור primary, טיפוגרפיה */}
+        {/* Content: כניסה אחת fade-up, כפתור play, טיפוגרפיה */}
         <div className="hero-content relative z-10 flex flex-col items-center justify-center text-center px-6 pt-20 pb-20 opacity-0">
-          {/* Play – כפתור primary מוצרי */}
+          {/* Play – אינדיקציה ברורה לסרטון */}
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="hero-primary-button w-[72px] h-[72px] sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent mb-10 border-0"
+            className="hero-play w-[72px] h-[72px] sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-white focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent border-0 mb-10"
             aria-label="הפעל סרטון"
           >
             <svg
-              className="w-8 h-8 sm:w-10 sm:h-10 ml-0.5 shrink-0"
+              className="hero-play-icon w-11 h-11 sm:w-14 sm:h-14 ml-0.5 shrink-0"
               viewBox="0 0 24 24"
               fill="currentColor"
               aria-hidden
@@ -79,12 +63,12 @@ export default function HeroVideo() {
             </svg>
           </button>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-white max-w-[800px] mx-auto text-right mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold max-w-[800px] mx-auto text-right mb-6" style={{ color: "#ffffff" }}>
             AI שמדבר עם הלקוחות שלך
             <br />
             ומעדכן את Priority אוטומטית
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto text-right">
+          <p className="text-lg md:text-xl text-white max-w-2xl mx-auto text-right" style={{ color: "rgba(255,255,255,0.95)" }}>
             השכבה החכמה שמחברת WhatsApp ל-Priority בזמן אמת
           </p>
         </div>

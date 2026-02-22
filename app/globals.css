@@ -84,6 +84,33 @@ p {
   border-radius: var(--radius-medium);
 }
 
+/* ========== Header title (לא כפתור) ========== */
+.header-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+.header-title:hover {
+  color: var(--primary-light);
+}
+
+/* לוגו בכותרת – רקע שקוף תמיד */
+.header-logo-wrap,
+.header-logo-wrap img,
+.header-logo-img {
+  background: transparent !important;
+}
+
+/* סקשן CTA – שני הכפתורים באותו רוחב (כך זה עובד + סיום) */
+.final-cta-buttons > * {
+  min-width: 0;
+  width: 100%;
+}
+.final-cta-buttons button,
+.final-cta-buttons a.button-primary {
+  width: 100%;
+}
+
 /* ========== מערכת כפתורים ========== */
 .button-primary,
 .button-secondary {
@@ -112,10 +139,14 @@ p {
 }
 .button-secondary {
   background: transparent;
-  border: 1px solid var(--border-soft);
+  border: 2px solid var(--primary-dark);
   color: var(--primary-dark);
   padding: 14px 28px;
   border-radius: var(--radius-small);
+}
+.button-secondary:hover {
+  background: var(--primary-dark);
+  color: white;
 }
 
 /* ========== Feature cards אחיד ========== */
@@ -129,6 +160,15 @@ p {
 .feature-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ========== סקשן כהה – קריאות ========== */
+.section-dark {
+  background: var(--primary-dark);
+  color: white;
+}
+.section-dark p {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* ========== Grid אחיד ========== */
@@ -154,21 +194,6 @@ p {
   box-shadow: var(--shadow-strong);
 }
 
-/* מיתוג – אנימציית שלוש הנקודות (עדינה, 4s) */
-@keyframes dotsPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
-.hero-accent .dot {
-  animation: dotsPulse 4s infinite ease-in-out;
-}
-
-/* Hero accent – בועה ברקע, ללא צל */
-.hero-accent svg {
-  transform: scale(2.5);
-}
-
 /* כרטיסי "למה זה שונה" – hover עדין על האייקון */
 .feature-card:hover .feature-card-icon {
   transform: translateY(-3px);
@@ -177,7 +202,7 @@ p {
   transition: transform 0.2s ease;
 }
 
-/* Hero – עומק, כפתור primary, טיפוגרפיה, כניסה */
+/* Hero – overlay כהה, כפתור play, טיפוגרפיה, כניסה */
 .hero {
   background: radial-gradient(
     circle at 70% 30%,
@@ -185,14 +210,32 @@ p {
     transparent 60%
   );
 }
-.hero-primary-button {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
-  box-shadow: var(--shadow-medium);
-  transition: all 0.2s ease;
+.hero-overlay {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.55)
+  );
 }
-.hero-primary-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-strong);
+@keyframes heroPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+.hero-play {
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), var(--shadow-medium);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: heroPulse 3s ease-in-out infinite;
+}
+.hero-play:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+/* משולש Play – הדגשה מודרנית */
+.hero-play-icon {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+.hero-play:hover .hero-play-icon {
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.4));
 }
 .hero h1 {
   letter-spacing: -0.5px;
@@ -236,8 +279,8 @@ button,
 a.primary-button {
   transition: all 0.2s ease;
 }
-button:hover:not(.hero-primary-button),
-.primary-button:hover:not(.hero-primary-button) {
+button:hover:not(.hero-play),
+.primary-button:hover:not(.hero-play) {
   transform: translateY(-2px);
 }
 button:active,
