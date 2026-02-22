@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
 
@@ -12,6 +13,11 @@ export default function Footer() {
       role="contentinfo"
     >
       <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-12 flex justify-end">
+          <Link href="/" className="inline-block transition opacity-90 hover:opacity-100" aria-label="Boteam – דף הבית">
+            <Image src="/logo-boteam.png" alt="Boteam" width={160} height={48} className="h-10 w-auto object-contain" priority />
+          </Link>
+        </div>
         <div className="grid gap-12 md:grid-cols-4 text-right">
           {/* Column 1 – המוצר */}
           <div>

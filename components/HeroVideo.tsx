@@ -33,7 +33,7 @@ export default function HeroVideo() {
         <div className="absolute inset-0 bg-black/40" aria-hidden />
 
         {/* Content: Play first, then title, then subtitle */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-20 pb-32">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-20 pb-20">
           {/* Play – central, dominant */}
           <motion.button
             type="button"

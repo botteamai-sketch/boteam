@@ -112,13 +112,87 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-4 mt-16">
               <Link
                 href="/demo"
-                className="inline-flex flex-col items-center justify-center text-center rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition px-5 py-2 text-white shadow-md leading-tight"
+                className="inline-flex flex-col items-center justify-center text-center rounded-lg bg-[#243B53] hover:bg-[#1b2c3e] transition px-6 py-3 text-white shadow-md leading-tight"
               >
-                <span className="text-sm font-medium">לתיאום שיחת הדגמה</span>
-                <span className="text-xs opacity-90">ללא עלות</span>
+                <span className="text-base font-medium">לתיאום שיחת הדגמה</span>
+                <span className="text-sm opacity-90">ללא עלות</span>
               </Link>
-              <LeadModal variant="light" />
+              <LeadModal variant="light" size="lg" />
             </div>
+          </div>
+        </section>
+
+        {/* INCOMING FLOW – בוט מגיב (הרחבה, לא החלפת המסר המרכזי) */}
+        <section className="pt-28 pb-20 bg-[#F8FAFC] border-t border-gray-100">
+          <div className="mx-auto max-w-6xl px-6 text-right">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#243B53] mb-4">
+              ומה קורה כשמישהו פונה אליכם ראשון?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              הבוט לא רק יוזם שיחות מתוך אירוע במערכת — הוא גם יודע לנהל באופן חכם שיחות נכנסות.
+            </p>
+            <div className="space-y-6 text-gray-600 leading-relaxed max-w-3xl mb-10">
+              <p>
+                כאשר לקוח, ספק או עובד שולח הודעה ב-WhatsApp או באימייל — הבוט מזהה את הפנייה, מבין את הכוונה, ושואל שאלות הבהרה במידת הצורך.
+              </p>
+              <p>
+                הוא מחלץ את הנתונים הרלוונטיים מתוך השיחה, מזין אותם לשדות שהוגדרו מראש במחולל הבוטים, ומעדכן את מערכת Priority כחלק מתהליך עסקי מסודר.
+              </p>
+              <p>
+                לא מדובר במענה אוטומטי כללי — אלא בשכבת תקשורת חכמה שמחוברת ישירות לפריוריטי שלכם.
+              </p>
+            </div>
+            <p className="text-lg font-semibold text-[#243B53] mb-16 max-w-3xl">
+              כל שיחה — בין אם יזומה על ידי המערכת ובין אם נפתחה על ידי אדם — הופכת לחלק מתהליך עסקי מובנה בתוך Priority.
+            </p>
+
+            {/* שני מסלולים – ויזואל מינימלי */}
+            <div className="grid gap-12 md:grid-cols-2 mb-20">
+              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#243B53] mb-6 pb-2 border-b border-gray-200">
+                  בוט יוזם
+                </h3>
+                <div className="flex flex-col gap-4 text-gray-600 text-right">
+                  <span>אירוע ב-Priority</span>
+                  <span className="text-[#3AA0D8]">↓</span>
+                  <span>הבוט יוזם שיחה</span>
+                  <span className="text-[#3AA0D8]">↓</span>
+                  <span>מתקבלת תשובה</span>
+                  <span className="text-[#3AA0D8]">↓</span>
+                  <span className="font-medium text-[#243B53]">Priority מתעדכן</span>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#243B53] mb-6 pb-2 border-b border-gray-200">
+                  בוט מגיב
+                </h3>
+                <div className="flex flex-col gap-4 text-gray-600 text-right">
+                  <span>הודעה נכנסת ב-WhatsApp / אימייל</span>
+                  <span className="text-[#4CAF50]">↓</span>
+                  <span>הבוט מזהה ומבין</span>
+                  <span className="text-[#4CAF50]">↓</span>
+                  <span>מחלץ נתונים</span>
+                  <span className="text-[#4CAF50]">↓</span>
+                  <span className="font-medium text-[#243B53]">Priority מתעדכן</span>
+                </div>
+              </div>
+            </div>
+
+            {/* שימושים לבוט מגיב */}
+            <h3 className="text-2xl font-bold text-[#243B53] mb-6">שימושים לבוט מגיב</h3>
+            <ul className="space-y-2 text-gray-600 mb-6 list-disc list-inside max-w-3xl">
+              <li>פניות שירות לקוחות נכנסות</li>
+              <li>ליד חדש שמתחיל שיחה ביוזמתו</li>
+              <li>שאלות של סוכני מכירות על מחירים או מלאי זמין</li>
+              <li>מועמדים לעבודה ששולחים פרטים</li>
+              <li>עובדים ששואלים על נהלי עבודה</li>
+              <li>בקשות סטטוס להזמנה</li>
+              <li>פניות אחריות או החזרות</li>
+              <li>עדכוני אספקה מספקים</li>
+            </ul>
+            <p className="text-gray-600 leading-relaxed">
+              כל הנתונים מתועדים ומוזנים אוטומטית לשדות הרלוונטיים ב-Priority.
+            </p>
           </div>
         </section>
 
@@ -194,14 +268,17 @@ export default function Home() {
               </div>
 
               <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center mb-6 text-[#4CAF50] font-bold">
-                  🚀
+                <div className="w-12 h-12 rounded-full bg-[#4CAF50]/10 flex items-center justify-center mb-6 text-[#4CAF50]">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M18 6v12H6" />
+                    <path d="M8 16l-2 2 2 2" />
+                  </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
-                  ללא צורך בתכנות
+                  מגיב לפניות נכנסות
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  ההגדרה מתבצעת מתוך פריוריטי עצמה. אין צורך בצוות טכנולוגי.
+                  מנתח פניות נכנסות כחלק מתהליך עסקי מובנה.
                 </p>
               </div>
 

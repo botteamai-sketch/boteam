@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: canonicalUrl,
   },
+  icons: {
+    icon: "/logo-boteam.png",
+  },
   openGraph: {
     type: "website",
     url: canonicalUrl,

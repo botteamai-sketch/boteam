@@ -29,7 +29,7 @@ export default function DemoCTASection({ demoHref = "/demo" }: DemoCTASectionPro
       className="bg-white py-24"
     >
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#243B53] mb-4 text-right">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#243B53] mb-4 text-right md:whitespace-nowrap">
           הגיע הזמן ש-Priority יעבוד בשבילך – לא להפך
         </h2>
         <p className="text-lg text-gray-600 mb-10 leading-relaxed text-right">
