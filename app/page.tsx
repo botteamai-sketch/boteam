@@ -12,7 +12,6 @@ import VideoSection from "@/components/VideoSection";
 import HeroVideo from "@/components/HeroVideo";
 import DemoCTASection from "@/components/DemoCTASection";
 import HowItWorksSection from "@/components/HowItWorksSection";
-import GreenBubbleIcon from "@/components/GreenBubbleIcon";
 
 /** Intersection Observer – הופעת סקשנים בעת גלילה (חד־פעמי) */
 function useRevealOnScroll() {
@@ -77,11 +76,13 @@ export default function Home() {
             <div className="grid gap-10 md:grid-cols-2 md:gap-12 items-center mb-16">
               <div className="order-2 md:order-1">
                 <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2 justify-start text-right">
-                  <GreenBubbleIcon />
+                  <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+                    <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+                  </span>
                   <span>כך זה עובד</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-md">
-                  שיחה ב-WhatsApp מתעדכנת ישירות ב-Priority — בלי העתקה, בלי טעויות.
+                  שיחה ב-WhatsApp מתעדכנת ישירות ב-Priority - בלי העתקה, בלי טעויות.
                 </p>
               </div>
               <div className="order-1 md:order-2 relative overflow-hidden rounded-2xl shadow-medium border border-gray-100 bg-gray-50">
@@ -104,7 +105,7 @@ export default function Home() {
                   אירוע עסקי מתרחש בפריוריטי
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  הזמנה מוכנה, הצעת מחיר פתוחה, בקשת אישור או חוב פתוח —
+                  הזמנה מוכנה, הצעת מחיר פתוחה, בקשת אישור או חוב פתוח -
                   כל טריגר עסקי יכול להפעיל את הבוט.
                 </p>
               </div>
@@ -143,7 +144,7 @@ export default function Home() {
 
             <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mt-16">
               <Link
-                href="/demo"
+                href="/#demo"
                 className="button-primary flex-col"
               >
                 <span className="text-base font-medium">לתיאום שיחת הדגמה</span>
@@ -157,25 +158,28 @@ export default function Home() {
         {/* INCOMING FLOW – בוט מגיב (הרחבה, לא החלפת המסר המרכזי) */}
         <section className="section reveal bg-[var(--background-soft)] border-t border-gray-100">
           <div className="mx-auto max-w-6xl px-6 text-right">
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
-              ומה קורה כשמישהו פונה אליכם ראשון?
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2 justify-start text-right">
+              <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+                <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+              </span>
+              <span>ומה קורה כשמישהו פונה אליכם ראשון?</span>
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              הבוט לא רק יוזם שיחות מתוך אירוע במערכת — הוא גם יודע לנהל באופן חכם שיחות נכנסות.
+              הבוט לא רק יוזם שיחות מתוך אירוע במערכת - הוא גם יודע לנהל באופן חכם שיחות נכנסות.
             </p>
             <div className="space-y-6 text-gray-600 leading-relaxed max-w-3xl mb-10">
               <p>
-                כאשר לקוח, ספק או עובד שולח הודעה ב-WhatsApp או באימייל — הבוט מזהה את הפנייה, מבין את הכוונה, ושואל שאלות הבהרה במידת הצורך.
+                כאשר לקוח, ספק או עובד שולח הודעה ב-WhatsApp או באימייל - הבוט מזהה את הפנייה, מבין את הכוונה, ושואל שאלות הבהרה במידת הצורך.
               </p>
               <p>
                 הוא מחלץ את הנתונים הרלוונטיים מתוך השיחה, מזין אותם לשדות שהוגדרו מראש במחולל הבוטים, ומעדכן את מערכת Priority כחלק מתהליך עסקי מסודר.
               </p>
               <p>
-                לא מדובר במענה אוטומטי כללי — אלא בשכבת תקשורת חכמה שמחוברת ישירות לפריוריטי שלכם.
+                לא מדובר במענה אוטומטי כללי - אלא בשכבת תקשורת חכמה שמחוברת ישירות לפריוריטי שלכם.
               </p>
             </div>
             <p className="text-lg font-semibold text-[var(--text-primary)] mb-16 max-w-3xl">
-              כל שיחה — בין אם יזומה על ידי המערכת ובין אם נפתחה על ידי אדם — הופכת לחלק מתהליך עסקי מובנה בתוך Priority.
+              כל שיחה - בין אם יזומה על ידי המערכת ובין אם נפתחה על ידי אדם - הופכת לחלק מתהליך עסקי מובנה בתוך Priority.
             </p>
 
             {/* שני מסלולים – ויזואל מינימלי */}
@@ -233,7 +237,9 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-6 text-right">
 
             <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right text-[var(--text-primary)]">
-              <GreenBubbleIcon />
+              <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+                <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+              </span>
               <span>למה זה שונה מכל בוט אחר?</span>
             </h2>
 
@@ -326,8 +332,11 @@ export default function Home() {
         >
           <div className="mx-auto max-w-6xl px-6 text-right">
 
-            <h2 className="text-3xl font-bold mb-16">
-              איפה זה מייצר ערך מיידי?
+            <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right">
+              <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+                <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+              </span>
+              <span>איפה זה מייצר ערך מיידי?</span>
             </h2>
 
             <div className="grid gap-8 md:grid-cols-2">
@@ -403,7 +412,9 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-6 text-right">
 
             <h2 className="text-3xl font-bold mb-16 flex items-center gap-2 justify-start text-right text-white">
-              <GreenBubbleIcon />
+              <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+                <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+              </span>
               <span>מה הארגון מרוויח?</span>
             </h2>
 
@@ -456,7 +467,7 @@ export default function Home() {
                   תקשורת בערוצים טבעיים
                 </h3>
                 <p className="text-gray-300 leading-relaxed">
-                  לקוחות ועובדים מתקשרים בדרך שנוחה להם —
+                  לקוחות ועובדים מתקשרים בדרך שנוחה להם -
                   בלי פורטלים מסובכים.
                 </p>
               </div>
@@ -499,7 +510,7 @@ export default function Home() {
             </h2>
 
             <p className="text-xl mb-10" style={{ color: "#ffffff" }}>
-              הגדירו בוט ראשון תוך דקות ותנו לפריוריטי לנהל גם את השיחות שלכם.
+              הגדירו בוט תוך דקות ותנו לפריוריטי לנהל גם את השיחות שלכם.
             </p>
 
             <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">

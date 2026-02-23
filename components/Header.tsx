@@ -6,10 +6,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
-/* קישורים זהים לדסקטופ – איך זה עובד, שימושים, מחיר, תהליך ההטמעה, שאלות נפוצות */
+/* קישורים זהים לדסקטופ – איך זה עובד, מחיר, תהליך ההטמעה, שאלות נפוצות */
 const DRAWER_LINKS = [
   { href: "/#how", label: "איך זה עובד" },
-  { href: "/#usecases", label: "שימושים" },
   { href: "/pricing", label: "מחיר" },
   { href: "/onboarding", label: "תהליך ההטמעה" },
   { href: "/faq", label: "שאלות נפוצות" },
@@ -54,7 +53,7 @@ export default function Header() {
       className={`navbar sticky top-0 z-50 border-b border-gray-200 ${scrolled ? "scrolled" : ""}`}
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center w-full gap-6">
-        {/* סדר מימין לשמאל: כותרת → כפתור הדגמה → איך זה עובד → שימושים → שאלות נפוצות → לוגו */}
+        {/* סדר מימין לשמאל: כותרת → כפתור הדגמה → איך זה עובד → מחיר → תהליך ההטמעה → שאלות נפוצות → לוגו */}
         <Link href="/" className="header-title flex-shrink-0">
           מחולל בוטים לפריוריטי
         </Link>
@@ -64,9 +63,6 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8 text-sm flex-shrink-0">
           <a href="/#how" className="text-gray-600 hover:text-black transition whitespace-nowrap">
             איך זה עובד
-          </a>
-          <a href="/#usecases" className="text-gray-600 hover:text-black transition whitespace-nowrap">
-            שימושים
           </a>
           <Link
             href="/pricing"
@@ -117,7 +113,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Overlay — רק במובייל, לחיצה סוגרת */}
+      {/* Overlay - רק במובייל, לחיצה סוגרת */}
       <button
         type="button"
         aria-hidden
@@ -128,7 +124,7 @@ export default function Header() {
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* תפריט מובייל — רקע מלא, אנימציה, CTA בולט */}
+      {/* תפריט מובייל - רקע מלא, אנימציה, CTA בולט */}
       <div
         className={`mobile-menu fixed top-0 right-0 h-full w-full max-w-sm z-[60] ${
           menuOpen ? "open" : ""

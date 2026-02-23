@@ -40,12 +40,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: canonicalUrl,
   },
-  icons: [
-    { rel: "icon", url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
-    { rel: "icon", url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-    { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
-    { rel: "icon", url: "/favicon.ico", sizes: "any" },
-  ],
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/favicon/favicon.ico",
+    apple: "/favicon/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     url: canonicalUrl,

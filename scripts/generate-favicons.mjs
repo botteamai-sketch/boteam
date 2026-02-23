@@ -1,24 +1,32 @@
 #!/usr/bin/env node
 /**
- * Generate favicon set from /public/brand/bubble-icon.svg
- * Outputs: favicon.ico, favicon-16.png, favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png
+ * Generate favicon set from PNG (or SVG fallback).
+ * Place your bubble PNG at: public/favicon/source.png
+ * Outputs to public/favicon/:
+ *   favicon.ico, favicon-16x16.png, favicon-32x32.png,
+ *   apple-touch-icon.png (180), android-chrome-192x192.png, android-chrome-512x512.png
+ * All with ~10% padding, centered, transparent background.
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const publicDir = join(root, "public");
-const svgPath = join(publicDir, "brand", "bubble-icon.svg");
+const faviconDir = join(publicDir, "favicon");
+const sourcePng = join(faviconDir, "source.png");
+const sourceSvg = join(publicDir, "brand", "bubble-icon.svg");
+
+const PADDING_RATIO = 0.1; // 10% padding on each side → icon area is 80%
 
 const sizes = [
-  { name: "favicon-16.png", w: 16, h: 16 },
-  { name: "favicon-32.png", w: 32, h: 32 },
+  { name: "favicon-16x16.png", w: 16, h: 16 },
+  { name: "favicon-32x32.png", w: 32, h: 32 },
   { name: "apple-touch-icon.png", w: 180, h: 180 },
-  { name: "icon-192.png", w: 192, h: 192 },
-  { name: "icon-512.png", w: 512, h: 512 },
+  { name: "android-chrome-192x192.png", w: 192, h: 192 },
+  { name: "android-chrome-512x512.png", w: 512, h: 512 },
 ];
 
 async function main() {
@@ -30,29 +38,58 @@ async function main() {
     process.exit(1);
   }
 
-  const svg = readFileSync(svgPath);
+  mkdirSync(faviconDir, { recursive: true });
+
+  let input;
+  if (existsSync(sourcePng)) {
+    input = sharp(readFileSync(sourcePng));
+    console.log("Using source: public/favicon/source.png");
+  } else if (existsSync(sourceSvg)) {
+    input = sharp(readFileSync(sourceSvg));
+    console.log("Using fallback: public/brand/bubble-icon.svg");
+  } else {
+    console.error("No source image found. Place your PNG at: public/favicon/source.png");
+    process.exit(1);
+  }
+
   const pngBuffers = { 16: null, 32: null };
 
   for (const { name, w, h } of sizes) {
-    const outPath = join(publicDir, name);
-    const buf = await sharp(svg)
-      .resize(w, h)
+    const padding = Math.round(Math.min(w, h) * PADDING_RATIO);
+    const iconW = Math.max(1, w - 2 * padding);
+    const iconH = Math.max(1, h - 2 * padding);
+
+    const buf = await input
+      .clone()
+      .resize(iconW, iconH)
+      .extend({
+        top: padding,
+        bottom: padding,
+        left: padding,
+        right: padding,
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
       .png()
       .toBuffer();
+
+    const outPath = join(faviconDir, name);
     writeFileSync(outPath, buf);
-    console.log("Written:", name);
-    if (w === 16) pngBuffers[16] = buf;
-    if (w === 32) pngBuffers[32] = buf;
+    console.log("Written: favicon/" + name);
+
+    if (name === "favicon-16x16.png") pngBuffers[16] = buf;
+    if (name === "favicon-32x32.png") pngBuffers[32] = buf;
   }
 
   try {
     const toIco = (await import("to-ico")).default;
     const icoBuf = await toIco([pngBuffers[16], pngBuffers[32]].filter(Boolean));
-    writeFileSync(join(publicDir, "favicon.ico"), icoBuf);
-    console.log("Written: favicon.ico");
+    writeFileSync(join(faviconDir, "favicon.ico"), icoBuf);
+    console.log("Written: favicon/favicon.ico");
   } catch (e) {
     console.warn("favicon.ico skipped:", e.message);
   }
+
+  console.log("Done. Favicons are in public/favicon/");
 }
 
 main().catch((err) => {

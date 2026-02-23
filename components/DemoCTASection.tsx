@@ -19,7 +19,7 @@ type DemoCTASectionProps = {
   demoHref?: string;
 };
 
-export default function DemoCTASection({ demoHref = "/demo" }: DemoCTASectionProps) {
+export default function DemoCTASection({ demoHref = "/#demo" }: DemoCTASectionProps) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
