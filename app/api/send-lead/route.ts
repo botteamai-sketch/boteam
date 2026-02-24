@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     console.log("📩 Incoming lead request...");
 
     const body = await req.json();
-    const { name, email, phone, message, company_website } = body;
+    const { name, email, phone, company, extra_message, company_website } = body;
 
     // Honeypot check
     if (company_website) {
@@ -68,8 +68,9 @@ export async function POST(req: Request) {
 <p><strong>שם:</strong> ${name}</p>
 <p><strong>אימייל:</strong> ${email}</p>
 <p><strong>טלפון:</strong> ${phone || "לא הוזן"}</p>
-<p><strong>הודעה:</strong></p>
-<p>${message || "אין הודעה"}</p>
+<p><strong>חברה:</strong> ${company || "לא הוזן"}</p>
+<p><strong>משהו שתרצו להוסיף?</strong></p>
+<p>${extra_message || "לא הוזן"}</p>
 
 <hr style="margin:20px 0;" />
 
@@ -90,15 +91,22 @@ export async function POST(req: Request) {
 </html>
 `;
 
-    await sendEmail(
-      gmail,
-      process.env.GMAIL_SENDER_EMAIL!,
-      process.env.GMAIL_SENDER_EMAIL!,
-      "🔔 ליד חדש מהאתר",
-      adminHtml
-    );
-
-    console.log("✅ Admin email sent");
+    try {
+      await sendEmail(
+        gmail,
+        process.env.GMAIL_SENDER_EMAIL!,
+        process.env.GMAIL_SENDER_EMAIL!,
+        `🔔 ליד חדש מהאתר מ ${name || "ללא שם"} | ${company || "ללא חברה"}`,
+        adminHtml
+      );
+      console.log("✅ Admin email sent");
+    } catch (err) {
+      console.error("❌ Failed sending admin email:", err);
+      return NextResponse.json(
+        { error: "Failed sending admin email" },
+        { status: 500 }
+      );
+    }
 
     // ==========================================================
     // Email 2 – Customer confirmation
@@ -174,15 +182,22 @@ export async function POST(req: Request) {
 </html>
 `;
 
-    await sendEmail(
-      gmail,
-      process.env.GMAIL_SENDER_EMAIL!,
-      email,
-      "קיבלנו את הפרטים שלך 🚀",
-      customerHtml
-    );
-
-    console.log("✅ Customer email sent");
+    try {
+      await sendEmail(
+        gmail,
+        process.env.GMAIL_SENDER_EMAIL!,
+        email,
+        "קיבלנו את הפרטים שלך 🚀",
+        customerHtml
+      );
+      console.log("✅ Customer email sent");
+    } catch (err) {
+      console.error("❌ Failed sending customer email:", err);
+      return NextResponse.json(
+        { error: "Failed sending customer email" },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

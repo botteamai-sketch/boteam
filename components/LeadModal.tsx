@@ -57,8 +57,9 @@ export default function LeadModal({
       name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone"),
-      message: formData.get("company") ?? "",
+      company: formData.get("company") ?? "",
       company_website: formData.get("company_website"),
+      extra_message: formData.get("extra_message"),
     };
 
     try {
@@ -70,8 +71,17 @@ export default function LeadModal({
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to send");
+      let result: { error?: string } | null = null;
+
+      try {
+        result = await res.json();
+      } catch (err) {
+        console.error("❌ Failed parsing JSON:", err);
+      }
+
+      if (!res.ok || result?.error) {
+        console.error("❌ API returned error:", result);
+        throw new Error(result?.error || "Failed to send");
       }
 
       trackEvent("submit_lead", "conversion", "Lead Form");
@@ -83,7 +93,8 @@ export default function LeadModal({
         handleClose();
         onSuccess?.();
       }, 800);
-    } catch {
+    } catch (err) {
+      console.error("❌ Submit error:", err);
       setSuccess(false);
       setError("אירעה שגיאה בשליחה. נסה שוב.");
     } finally {
@@ -225,6 +236,14 @@ export default function LeadModal({
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 sm:px-3 sm:py-2.5 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent"
                 />
               </div>
+
+              <textarea
+                name="extra_message"
+                maxLength={500}
+                placeholder="משהו שתרצו להוסיף?"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 sm:px-3 sm:py-2.5 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3FA9F5] focus:border-transparent resize-y"
+                rows={4}
+              />
 
               <input
                 type="text"
