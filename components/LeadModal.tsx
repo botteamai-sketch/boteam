@@ -18,6 +18,8 @@ type LeadModalProps = {
   onOpenChange?: (open: boolean) => void;
   /** כשמופעל – לא מציג את כפתור ההפעלה (לפתיחה מקישור/כפתור אחר) */
   hideTrigger?: boolean;
+  /** נקרא לאחר שליחה מוצלחת (לפני סגירת המודל) */
+  onSuccess?: () => void;
 };
 
 export default function LeadModal({
@@ -26,6 +28,7 @@ export default function LeadModal({
   open: controlledOpen,
   onOpenChange,
   hideTrigger = false,
+  onSuccess,
 }: LeadModalProps) {
   const [internalOpen, setInternalOpen] = useState(false);
   const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
@@ -55,6 +58,7 @@ export default function LeadModal({
       email: formData.get("email"),
       phone: formData.get("phone"),
       message: formData.get("company") ?? "",
+      company_website: formData.get("company_website"),
     };
 
     try {
@@ -71,10 +75,16 @@ export default function LeadModal({
       }
 
       trackEvent("submit_lead", "conversion", "Lead Form");
+      setError("");
       setSuccess(true);
       setForm(initialForm);
       e.currentTarget.reset();
+      setTimeout(() => {
+        handleClose();
+        onSuccess?.();
+      }, 800);
     } catch {
+      setSuccess(false);
       setError("אירעה שגיאה בשליחה. נסה שוב.");
     } finally {
       setLoading(false);
@@ -216,6 +226,19 @@ export default function LeadModal({
                 />
               </div>
 
+              <input
+                type="text"
+                name="company_website"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{
+                  position: "absolute",
+                  left: "-9999px",
+                  opacity: 0,
+                  height: 0,
+                  width: 0,
+                }}
+              />
               <div className="pt-1">
                 <button
                   type="submit"
@@ -224,13 +247,13 @@ export default function LeadModal({
                 >
                   {loading ? "שולח..." : "שליחה"}
                 </button>
-                {success && (
-                  <p className="text-green-600 mt-2 text-sm text-right">
+                {success && !error && (
+                  <p className="text-green-600 mt-2 text-right">
                     הפרטים נשלחו בהצלחה! ניצור איתך קשר בהקדם 🚀
                   </p>
                 )}
-                {error && (
-                  <p className="text-red-600 mt-2 text-sm text-right">
+                {error && !success && (
+                  <p className="text-red-600 mt-2 text-right">
                     {error}
                   </p>
                 )}

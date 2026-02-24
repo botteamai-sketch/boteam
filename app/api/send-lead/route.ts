@@ -13,7 +13,13 @@ export async function POST(req: Request) {
     console.log("📩 Incoming lead request...");
 
     const body = await req.json();
-    const { name, email, phone, message } = body;
+    const { name, email, phone, message, company_website } = body;
+
+    // Honeypot check
+    if (company_website) {
+      console.log("🚫 Spam detected (honeypot filled)");
+      return NextResponse.json({ success: true });
+    }
 
     if (!email || !name) {
       return NextResponse.json(
@@ -42,15 +48,47 @@ export async function POST(req: Request) {
     // ==========================================================
 
     const adminHtml = `
-      <h2>🔔 ליד חדש מהאתר</h2>
-      <p><strong>שם:</strong> ${name}</p>
-      <p><strong>אימייל:</strong> ${email}</p>
-      <p><strong>טלפון:</strong> ${phone || "לא הוזן"}</p>
-      <p><strong>הודעה:</strong></p>
-      <p>${message || "אין הודעה"}</p>
-      <hr/>
-      <p>נשלח אוטומטית מהאתר boteam.org</p>
-    `;
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body style="margin:0;padding:30px;background:#f4f6f8;direction:rtl;text-align:right;font-family:Arial,sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center">
+
+<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;padding:30px;">
+
+<tr>
+<td>
+<h2 style="margin-top:0;">🔔 ליד חדש מהאתר</h2>
+
+<p><strong>שם:</strong> ${name}</p>
+<p><strong>אימייל:</strong> ${email}</p>
+<p><strong>טלפון:</strong> ${phone || "לא הוזן"}</p>
+<p><strong>הודעה:</strong></p>
+<p>${message || "אין הודעה"}</p>
+
+<hr style="margin:20px 0;" />
+
+<p style="font-size:12px;color:#777;">
+נשלח אוטומטית מהאתר boteam.org
+</p>
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+`;
 
     await sendEmail(
       gmail,
@@ -67,25 +105,74 @@ export async function POST(req: Request) {
     // ==========================================================
 
     const customerHtml = `
-      <div style="font-family: Arial; max-width:600px; margin:auto; padding:20px;">
-        <h2 style="color:#111;">שלום ${name},</h2>
-        <p>תודה שפנית ל-<strong>Boteam</strong>.</p>
-        <p>
-          אנחנו בונים בוטים חכמים שמתחברים ל-Priority
-          ומנהלים שיחות WhatsApp אמיתיות עד סגירת תהליך.
-        </p>
-        <p>
-          ניצור איתך קשר בהקדם לתיאום הדגמה קצרה.
-        </p>
-        <p style="margin-top:20px;">
-          🚀 <strong>הבוט הראשון עלינו ל-3 חודשים.</strong>
-        </p>
-        <hr/>
-        <p style="font-size:12px;color:#888;">
-          boteam.org
-        </p>
-      </div>
-    `;
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body style="margin:0;padding:0;background-color:#f4f6f8;direction:rtl;text-align:right;font-family:Arial,sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8;padding:40px 0;">
+<tr>
+<td align="center">
+
+<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden;">
+
+<tr>
+<td style="padding:30px;text-align:center;background:#0f172a;color:white;">
+<h1 style="margin:0;font-size:22px;">Boteam</h1>
+</td>
+</tr>
+
+<tr>
+<td style="padding:40px;">
+
+<h2 style="margin-top:0;font-size:20px;">שלום ${name},</h2>
+
+<p style="font-size:15px;line-height:1.6;color:#333;">
+תודה שפנית אלינו.
+אנחנו בונים בוטים חכמים שמתחברים ל-Priority
+ומנהלים שיחות WhatsApp אמיתיות עד סגירת תהליך.
+</p>
+
+<p style="font-size:15px;line-height:1.6;color:#333;">
+ניצור איתך קשר בהקדם לתיאום הדגמה קצרה.
+</p>
+
+<p style="font-size:15px;font-weight:bold;margin-top:20px;color:#0f172a;">
+🚀 הבוט הראשון עלינו ל-3 חודשים.
+</p>
+
+<table cellpadding="0" cellspacing="0" style="margin-top:30px;">
+<tr>
+<td align="right">
+<a href="https://boteam.org"
+   style="background:#16a34a;color:white;padding:12px 24px;
+   border-radius:8px;text-decoration:none;font-size:14px;display:inline-block;">
+לתיאום הדגמה
+</a>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+<tr>
+<td style="padding:20px;background:#f9fafb;font-size:12px;color:#777;text-align:center;">
+© ${new Date().getFullYear()} Boteam. כל הזכויות שמורות.
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+`;
 
     await sendEmail(
       gmail,
@@ -118,10 +205,11 @@ async function sendEmail(
   subject: string,
   html: string
 ) {
+  const encodedSubject = `=?UTF-8?B?${Buffer.from(subject, "utf-8").toString("base64")}?=`;
   const messageParts = [
     `From: ${from}`,
     `To: ${to}`,
-    `Subject: ${subject}`,
+    `Subject: ${encodedSubject}`,
     "Content-Type: text/html; charset=utf-8",
     "",
     html,

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import LeadModal from "@/components/LeadModal";
+import SuccessToast from "@/components/SuccessToast";
 
 const currentYear = new Date().getFullYear();
 
@@ -11,6 +12,7 @@ const linkClass =
 
 export default function Footer() {
   const [contactOpen, setContactOpen] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   return (
     <footer
@@ -87,6 +89,12 @@ export default function Footer() {
           onOpenChange={setContactOpen}
           hideTrigger
           variant="dark"
+          onSuccess={() => setShowSuccessToast(true)}
+        />
+
+        <SuccessToast
+          show={showSuccessToast}
+          onClose={() => setShowSuccessToast(false)}
         />
 
         {/* Bottom section – זכויות יוצרים */}

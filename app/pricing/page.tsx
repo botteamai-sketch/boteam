@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import { motion } from "framer-motion";
 import CalendlyModal from "@/components/CalendlyModal";
 import LeadModal from "@/components/LeadModal";
+import SuccessToast from "@/components/SuccessToast";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -62,6 +64,8 @@ const WHO_IS_IT_FOR = [
 ] as const;
 
 export default function PricingPage() {
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+
   return (
     <div dir="rtl" className="min-h-screen bg-white text-[var(--text-primary)]">
       <Header />
@@ -344,6 +348,11 @@ export default function PricingPage() {
             </motion.p>
           </div>
         </section>
+
+        <SuccessToast
+          show={showSuccessToast}
+          onClose={() => setShowSuccessToast(false)}
+        />
       </main>
     </div>
   );

@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import LeadModal from "@/components/LeadModal";
 import CalendlyModal from "@/components/CalendlyModal";
+import SuccessToast from "@/components/SuccessToast";
 import ScrollTracker from "@/components/ScrollTracker";
 import VideoSection from "@/components/VideoSection";
 import HeroVideo from "@/components/HeroVideo";
@@ -46,6 +47,7 @@ function useRevealOnScroll() {
 
 export default function Home() {
   useRevealOnScroll();
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   return (
     <div dir="rtl" className="bg-[var(--background-soft)] text-[var(--text-primary)]">
@@ -515,11 +517,15 @@ export default function Home() {
 
             <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
               <CalendlyModal size="lg" variant="outline" />
-              <LeadModal size="lg" />
+              <LeadModal size="lg" onSuccess={() => setShowSuccessToast(true)} />
             </div>
           </div>
         </section>
 
+        <SuccessToast
+          show={showSuccessToast}
+          onClose={() => setShowSuccessToast(false)}
+        />
       </main>
     </div>
   );
