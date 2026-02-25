@@ -13,6 +13,8 @@ const initialForm = {
 type LeadModalProps = {
   size?: "default" | "lg";
   variant?: "light" | "dark";
+  /** טקסט שורה שנייה בכפתור (ברירת מחדל: "ונדבר בטלפון") */
+  triggerSubLabel?: string;
   /** כשמועבר – המודל נשלט מבחוץ (open/onOpenChange) */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -25,6 +27,7 @@ type LeadModalProps = {
 export default function LeadModal({
   size = "default",
   variant = "dark",
+  triggerSubLabel = "ונדבר בטלפון",
   open: controlledOpen,
   onOpenChange,
   hideTrigger = false,
@@ -170,7 +173,7 @@ export default function LeadModal({
         }`}
       >
         <span className={isLarge ? "text-base font-medium" : "text-sm font-medium"}>השאירו פרטים</span>
-        <span className={`${isLarge ? "text-sm" : "text-xs"} ${isLight ? "opacity-80" : "opacity-90"}`}>ונדבר בטלפון</span>
+        <span className={`${isLarge ? "text-sm" : "text-xs"} ${isLight ? "opacity-80" : "opacity-90"}`}>{triggerSubLabel}</span>
       </button>
       )}
 

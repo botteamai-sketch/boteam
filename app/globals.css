@@ -210,6 +210,13 @@ p {
   color: rgba(255, 255, 255, 0.85);
 }
 
+/* סקשן CTA עם רקע כחול – טקסט לבן (how-it-works) */
+.cta-blue-bg,
+.cta-blue-bg h2,
+.cta-blue-bg p {
+  color: #ffffff !important;
+}
+
 /* ========== Grid אחיד ========== */
 .grid-3 {
   display: grid;
