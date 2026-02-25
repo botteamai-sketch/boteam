@@ -54,7 +54,8 @@ export default function LeadModal({
     setErrorDetail("");
     setSuccess(false);
 
-    const formData = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    const formData = new FormData(formEl);
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -108,7 +109,7 @@ export default function LeadModal({
       setError("");
       setSuccess(true);
       setForm(initialForm);
-      e.currentTarget.reset();
+      formEl?.reset();
       setTimeout(() => {
         handleClose();
         onSuccess?.();
