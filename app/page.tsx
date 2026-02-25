@@ -340,40 +340,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ערך מערכתית – ROI / Business Value */}
-        <section className="reveal py-20 bg-gray-50 border-t border-gray-100">
-          <div className="mx-auto max-w-4xl px-6 text-center text-right">
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8">
-              ערך מערכתית אמיתי לארגון
-            </h2>
-            <p className="text-gray-600 leading-relaxed mb-10">
-              מחולל הבוטים אינו רק כלי תקשורת.
-              <br />
-              הוא מרחיב את מערכת ה-ERP ומאפשר לה ליזום, להגיב ולהשלים תהליכים עסקיים באופן אוטומטי.
-            </p>
-            <ul className="space-y-4 mb-10 text-right">
-              {[
-                "חיסכון משמעותי בזמן תפעול ומעקב",
-                "אוטומציה של תהליכי אישור, גבייה ותיאום",
-                "הפחתת טעויות אנוש בתהליכים רגישים",
-                "ריכוז כל המידע והתיעוד בתוך Priority – ללא פיצול מערכות",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 justify-start flex-row-reverse">
-                  <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
-                    ✔
-                  </span>
-                  <span className="text-[var(--text-primary)]">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-[var(--text-primary)] font-medium leading-relaxed">
-              כל התהליך מנוהל מתוך ה-ERP הקיים –
-              <br />
-              ללא תלות בכלים חיצוניים וללא פיצול ארכיטקטוני.
-            </p>
-          </div>
-        </section>
-
         {/* USE CASES */}
         <section
           id="usecases"

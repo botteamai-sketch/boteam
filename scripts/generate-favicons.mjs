@@ -19,7 +19,7 @@ const faviconDir = join(publicDir, "favicon");
 const sourcePng = join(faviconDir, "source.png");
 const sourceSvg = join(publicDir, "brand", "bubble-icon.svg");
 
-const PADDING_RATIO = 0.1; // 10% padding on each side → icon area is 80%
+const PADDING_RATIO = 0.04; // 4% padding → icon fills ~92% of canvas (visibly larger)
 
 const sizes = [
   { name: "favicon-16x16.png", w: 16, h: 16 },
@@ -52,7 +52,7 @@ async function main() {
     process.exit(1);
   }
 
-  const pngBuffers = { 16: null, 32: null };
+  const pngBuffers = { 16: null, 32: null, 48: null };
 
   for (const { name, w, h } of sizes) {
     const padding = Math.round(Math.min(w, h) * PADDING_RATIO);
@@ -78,11 +78,12 @@ async function main() {
 
     if (name === "favicon-16x16.png") pngBuffers[16] = buf;
     if (name === "favicon-32x32.png") pngBuffers[32] = buf;
+    if (name === "favicon-48x48.png") pngBuffers[48] = buf;
   }
 
   try {
     const toIco = (await import("to-ico")).default;
-    const icoBuf = await toIco([pngBuffers[16], pngBuffers[32]].filter(Boolean));
+    const icoBuf = await toIco([pngBuffers[16], pngBuffers[32], pngBuffers[48]].filter(Boolean));
     writeFileSync(join(faviconDir, "favicon.ico"), icoBuf);
     console.log("Written: favicon/favicon.ico");
   } catch (e) {

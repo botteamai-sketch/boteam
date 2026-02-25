@@ -32,33 +32,45 @@ const STEPS = [
 
 const FAQ = [
   {
-    q: "מה זה בוט?",
-    a: "תהליך אוטומציה חכם המחובר ל-Priority – מכירות, שירות, גבייה או כל תהליך עסקי.",
+    q: "מהו מחולל הבוטים?",
+    a: "מחולל הבוטים הוא מודול מערכת המותקן בתוך Priority ומאפשר יצירת תהליכי Automation ו-Workflow חכמים המחוברים ישירות לנתוני הארגון.",
+  },
+  {
+    q: "האם מדובר בשירות בניית בוטים?",
+    a: "לא. מדובר בהתקנת פלטפורמה ליצירת בוטים בתוך מערכת Priority. אנו מתקינים את המודול ומבצעים Enablement ראשוני, אך הגדרת התהליכים מבוצעת על ידי מיישם ה-Priority של הארגון.",
+  },
+  {
+    q: "מי אחראי על הגדרת הבוטים בארגון?",
+    a: "הגדרת התהליכים והרחבתם מבוצעת על ידי מיישם ה-Priority של הארגון, בהתאם ללוגיקה ולמבנה העסקי הפנימי.",
   },
   {
     q: "למה יש דמי הקמה?",
-    a: "דמי הקמה (₪2,500, חד-פעמי) כוללים חיבור מלא ל-Priority, התאמה לתהליכים שלכם והטמעה מלאה. תשלום אחד – ואז רק חודשי.",
+    a: "דמי ההקמה (₪3,500 חד-פעמי) כוללים התקנת מודול מלא בסביבת Priority, קונפיגורציה ראשונית, הרשאות למיישמים והדרכת Enablement הכוללת הקמת תהליך ראשון.",
+  },
+  {
+    q: "כיצד עובד המודל החודשי?",
+    a: "הרישוי הינו ₪120 לחודש לכל תהליך Bot פעיל. המודל מודולרי וניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון.",
   },
   {
     q: "האם יש התחייבות ארוכת טווח?",
-    a: "לא. אנחנו מאמינים בתוצאות – לא בחוזים. החיוב חודשי וניתן להפסיק בכל עת.",
+    a: "לא. החיוב הינו חודשי וניתן להפסיק את הרישוי בהתאם לצורך הארגוני.",
   },
   {
-    q: "מה קורה אחרי 3 חודשים?",
-    a: "הבוט הראשון מצטרף למחיר הרגיל – ₪120 לחודש.",
+    q: "האם קיימות מגבלות שימוש?",
+    a: "ברירת המחדל כוללת עד 1,000 שיחות חודשיות לכל בוט פעיל. ניתן להרחיב בהתאם לדרישות הארגון.",
   },
   {
-    q: "אפשר להוסיף בוטים?",
-    a: "כן. בכל שלב. לפי הצורך.",
+    q: "האם ניתן להוסיף בוטים נוספים?",
+    a: "כן. ניתן להוסיף תהליכים פעילים בכל שלב בהתאם לצורך הארגוני.",
   },
   {
-    q: "יש מגבלת שימוש?",
-    a: "עד 1,000 שיחות בחודש לכל בוט. ניתן להרחיב לפי דרישה.",
+    q: "האם יש תמחור לפי משתמשים?",
+    a: "לא. אין תמחור לפי מספר משתמשים במערכת.",
   },
 ] as const;
 
 const WHO_IS_IT_FOR = [
-  "חברות שעובדות עם Priority",
+  "חברות שעובדות עם Priority (לא zoom)",
   "עסקים שרוצים להפוך WhatsApp לכלי תפעולי",
   "חברות שרוצות להוסיף שכבת AI אמיתית למערכת",
 ] as const;
@@ -72,84 +84,90 @@ export default function PricingPage() {
 
       <main>
         {/* מחיר מרכזי – מסלול יחיד במסגרת */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[var(--background-soft)] to-white pt-20 pb-14 md:pt-24 md:pb-20">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[var(--background-soft)] to-white pt-10 pb-14 md:pt-14 md:pb-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(63,169,245,0.12),transparent)]" />
           <div className="relative mx-auto max-w-2xl px-6 flex flex-col items-center">
+            <motion.h1
+              className="text-3xl md:text-5xl font-bold text-[var(--text-primary)] mb-8 text-center w-full"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              dir="rtl"
+            >
+              מחולל הבוטים לפריוריטי
+            </motion.h1>
+            <p className="text-xs text-[var(--text-secondary)] opacity-80 text-center w-full mb-3" dir="rtl">
+              מיועד לארגונים המשתמשים ב-Priority
+            </p>
             <motion.div
-              className="w-full text-center mb-10"
+              className="w-full"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-2xl md:text-4xl font-bold text-[var(--text-primary)] mb-4" dir="rtl">
-                פלטפורמת Automation ארגונית – מודול מערכת ל-Priority
-              </h1>
-              <p className="text-[var(--text-secondary)] text-base md:text-lg leading-relaxed max-w-2xl mx-auto" dir="rtl">
-                מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי ממערכת Priority.<br />
-                לא מערכת חיצונית, לא שירות צד ג׳, ולא אינטגרציה זמנית –<br />
-                אלא שכבת יכולת חדשה בתוך ה-ERP הארגוני.
-              </p>
-            </motion.div>
             <motion.div
-              className="w-full max-w-xl rounded-2xl border-2 border-[var(--border-soft)] bg-white p-8 md:p-10 shadow-[var(--shadow-medium)] text-right"
+              className="w-full max-w-xl mx-auto rounded-2xl border-2 border-[var(--border-soft)] bg-white p-8 md:p-10 shadow-[var(--shadow-medium)] text-right"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="mb-2 flex flex-wrap items-baseline gap-x-2">
-                <span className="text-[6rem] md:text-[2.0rem] font-bold text-[var(--primary-dark)] leading-none">₪120</span>
-                <span className="text-xl md:text-2xl font-semibold text-[var(--text-secondary)]">לחודש לבוט</span>
+              {/* התקנה חד־פעמית – עלות ראשית */}
+              <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
+                הטמעה ראשונית
               </p>
-              <p className="text-lg text-[var(--text-secondary)] mb-4">
-                בוטים לפי צורך
+              <p className="flex flex-wrap items-baseline gap-x-2 mb-4">
+                <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪3,500</span>
+                <span className="text-base text-[var(--text-secondary)]">חד פעמי</span>
               </p>
-              <p className="text-[var(--text-secondary)] text-base mb-8">
-                דמי הקמה: ₪2,500 חד-פעמי
-              </p>
-              <ul className="space-y-3">
+              <ul className="mt-3 space-y-2.5 mb-6">
                 {[
-                  "ללא צורך בכתיבת קוד",
-                  "חיבור ישיר ל-Priority",
-                  "תמיכה מלאה ב-WhatsApp ואימייל",
-                  "יצירת בוטים עתידיים באופן עצמאי",
-                  "עד 1,000 שיחות לחודש לבוט (ניתן להרחיב)",
-                  "ליווי והטמעה מותאמת",
-                ].map((feature, i) => (
+                  "התקנת מודול מחולל הבוטים בסביבת Priority",
+                  "המודול מותקן כחלק אינטגרלי ממערכת ה-ERP של הארגון",
+                  "קונפיגורציה והרשאות למיישמים",
+                  "שעתיים הדרכה על המערכת הכוללים ליווי בהקמת תהליך בוט ראשון",
+                  "תמיכה מקצועית במייל ללא הגבלה",
+                ].map((item, i) => (
                   <li key={i} className="flex items-center gap-2 justify-start">
-                    <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">
                       ✔
                     </span>
-                    <span className="text-right">{feature}</span>
+                    <span className="text-[var(--text-primary)] text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
+
+              <hr className="border-t border-[var(--border-soft)] my-6" />
+
+              {/* רישוי חודשי */}
+              <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
+                רישיון חודשי לתהליך Bot פעיל
+              </p>
+              <p className="flex flex-wrap items-baseline gap-x-2 mb-2">
+                <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪120</span>
+                <span className="text-base text-[var(--text-secondary)]">לחודש</span>
+              </p>
+              <p className="text-sm text-[var(--text-secondary)] mb-6">
+                מודל רישוי מודולרי בהתאם להיקף הפעילות ולמספר התהליכים הפעילים.
+              </p>
+
+              <p className="text-xs text-[var(--text-secondary)] border-t border-[var(--border-soft)] pt-4 leading-relaxed">
+                אין הגבלה על כמות הבוטים.<br />
+                אין הגבלה על כמות המשתמשים.<br />
+                הניהול והשליטה מתבצעים מתוך Priority.
+              </p>
+              <p className="text-sm text-[var(--text-secondary)] pt-4 leading-relaxed">
+                אין אותיות קטנות.<br />
+                המערכת פעילה במלואה מהיום הראשון – כולל חיבור ישיר ל-Priority, מנגנוני טריגרים עסקיים וביצוע אוטומציה בזמן אמת.
+              </p>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                אתם משלמים רק לפי הצורך התפעולי בפועל.
+              </p>
+            </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* בלוק אסטרטגי – בידול מפתרונות SaaS */}
-        <section className="py-14 md:py-20 bg-gray-50 border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-3xl px-6 text-right">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-6 text-center">
-                לא כלי חיצוני. שכבת יכולת מערכתית.
-              </h2>
-              <div className="text-[var(--text-secondary)] leading-relaxed space-y-4">
-                <p>בניגוד לפתרונות Bot מבוססי SaaS, מחולל הבוטים אינו פועל מחוץ למערכת ואינו תלוי בפלטפורמה חיצונית.</p>
-                <p>הוא מותקן כמודול מערכת בתוך סביבת ה-Priority של הארגון, ופועל כחלק מהארכיטקטורה הקיימת.</p>
-                <p>אין תמחור לפי כמות בוטים.<br />אין תמחור לפי משתמשים.<br />אין תלות בספק לבניית כל תהליך.</p>
-                <p>הארגון מקבל פלטפורמה פתוחה ליצירת תהליכי Bot ו-Workflow בהתאם לצורך העסקי.</p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* בלוק: פלטפורמה Native ל-Priority */}
+        {/* פלטפורמת Automation ארגונית – Native ל-Priority */}
         <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.div
@@ -157,47 +175,32 @@ export default function PricingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5 }}
+              className="text-right"
             >
               <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-6">
-                פלטפורמת Automation ארגונית – Native ל-Priority
+                פלטפורמת Automation מובנית בתוך פריוריטי
               </h2>
-              <div className="text-[var(--text-secondary)] text-right max-w-2xl mx-auto leading-relaxed space-y-3">
-                <p>מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי ממערכת Priority.<br />לא מערכת חיצונית, לא שירות צד ג׳, ולא אינטגרציה זמנית.</p>
-                <p>הארגון מקבל שכבת יכולת חדשה בתוך המערכת הקיימת –<br />פלטפורמה ליצירת תהליכי Bot ו-Workflow על גבי תשתית ה-ERP.</p>
-                <p>הגדרת התהליכים מבוצעת על ידי מיישם ה-Priority של הארגון,<br />תוך שליטה מלאה במבנה, בלוגיקה ובהתאמה העסקית.</p>
+              <div className="text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed space-y-3">
+                <p>מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי מפריוריטי.<br />לא מערכת חיצונית, אלא תפריט חדש בתוך פריוריטי –<br />כלומר שכבת יכולות חדשות בתוך ה-ERP הארגוני.</p>
+                <p>הוא מרחיב את Priority ביכולת ליזום, לנהל ולהשלים תהליכי Workflow-Bot,<br />תוך גישה מלאה לנתונים, ללוגיקה העסקית ולמבנה המערכת.</p>
               </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* מה כלול בהתקנה החד פעמית */}
-        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-3xl px-6">
-            <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-10 text-center"
-              {...fadeUp}
-            >
-              מה כלול בהתקנה החד פעמית (₪2,500)
-            </motion.h2>
-            <motion.div
-              className="rounded-2xl border border-[var(--border-soft)] bg-white p-6 md:p-8 shadow-sm"
-              {...fadeUp}
-            >
-              <ul className="space-y-4">
-                {[
-                  "התקנת מודול מחולל הבוטים בסביבת ה-Priority של הארגון",
-                  "קונפיגורציה ראשונית והרשאות למיישמים רלוונטיים",
-                  "שעתיים הדרכת Enablement למיישם הארגוני ולצוות התפעולי",
-                  "ליווי בהקמת תהליך הבוט הראשון בסביבת העבודה",
-                  "ערוץ תמיכה במייל לשאלות המשך והתייעצות מקצועית",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-right">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
-                      ✔
-                    </span>
-                    <span className="text-[var(--text-primary)]">{item}</span>
-                  </li>
-                ))}
+              <ul className="mt-6 space-y-2 max-w-2xl mx-auto text-[var(--text-primary)] text-sm">
+                <li className="flex items-center gap-2 justify-start">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">✔</span>
+                  <span>מותקן בתוך סביבת ה-Priority של הארגון</span>
+                </li>
+                <li className="flex items-center gap-2 justify-start">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">✔</span>
+                  <span>מנוהל על ידי מיישם ה-Priority</span>
+                </li>
+                <li className="flex items-center gap-2 justify-start">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">✔</span>
+                  <span>ללא פיצול מערכות</span>
+                </li>
+                <li className="flex items-center gap-2 justify-start">
+                  <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">✔</span>
+                  <span>ללא תלות בפלטפורמות חיצוניות</span>
+                </li>
               </ul>
             </motion.div>
           </div>
@@ -235,38 +238,10 @@ export default function PricingPage() {
               className="text-[var(--text-secondary)] leading-relaxed text-lg space-y-3"
               {...fadeUp}
             >
-              <p>אנחנו מספקים את התשתית.<br />הארגון מגדיר, שולט ומפתח תהליכי Bot באופן עצמאי – באמצעות מיישם ה-Priority שלו ועל גבי המערכת הקיימת.</p>
+              <p>אנחנו מספקים את התשתית.<br />הארגון מגדיר, שולט ומפתח תהליכי Bot באופן עצמאי - באמצעות מיישם הפריוריטי של הארגון ועל גבי המערכת הקיימת.</p>
+              <p>המטרה היא לבסס שליטה מלאה של הארגון בפלטפורמה,<br />כך שמיישם ה-Priority יוכל להגדיר, להרחיב ולהתאים באופן עצמאי<br />את יכולות מחולל הבוטים לתהליכים העסקיים של הארגון.</p>
               <p>הערך אינו בבוט אחד.<br />הערך הוא ביכולת מערכתית מתמשכת להרחבת תהליכים עסקיים ללא תלות בספק חיצוני.</p>
             </motion.div>
-          </div>
-        </section>
-
-        {/* SECTION 2 – הצהרה */}
-        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6 leading-tight"
-              {...fadeUp}
-            >
-               אין אותיות קטנות.
-              <br />
-              <span className="text-[var(--primary-dark)]">מערכת מלאה מהיום הראשון.</span>
-            </motion.h2>
-            <motion.p
-              className="text-xl text-[var(--text-secondary)] leading-relaxed mb-6"
-              {...fadeUp}
-            >
-              כל בוט הוא מנוע AI עצמאי שמתחבר ישירות ל-Priority,
-              מבין תהליכים עסקיים ומבצע אוטומציה חכמה בזמן אמת.
-            </motion.p>
-            <motion.p
-              className="text-lg font-semibold text-[var(--text-primary)]"
-              {...fadeUp}
-            >
-              אתם משלמים רק על בוטים פעילים.
-              <br />
-              גדלים לפי הצורך.
-            </motion.p>
           </div>
         </section>
 
@@ -305,34 +280,74 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* שקיפות בעלויות – דמי הקמה + Meta */}
-        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]" aria-labelledby="transparency-heading">
-          <div className="mx-auto max-w-3xl px-6">
+        {/* מודל תמחור */}
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]" aria-labelledby="pricing-heading">
+          <div className="mx-auto max-w-3xl px-6 text-right">
             <motion.h2
-              id="transparency-heading"
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-8 text-center"
+              id="pricing-heading"
+              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-2 text-center"
               {...fadeUp}
             >
-              שקיפות בעלויות
+              מודל תמחור
             </motion.h2>
+            <motion.p
+              className="text-sm text-[var(--text-secondary)] text-center mb-8"
+              {...fadeUp}
+            >
+              מבנה תמחור ברור, שקוף וללא תלות נסתרת.
+            </motion.p>
             <div className="space-y-6">
               <motion.div
-                className="rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] p-6 md:p-8"
+                className="rounded-2xl border border-slate-300 bg-[var(--background-soft)] p-6 md:p-8"
                 {...fadeUp}
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">דמי הקמה / הטמעה (חד-פעמי)</h3>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">התקנת מודול מערכת</h3>
+                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪3,500 חד־פעמי</p>
+                <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
+                  כולל התקנת מחולל הבוטים כחלק אינטגרלי ממערכת Priority, קונפיגורציה ראשונית, הרשאות למיישמים והדרכת Enablement הכוללת הקמת תהליך ראשון.
+                </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  <span className="font-semibold text-[var(--text-primary)]">₪2,500</span> חד-פעמי – כולל חיבור מלא ל-Priority, התאמה לתהליכים שלכם והפעלה מלאה. תשלום אחד, ולאחר מכן רק תשלום חודשי קבוע לבוטים פעילים.
+                  תשלום חד־פעמי להטמעת שכבת ה-Automation בארגון.
                 </p>
               </motion.div>
               <motion.div
-                className="rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] p-6 md:p-8"
+                className="rounded-2xl border border-slate-300 bg-[var(--background-soft)] p-6 md:p-8"
                 {...fadeUp}
                 transition={{ delay: 0.05 }}
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2"> Meta (WhatsApp Business רשמי)</h3>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">רישיון חודשי לתהליך Bot פעיל</h3>
+                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪120 לחודש לכל תהליך פעיל</p>
+                <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
+                  מודל רישוי מודולרי הניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון.
+                </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  הודעות שיוזם הבוט נשלחות דרך WhatsApp Business של Meta. עלויות ה-API (לפי מדיניות Meta) אינן כלולות במנוי – הן מחויבות ישירות מול Meta בהתאם לנפח ההודעות. בדרך כלל מדובר בדולרים בודדים. נעזור בהגדרה ובחיבור.
+                  ללא תמחור לפי משתמשים.<br />ללא תמחור לפי נפח הודעות.
+                </p>
+              </motion.div>
+              <motion.div
+                className="rounded-2xl border border-slate-300 bg-[var(--background-soft)] p-6 md:p-8"
+                {...fadeUp}
+                transition={{ delay: 0.1 }}
+              >
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-3">עלויות תשתית WhatsApp Business (Meta)</h3>
+                <div className="text-[var(--text-secondary)] leading-relaxed space-y-2">
+                  <p>הודעות נשלחות באמצעות תשתית WhatsApp Business של Meta. עלויות השימוש נקבעות על ידי Meta ומשולמות ישירות אליה.</p>
+                  <p>במרבית הארגונים, העלות החודשית בפועל מסתכמת בסכומים נמוכים מאוד. Meta גובה תשלום מזערי עבור פתיחת שיחה יזומה על ידי הבוט, כאשר תגובות במסגרת חלון שיחה פעיל או הודעות נכנסות אינן כרוכות בעלות נוספת מצדנו.</p>
+                  <p>המערכת אינה מוסיפה מרווח על עלויות Meta.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 md:p-8"
+                {...fadeUp}
+                transition={{ delay: 0.15 }}
+              >
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-1">תמיכה והדרכות נוספות (אופציונלי)</h3>
+                <p className="text-base font-semibold text-[var(--text-primary)] mb-3">₪400 + מע״מ לשעה</p>
+                <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
+                  מיועד לארגונים המבקשים להרחיב את היקף השימוש ולהעמיק את השליטה הפנימית בפלטפורמה.
+                </p>
+                <p className="text-[var(--text-secondary)] leading-relaxed">
+                  העבודה מתבצעת יחד עם מיישם ה-Priority של הארגון.
                 </p>
               </motion.div>
             </div>
@@ -375,36 +390,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* SECTION 5 – FAQ */}
-        <section className="py-14 md:py-20 bg-[var(--background-soft)]">
-          <div className="mx-auto max-w-3xl px-6">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-14 text-center"
-              {...fadeUp}
-            >
-              שאלות נפוצות
-            </motion.h2>
-            <dl className="space-y-6">
-              {FAQ.map((item, i) => (
-                <motion.div
-                  key={item.q}
-                  className="bg-white rounded-2xl p-6 md:p-8 shadow-soft border border-[var(--border-soft)]"
-                  {...fadeUp}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <dt className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-                    {item.q}
-                  </dt>
-                  <dd className="text-[var(--text-secondary)] leading-relaxed">
-                    {item.a}
-                  </dd>
-                </motion.div>
-              ))}
-            </dl>
-          </div>
-        </section>
-
-        {/* SECTION 5b – למי זה מתאים */}
+        {/* למי זה מתאים */}
         <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
@@ -437,45 +423,36 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* FAQ אסטרטגי – מינימלי */}
-        <section className="py-14 md:py-20 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-3xl px-6">
+        {/* שאלות נפוצות */}
+        <section className="py-14 md:py-20 bg-[var(--background-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-right">
             <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-10 text-center"
+              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-14 text-center"
               {...fadeUp}
             >
               שאלות נפוצות
             </motion.h2>
-            <dl className="space-y-8">
-              <motion.div {...fadeUp}>
-                <dt className="text-base font-semibold text-[var(--text-primary)] mb-2 text-right">
-                  האם מדובר בשירות בניית בוטים?
-                </dt>
-                <dd className="text-[var(--text-secondary)] text-sm leading-relaxed text-right">
-                  לא. מדובר בהתקנת פלטפורמה ליצירת בוטים בתוך מערכת Priority. הגדרת התהליכים מתבצעת על ידי מיישם ה-Priority של הארגון.
-                </dd>
-              </motion.div>
-              <motion.div {...fadeUp} transition={{ delay: 0.05 }}>
-                <dt className="text-base font-semibold text-[var(--text-primary)] mb-2 text-right">
-                  האם יש תמחור לפי כמות בוטים או משתמשים?
-                </dt>
-                <dd className="text-[var(--text-secondary)] text-sm leading-relaxed text-right">
-                  לא. לאחר התקנת המודול, הארגון יכול ליצור מספר בלתי מוגבל של תהליכים בהתאם לצורך.
-                </dd>
-              </motion.div>
-              <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
-                <dt className="text-base font-semibold text-[var(--text-primary)] mb-2 text-right">
-                  מי אחראי על הגדרת הבוטים בארגון?
-                </dt>
-                <dd className="text-[var(--text-secondary)] text-sm leading-relaxed text-right">
-                  הגדרת התהליכים מבוצעת על ידי מיישם ה-Priority של הארגון, בהתאם ללוגיקה ולמבנה העסקי הפנימי.
-                </dd>
-              </motion.div>
+            <dl className="space-y-6">
+              {FAQ.map((item, i) => (
+                <motion.div
+                  key={item.q}
+                  className="bg-white rounded-2xl p-6 md:p-8 shadow-soft border border-[var(--border-soft)]"
+                  {...fadeUp}
+                  transition={{ delay: i * 0.05 }}
+                >
+                  <dt className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+                    {item.q}
+                  </dt>
+                  <dd className="text-[var(--text-secondary)] leading-relaxed">
+                    {item.a}
+                  </dd>
+                </motion.div>
+              ))}
             </dl>
           </div>
         </section>
 
-        {/* SECTION 6 – CTA סופי */}
+        {/* CTA סופי */}
         <section className="py-14 md:py-20 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary-light)] text-white">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.p
