@@ -19,11 +19,12 @@ const faviconDir = join(publicDir, "favicon");
 const sourcePng = join(faviconDir, "source.png");
 const sourceSvg = join(publicDir, "brand", "bubble-icon.svg");
 
-const PADDING_RATIO = 0.04; // 4% padding → icon fills ~92% of canvas (visibly larger)
+const PADDING_RATIO = 0.01; // 1% padding → icon fills ~98% of canvas (נראה גדול יותר בטאב)
 
 const sizes = [
   { name: "favicon-16x16.png", w: 16, h: 16 },
   { name: "favicon-32x32.png", w: 32, h: 32 },
+  { name: "favicon-48x48.png", w: 48, h: 48 },
   { name: "apple-touch-icon.png", w: 180, h: 180 },
   { name: "android-chrome-192x192.png", w: 192, h: 192 },
   { name: "android-chrome-512x512.png", w: 512, h: 512 },
