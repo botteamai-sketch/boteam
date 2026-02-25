@@ -6,11 +6,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
-/* קישורים זהים לדסקטופ – איך זה עובד, מחיר, תהליך ההטמעה, שאלות נפוצות */
+/* קישורים: תהליך ההטמעה, איך זה עובד, תמחור, שאלות נפוצות – ללא כפילות */
 const DRAWER_LINKS = [
-  { href: "/#how", label: "איך זה עובד" },
-  { href: "/pricing", label: "מחיר" },
   { href: "/onboarding", label: "תהליך ההטמעה" },
+  { href: "/how-it-works", label: "איך זה עובד" },
+  { href: "/pricing", label: "תמחור" },
   { href: "/faq", label: "שאלות נפוצות" },
 ] as const;
 
@@ -53,7 +53,7 @@ export default function Header() {
       className={`navbar sticky top-0 z-50 border-b border-gray-200 ${scrolled ? "scrolled" : ""}`}
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center w-full gap-6">
-        {/* סדר מימין לשמאל: כותרת → כפתור הדגמה → איך זה עובד → מחיר → תהליך ההטמעה → שאלות נפוצות → לוגו */}
+        {/* סדר: כותרת → כפתור הדגמה → תהליך ההטמעה → איך זה עובד → תמחור → שאלות נפוצות → לוגו */}
         <Link href="/" className="header-title flex-shrink-0">
           מחולל בוטים לפריוריטי
         </Link>
@@ -61,20 +61,23 @@ export default function Header() {
           <CalendlyModal />
         </div>
         <nav className="hidden md:flex items-center gap-8 text-sm flex-shrink-0">
-          <a href="/#how" className="text-gray-600 hover:text-black transition whitespace-nowrap">
-            איך זה עובד
-          </a>
-          <Link
-            href="/pricing"
-            className={`transition whitespace-nowrap ${pathname === "/pricing" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
-          >
-            מחיר
-          </Link>
           <Link
             href="/onboarding"
             className={`transition whitespace-nowrap ${pathname === "/onboarding" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
           >
             תהליך ההטמעה
+          </Link>
+          <Link
+            href="/how-it-works"
+            className={`transition whitespace-nowrap ${pathname === "/how-it-works" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
+          >
+            איך זה עובד
+          </Link>
+          <Link
+            href="/pricing"
+            className={`transition whitespace-nowrap ${pathname === "/pricing" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
+          >
+            תמחור
           </Link>
           <Link
             href="/faq"

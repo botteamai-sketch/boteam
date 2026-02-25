@@ -25,7 +25,7 @@ const INCLUDED = [
 ] as const;
 
 const STEPS = [
-  { n: "1", title: "חיבור והטמעה" },
+  { n: "1", title: "חיבור והטמעה - 3,500 ₪" },
   { n: "2", title: "הפעלת בוט ראשון (חינם ל-3 חודשים)" },
   { n: "3", title: "הרחבה חכמה לפי צורך – ₪120 לכל בוט נוסף" },
 ] as const;
@@ -269,6 +269,58 @@ export default function PricingPage() {
                 </motion.li>
               ))}
             </ul>
+            <motion.div
+              className="mt-8 rounded-2xl border border-[var(--border-soft)] bg-white p-6 md:p-8 shadow-sm text-right"
+              {...fadeUp}
+              transition={{ delay: INCLUDED.length * 0.05 }}
+            >
+              <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4">
+                מה זה בעצם בוט?
+              </h3>
+              <p className="text-[var(--text-primary)] font-medium mb-2">
+                בוט אחד = תהליך עסקי אחד אוטומטי.
+              </p>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
+                כל בוט יודע לעבוד מול מסך אחד ב-Priority.
+                <br />
+                לעבודה מול מסך נוסף – מגדירים בוט נוסף.
+              </p>
+              <p className="text-[var(--text-secondary)] font-medium mb-2">לדוגמה:</p>
+              <ul className="list-disc list-inside space-y-1 text-[var(--text-secondary)] mb-4 pr-2">
+                <li>בוט שירות להזמנות פתוחות</li>
+                <li>בוט שירות לחשבוניות</li>
+                <li>בוט הצעות מחיר</li>
+                <li>בוט גבייה</li>
+              </ul>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
+                ללקוח זו שיחה אחת רציפה.
+                <br />
+                מאחורי הקלעים – כל תהליך מנוהל בנפרד.
+              </p>
+              <p className="text-[var(--text-primary)] font-medium mb-3">כל בוט כולל:</p>
+              <ul className="space-y-2 mb-6">
+                {[
+                  "ניהול שיחה חכם",
+                  "חיבור למסך ייעודי ב-Priority",
+                  "שמירת היסטוריה מלאה",
+                  "החזרת נתונים אוטומטית למערכת",
+                  "אפשרות ליזום שיחות לפי אירועים עסקיים",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-[var(--text-primary)] text-sm">
+                    <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">✔</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
+                הבוט הראשי (המרכזיה) אינו מחויב ברישוי חודשי.
+                <br />
+                הרישוי מתייחס לבוטים המתמחים בלבד.
+              </p>
+              <p className="text-[var(--text-primary)] font-semibold">
+                רישוי בוט (₪120 לחודש) הוא רישוי לתהליך עסקי אחד מלא.
+              </p>
+            </motion.div>
             <motion.p
               className="mt-10 text-center text-[var(--text-secondary)] font-medium"
               {...fadeUp}

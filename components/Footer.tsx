@@ -34,9 +34,9 @@ export default function Footer() {
               <Link href="/faq" className={linkClass}>
                 שאלות נפוצות
               </Link>
-              <a href="/#how" className={linkClass}>
+              <Link href="/how-it-works" className={linkClass}>
                 איך זה עובד
-              </a>
+              </Link>
             </nav>
           </div>
 
