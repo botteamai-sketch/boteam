@@ -125,6 +125,30 @@ const ChevronDown = ({ open }: { open: boolean }) => (
   </span>
 );
 
+/* Architecture flow icons (Gateway, Specialist, Initiator) */
+const IconGatewayBot = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-green-500 shrink-0" aria-hidden>
+    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor" fillOpacity="0.2" />
+    <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="currentColor" />
+    <path d="M12 6V9M12 15V18M6 12H9M15 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+const IconSpecialistBots = () => (
+  <svg width="40" height="40" viewBox="-2 -1 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-500 shrink-0" aria-hidden>
+    <path d="M21 13V11C21 10.45 20.55 10 20 10H19.71C19.34 8.7 18.67 7.53 17.78 6.57L19.2 5.15C19.59 4.76 19.59 4.13 19.2 3.74L17.79 2.33C17.4 1.94 16.77 1.94 16.38 2.33L14.97 3.74C14.01 2.85 12.84 2.18 11.54 1.82V1C11.54 0.45 11.09 0 10.54 0H8.54C7.99 0 7.54 0.45 7.54 1V1.82C6.24 2.18 5.07 2.85 4.11 3.74L2.7 2.33C2.31 1.94 1.68 1.94 1.29 2.33L-0.12 3.74C-0.51 4.13 -0.51 4.76 -0.12 5.15L1.29 6.57C0.4 7.53 -0.27 8.7 -0.63 10H-0.92C-1.47 10 -1.92 10.45 -1.92 11V13C-1.92 13.55 -1.47 14 -0.92 14H-0.63C-0.28 15.25 0.35 16.39 1.19 17.36L-0.22 18.77C-0.61 19.16 -0.61 19.79 -0.22 20.18L1.19 21.59C1.58 21.98 2.21 21.98 2.6 21.59L4.01 20.18C5.02 21.04 6.22 21.64 7.54 21.93V23C7.54 23.55 7.99 24 8.54 24H10.54C11.09 24 11.54 23.55 11.54 23V21.93C12.82 21.64 14 21.04 14.97 20.18L16.38 21.59C16.77 21.98 17.4 21.98 17.79 21.59L19.2 20.18C19.59 19.79 19.59 19.16 19.2 18.77L17.78 17.36C18.65 16.39 19.31 15.25 19.71 14H20C20.55 14 21 13.55 21 13Z" fill="currentColor" fillOpacity="0.2" />
+    <path d="M9.54 17C12.8537 17 15.54 14.3137 15.54 11C15.54 7.68629 12.8537 5 9.54 5C6.22629 5 3.54 7.68629 3.54 11C3.54 14.3137 6.22629 17 9.54 17Z" stroke="currentColor" strokeWidth="2" />
+    <rect x="7.54" y="9" width="2" height="2" rx="1" fill="currentColor" />
+    <rect x="11.54" y="9" width="2" height="2" rx="1" fill="currentColor" />
+  </svg>
+);
+const IconInitiatorBot = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600 shrink-0" aria-hidden>
+    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor" fillOpacity="0.1" />
+    <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor" />
+    <path d="M14 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+  </svg>
+);
+
 export default function HowItWorksPage() {
   useRevealOnScroll();
   const [accordionOpen, setAccordionOpen] = useState(false);
@@ -134,68 +158,153 @@ export default function HowItWorksPage() {
       <Header />
 
       <main className="mx-auto max-w-5xl px-6">
-        {/* ——— HERO ——— */}
+        {/* ——— HERO (title above, then text + image) ——— */}
         <section className={`${sectionClass} border-b border-gray-100`}>
-          <div className="max-w-3xl">
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)] mb-4"
-              {...fadeUp}
+          <motion.h1
+            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text-primary)] mb-8 md:mb-10 text-right"
+            {...fadeUp}
+          >
+             ארכיטקטורה שלמה שעובדת בשבילך.
+          </motion.h1>
+          <div className="grid grid-cols-1 lg:grid-cols-[0.55fr_1.45fr] gap-10 lg:gap-12 items-start">
+            {/* Left: Subtitle — aligned to top */}
+            <div className="order-2 lg:order-1 flex flex-col justify-start min-h-0">
+              <motion.p
+                className={`text-lg md:text-xl ${cardTextClass} leading-relaxed max-w-xl`}
+                {...fadeUp}
+                transition={{ delay: 0.04 }}
+              >
+                הלקוח שולח הודעה אחת לווטסאפ. מאחורי הקלעים, המערכת מנתבת את השיחה למומחה הנכון, קוראת וכותבת נתונים ב-Priority, ומנהלת תהליכים עסקיים שלמים – באפס מאמץ מצד הצוות שלך.
+              </motion.p>
+            </div>
+            {/* Right: Hero image — larger column */}
+            <motion.div
+              className="order-1 lg:order-2 rounded-2xl overflow-hidden border border-gray-100 shadow-[0_4px_24px_rgba(31,47,70,0.08)] flex items-stretch min-h-[260px] md:min-h-[380px] lg:min-h-[420px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              לא עוד בוט. מערכת בוטים חכמה.
-            </motion.h1>
-            <motion.p
-              className="text-xl text-[var(--text-primary)] font-semibold mb-4"
-              {...fadeUp}
-              transition={{ delay: 0.04 }}
-            >
-              מערכת עם חלוקת תפקידים ברורה ו<span className="text-[var(--primary-dark)]">שליטה מלאה</span>.
-            </motion.p>
-            <motion.p className={`text-lg ${cardTextClass} mb-4`} {...fadeUp} transition={{ delay: 0.06 }}>
-              מאחורי כל שיחה עומדת חלוקת תפקידים מדויקת.
-            </motion.p>
-            <motion.p className={`text-base ${cardTextClass} mb-8`} {...fadeUp} transition={{ delay: 0.08 }}>
-              הלקוח מדבר עם העסק כרגיל.
-              <br />
-              מאחורי הקלעים פועלת מערכת שיודעת לנתב את השיחה למומחה המתאים, לעבוד מול Priority, ולהחזיר נתונים בצורה מסודרת ומבוקרת.
-            </motion.p>
+              <Image
+                src="/how-it-works.png"
+                alt="תרשים ארכיטקטורת המערכת – איך זה עובד"
+                width={1400}
+                height={1000}
+                className="w-full h-full object-contain object-center"
+              />
+            </motion.div>
           </div>
         </section>
 
-        {/* ——— SECTION 1: The Process (Step-by-Step Flow) ——— */}
-        <section className={sectionClass}>
+        {/* ——— Architecture: Inbound + Outbound flows ——— */}
+        <section id="architecture" className={sectionClass}>
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6 md:mb-8 text-right"
+            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 md:mb-5 text-right"
             {...fadeUp}
           >
-            התהליך
+            מערכת ארכיטקטונית שלמה, לא סתם בוט.
           </motion.h2>
-          <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-2">
-            {[
-              { icon: <IconServer />, title: "הבוט הראשי (המרכזיה)", desc: "מזהה שיחה, שומר הקשר, ומנתב לבוט המתאים. לא דורש רישוי." },
-              { icon: <IconBot />, title: "בוטים מתמחים", desc: "כל בוט אחראי על תהליך עסקי אחד ומסך אחד ב-Priority." },
-              { icon: <IconDatabase />, title: "Priority ERP", desc: "ביצוע פעולה עסקית, תיעוד ושליפת נתונים בזמן אמת." },
-            ].map((step, i) => (
-              <div key={i} className="flex flex-1 flex-col md:flex-row md:items-center gap-2 min-w-0">
-                <motion.div
-                  className={`reveal flex-1 flex flex-col md:flex-row md:items-center gap-4 min-w-0 ${cardClass}`}
-                  {...fadeUp}
-                  transition={{ delay: i * 0.08 }}
-                >
-                  <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--background-soft)] shrink-0">
-                    {step.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{step.title}</h3>
-                    <p className={`text-sm ${cardTextClass}`}>{step.desc}</p>
-                  </div>
-                </motion.div>
-                {i < 2 && (
-                  <div className="hidden md:flex items-center shrink-0 self-center">
-                    <ArrowRight />
-                  </div>
-                )}
+          <motion.p
+            className={`${cardTextClass} mb-8 md:mb-10 text-right max-w-3xl ms-0 me-auto`}
+            {...fadeUp}
+            transition={{ delay: 0.04 }}
+          >
+            <strong className="text-[var(--text-primary)]">הפלטפורמה – הפנים של העסק</strong>
+            <br />
+            הלקוח מדבר איתכם דרך הפלטפורמה שנוחה לו (WhatsApp או אימייל). הפלטפורמה היא רק נקודת הקצה – ה&quot;פנים&quot; של המערכת. היא אינה מקבלת החלטות בעצמה, אלא מחוברת ישירות למערך בוטים חכם שפועל מאחורי הקלעים ומנהל שני תהליכים מרכזיים:
+          </motion.p>
+
+          {/* Flow 1: Inbound */}
+          <motion.h3
+            className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2 text-right"
+            {...fadeUp}
+            transition={{ delay: 0.06 }}
+          >
+            תהליך 1: הלקוח פונה אליכם (Inbound)
+          </motion.h3>
+          <motion.p
+            className={`${cardTextClass} mb-6 text-right`}
+            {...fadeUp}
+            transition={{ delay: 0.07 }}
+          >
+            כאשר הלקוח שולח הודעה לפלטפורמה, המערכת מנתבת את השיחה למומחה הנכון.
+          </motion.p>
+          <div className="grid md:grid-cols-2 gap-6 mb-12 md:mb-14">
+            <motion.article
+              className={`reveal ${cardClass} border-t-4 border-green-500 bg-green-50/30`}
+              {...fadeUp}
+              transition={{ delay: 0.08 }}
+            >
+              <div className="flex flex-col text-right">
+                <div className="mb-4">
+                  <IconGatewayBot />
+                </div>
+                <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+                  🟢 הבוט הראשי (Gateway Bot) – המרכזייה החכמה
+                </h4>
+                <div className={`text-sm ${cardTextClass} space-y-2`}>
+                  <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> הבעלים של הפלטפורמה ושל השיחה.</p>
+                  <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> תמיד קיים בוט ראשי אחד לכל פלטפורמה. ברגע שנכנסת הודעה, הוא מזהה את ההקשר ומנתב את השיחה לבוט המתמחה המתאים ביותר מתוך רשימת הבוטים המורשים.</p>
+                </div>
               </div>
-            ))}
+            </motion.article>
+            <motion.article
+              className={`reveal ${cardClass} border-t-4 border-blue-500 bg-blue-50/30 border-t-blue-500`}
+              {...fadeUp}
+              transition={{ delay: 0.1 }}
+            >
+              <div className="flex flex-col text-right">
+                <div className="mb-4">
+                  <IconSpecialistBots />
+                </div>
+                <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+                  🔵 בוטים מגיבים (Specialist Bots) – צוות המומחים
+                </h4>
+                <div className={`text-sm ${cardTextClass} space-y-2`}>
+                  <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> מומחים לתהליך עסקי מוגדר (לידים, הזמנות, תמיכה, גבייה).</p>
+                  <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> הבוט משיג את המידע הדרוש בזמן אמת, קורא וכותב נתונים למסך ייעודי בפריוריטי, ומייצר תשובה מותאמת אישית ללקוח. המערכת רודפת אחרי התשובות, כדי שהצוות שלכם לא יצטרך. נבחר רק מומחה אחד בכל רגע נתון כדי לשמור על מיקוד השיחה.</p>
+                </div>
+              </div>
+            </motion.article>
+          </div>
+
+          {/* Visual divider */}
+          <div className="border-t border-gray-200 my-10 md:my-12" aria-hidden />
+
+          {/* Flow 2: Outbound */}
+          <motion.h3
+            className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2 text-right md:text-center"
+            {...fadeUp}
+            transition={{ delay: 0.06 }}
+          >
+            תהליך 2: המערכת יוזמת פנייה (Outbound)
+          </motion.h3>
+          <motion.p
+            className={`${cardTextClass} mb-6 text-right md:text-center`}
+            {...fadeUp}
+            transition={{ delay: 0.07 }}
+          >
+            המערכת לא רק מגיבה, אלא פועלת אקטיבית בהתאם לאירועים בעסק.
+          </motion.p>
+          <div className="flex justify-center">
+            <motion.article
+              className={`reveal ${cardClass} w-full max-w-3xl border-t-4 border-purple-600 bg-purple-50/30`}
+              {...fadeUp}
+              transition={{ delay: 0.08 }}
+            >
+              <div className="flex flex-col text-right">
+                <div className="mb-4">
+                  <IconInitiatorBot />
+                </div>
+                <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+                  🟣 הבוט היוזם (Initiator Bot) – הפעולה האקטיבית
+                </h4>
+                <div className={`text-sm ${cardTextClass} space-y-2`}>
+                  <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> פתיחת שיחות יזומות מול הלקוח מתוך ה-Priority.</p>
+                  <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> הבוט הזה לא מחכה להודעה. הוא מופעל אוטומטית בעקבות אירוע בפריוריטי (למשל, הפקת הצעת מחיר או תזכורת חוב). מרגע שהוא יוזם את הפנייה, הוא &quot;נועל&quot; את עצמו כמנהל השיחה הבלעדי עד לסיום התהליך, אוסף את התשובות ומחזיר את הנתונים בדיוק לשדות הנכונים בפריוריטי.</p>
+                </div>
+              </div>
+            </motion.article>
           </div>
         </section>
 
@@ -430,6 +539,7 @@ export default function HowItWorksPage() {
           </motion.div>
 
           <motion.section
+            id="demo"
             className="cta-blue-bg reveal rounded-[20px] mt-12 bg-gradient-to-br from-[var(--primary-light)] to-[var(--primary-dark)] p-10 md:p-14 text-center"
             {...fadeUp}
           >
