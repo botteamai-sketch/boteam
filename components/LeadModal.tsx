@@ -113,7 +113,7 @@ export default function LeadModal({
       setTimeout(() => {
         handleClose();
         onSuccess?.();
-      }, 800);
+      }, 3000);
     } catch (err) {
       console.error("❌ Submit error:", err);
       setSuccess(false);
@@ -183,18 +183,9 @@ export default function LeadModal({
           aria-labelledby="lead-modal-title"
         >
           <div
-            className="modal-panel bg-white w-full max-w-[calc(100vw-1.5rem)] sm:max-w-[22rem] md:max-w-[25.5rem] p-4 sm:p-5 md:p-6 text-right relative max-h-[calc(100vh-2rem)] overflow-y-auto"
+            className="modal-panel bg-white w-full max-w-[calc(100vw-1.5rem)] sm:max-w-[22rem] md:max-w-[25.5rem] p-4 sm:p-5 md:p-6 text-right relative max-h-[calc(100vh-2rem)] overflow-y-auto mt-16"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              type="button"
-              onClick={handleClose}
-              className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 w-7 h-7 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 flex items-center justify-center text-base"
-              aria-label="סגור"
-            >
-              ✕
-            </button>
-
             <h3 id="lead-modal-title" className="text-lg sm:text-xl font-bold mb-3 sm:mb-5 pr-0">
               השאירו פרטים ונחזור אליכם
             </h3>

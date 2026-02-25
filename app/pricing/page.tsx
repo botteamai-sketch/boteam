@@ -122,6 +122,99 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/* בלוק: זו פלטפורמה, לא בוט מוכן */}
+        <section className="py-14 md:py-20 bg-gray-50 border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-6">
+                פלטפורמת Automation ארגונית – Native ל-Priority
+              </h2>
+              <div className="text-[var(--text-secondary)] text-right max-w-2xl mx-auto leading-relaxed space-y-3">
+                <p>מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי ממערכת Priority.<br />לא מערכת חיצונית, לא שירות צד ג׳, ולא אינטגרציה זמנית.</p>
+                <p>הארגון מקבל שכבת יכולת חדשה בתוך המערכת הקיימת –<br />פלטפורמה ליצירת תהליכי Bot ו-Workflow על גבי תשתית ה-ERP.</p>
+                <p>הגדרת התהליכים מבוצעת על ידי מיישם ה-Priority של הארגון,<br />תוך שליטה מלאה במבנה, בלוגיקה ובהתאמה העסקית.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* מה כלול בהתקנה החד פעמית */}
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-10 text-center"
+              {...fadeUp}
+            >
+              מה כלול בהתקנה החד פעמית (₪2,500)
+            </motion.h2>
+            <motion.div
+              className="rounded-2xl border border-[var(--border-soft)] bg-white p-6 md:p-8 shadow-sm"
+              {...fadeUp}
+            >
+              <ul className="space-y-4">
+                {[
+                  "התקנת מודול מחולל הבוטים בסביבת ה-Priority של הארגון",
+                  "קונפיגורציה ראשונית והרשאות למיישמים רלוונטיים",
+                  "שעתיים הדרכת Enablement למיישם הארגוני ולצוות התפעולי",
+                  "ליווי בהקמת תהליך הבוט הראשון בסביבת העבודה",
+                  "ערוץ תמיכה במייל לשאלות המשך והתייעצות מקצועית",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-right">
+                    <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
+                      ✔
+                    </span>
+                    <span className="text-[var(--text-primary)]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* הדרכה ותמיכה נוספת */}
+        <section className="py-14 md:py-20 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6 text-center"
+              {...fadeUp}
+            >
+              הדרכה ותמיכה נוספת
+            </motion.h2>
+            <motion.div
+              className="text-[var(--text-secondary)] leading-relaxed space-y-3"
+              {...fadeUp}
+            >
+              <p>ניתן להזמין הדרכות נוספות לפי צורך.</p>
+              <p>עלות: 400 ₪ + מע״מ לשעה.</p>
+              <p>מומלץ לבצע יחד עם מיישם הפריוריטי.</p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* השליטה נשארת אצלכם */}
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6 text-center"
+              {...fadeUp}
+            >
+              שליטה מלאה. ללא תלות חיצונית.
+            </motion.h2>
+            <motion.div
+              className="text-[var(--text-secondary)] leading-relaxed text-lg space-y-3"
+              {...fadeUp}
+            >
+              <p>אנחנו מספקים את התשתית.<br />הארגון מגדיר, שולט ומפתח תהליכי Bot באופן עצמאי –<br />באמצעות מיישם ה-Priority שלו ועל גבי המערכת הקיימת.</p>
+              <p>הערך אינו בבוט אחד.<br />הערך הוא ביכולת מערכתית מתמשכת ליצירת תהליכים חדשים לפי צורך עסקי.</p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* SECTION 2 – הצהרה */}
         <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6 text-center">
