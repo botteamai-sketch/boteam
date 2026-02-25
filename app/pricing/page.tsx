@@ -371,7 +371,7 @@ export default function PricingPage() {
                   מודל רישוי מודולרי הניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  ללא תמחור לפי משתמשים.<br />ללא תמחור לפי נפח הודעות.
+                   התמחור אינו לפי משתמשים.<br />התמחור אינו לפי נפח הודעות.
                 </p>
               </motion.div>
               <motion.div
@@ -392,7 +392,7 @@ export default function PricingPage() {
                 transition={{ delay: 0.15 }}
               >
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-1">תמיכה והדרכות נוספות (אופציונלי)</h3>
-                <p className="text-base font-semibold text-[var(--text-primary)] mb-3">₪400 + מע״מ לשעה</p>
+                <p className="text-base font-semibold text-[var(--text-primary)] mb-3">₪400 לשעה</p>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
                   מיועד לארגונים המבקשים להרחיב את היקף השימוש ולהעמיק את השליטה הפנימית בפלטפורמה.
                 </p>
