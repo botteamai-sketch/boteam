@@ -39,6 +39,7 @@ export default function LeadModal({
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [errorDetail, setErrorDetail] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -50,6 +51,7 @@ export default function LeadModal({
 
     setLoading(true);
     setError("");
+    setErrorDetail("");
     setSuccess(false);
 
     const formData = new FormData(e.currentTarget);
@@ -77,11 +79,29 @@ export default function LeadModal({
         result = await res.json();
       } catch (err) {
         console.error("❌ Failed parsing JSON:", err);
+        setError("אירעה שגיאה בשליחה. נסה שוב.");
+        setErrorDetail(`Debug: תגובה לא JSON (פרסור נכשל). סטטוס: ${res.status}. ייתכן שהשרת החזיר HTML או טקסט.`);
+        setSuccess(false);
+        return;
       }
 
-      if (!res.ok || result?.error) {
+      if (!res.ok) {
+        const detail = result?.error
+          ? `סטטוס: ${res.status}. שרת החזיר: ${result.error}`
+          : `סטטוס: ${res.status}. השרת לא החזיר 200.`;
         console.error("❌ API returned error:", result);
-        throw new Error(result?.error || "Failed to send");
+        setError("אירעה שגיאה בשליחה. נסה שוב.");
+        setErrorDetail(`Debug: ${detail}`);
+        setSuccess(false);
+        return;
+      }
+
+      if (result?.error) {
+        console.error("❌ API returned error in body:", result);
+        setError("אירעה שגיאה בשליחה. נסה שוב.");
+        setErrorDetail(`Debug: שרת החזיר 200 אבל עם error: "${result.error}"`);
+        setSuccess(false);
+        return;
       }
 
       trackEvent("submit_lead", "conversion", "Lead Form");
@@ -97,6 +117,8 @@ export default function LeadModal({
       console.error("❌ Submit error:", err);
       setSuccess(false);
       setError("אירעה שגיאה בשליחה. נסה שוב.");
+      const msg = err instanceof Error ? err.message : String(err);
+      setErrorDetail(`Debug: שגיאה אחרי קבלת תגובה (exception): ${msg}`);
     } finally {
       setLoading(false);
     }
@@ -107,6 +129,7 @@ export default function LeadModal({
     setForm(initialForm);
     setSuccess(false);
     setError("");
+    setErrorDetail("");
   };
 
   const handleOpen = () => setOpen(true);
@@ -115,6 +138,7 @@ export default function LeadModal({
     if (open) {
       setSuccess(false);
       setError("");
+      setErrorDetail("");
     }
   }, [open]);
 
@@ -272,9 +296,14 @@ export default function LeadModal({
                   </p>
                 )}
                 {error && !success && (
-                  <p className="text-red-600 mt-2 text-right">
-                    {error}
-                  </p>
+                  <div className="mt-2 text-right">
+                    <p className="text-red-600">{error}</p>
+                    {errorDetail && (
+                      <p className="text-xs text-gray-500 mt-1 break-words" dir="ltr">
+                        {errorDetail}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
             </form>
