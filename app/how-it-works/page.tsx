@@ -43,7 +43,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* HERO */}
-        <section className="mb-24 text-right">
+        <section className="mb-24 mt-12 text-right">
           <motion.h1
             className="text-3xl md:text-5xl font-bold text-[var(--text-primary)] mb-4"
             {...fadeUp}
@@ -55,7 +55,7 @@ export default function HowItWorksPage() {
             {...fadeUp}
             transition={{ delay: 0.03 }}
           >
-            מערכת עם חלוקת תפקידים ברורה ושליטה מלאה.
+            מערכת עם חלוקת תפקידים ברורה ו<span className="text-[var(--primary-dark)]">שליטה מלאה</span>.
           </motion.p>
           <motion.p
             className="text-xl md:text-2xl text-[var(--text-secondary)] mb-6"
@@ -76,7 +76,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* SECTION 1 – הבוט הראשי */}
-        <section className="mb-24 text-right">
+        <section className="mb-24 text-right border-t border-gray-100 pt-24">
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
             {...fadeUp}
@@ -109,7 +109,7 @@ export default function HowItWorksPage() {
               <br />
               אם יש בוט שמספק מידע על עלויות – ניתן להגדיר שהוא יפעל רק מול עובדים בכירים בארגון.
             </p>
-            <p>מנגנון ההרשאות הוא חלק מהשליטה והבקרה של המערכת.</p>
+            <p>מנגנון <span className="text-[var(--primary-dark)] font-medium">הרשאות</span> הוא חלק מהשליטה והבקרה של המערכת.</p>
             <p className="text-lg font-semibold text-[var(--text-primary)] mt-6">
               המרכזיה לא מבצעת את העבודה – היא דואגת שהעבודה תבוצע נכון.
             </p>
@@ -159,7 +159,7 @@ export default function HowItWorksPage() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[var(--accent-green)] font-bold">✔</span>
-                בקרה מדויקת לפי הרשאות
+                בקרה מדויקת לפי <span className="text-[var(--primary-dark)] font-medium">הרשאות</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[var(--accent-green)] font-bold">✔</span>
@@ -173,7 +173,7 @@ export default function HowItWorksPage() {
             </p>
           </motion.div>
           <motion.div
-            className="mt-8 p-5 md:p-6 rounded-xl border border-gray-200 bg-white text-right"
+            className="mt-8 p-5 md:p-6 rounded-xl border border-[var(--border-soft)] bg-white text-right"
             {...fadeUp}
             transition={{ delay: 0.08 }}
           >
@@ -192,8 +192,27 @@ export default function HowItWorksPage() {
           </motion.div>
         </section>
 
+        {/* שאלה רטורית – למה המבנה ככה */}
+        <section className="mb-24 text-right border-t border-gray-100 pt-24">
+          <motion.h2
+            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4"
+            {...fadeUp}
+          >
+            למה בחרנו במבנה של מרכזיה ומומחים?
+          </motion.h2>
+          <motion.p
+            className="text-[var(--text-secondary)] leading-relaxed max-w-2xl"
+            {...fadeUp}
+            transition={{ delay: 0.05 }}
+          >
+            כי מערכת שנבנית נכון מההתחלה —
+            <br />
+            לא צריכה להיבנות מחדש כשהעסק גדל.
+          </motion.p>
+        </section>
+
         {/* סקשן אסטרטגי – למה מחלקים לכמה בוטים */}
-        <section className="mb-24">
+        <section className="mb-24 border-t border-gray-100 pt-24">
           <motion.div
             className="bg-gray-50 rounded-xl p-6 md:p-8 text-right"
             {...fadeUp}
@@ -228,7 +247,7 @@ export default function HowItWorksPage() {
               </li>
             </ul>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
-              המבנה המודולרי הוא זה שמאפשר יציבות לאורך זמן וגמישות לצמיחה.
+              המבנה <span className="text-[var(--primary-dark)] font-semibold">המודולרי</span> הוא זה שמאפשר יציבות לאורך זמן וגמישות לצמיחה.
             </p>
             <p className="text-lg font-semibold text-[var(--text-primary)]">
               גמישות היום חוסכת שכתוב מחר.
@@ -246,14 +265,19 @@ export default function HowItWorksPage() {
               <br />
               משנים רק את הבוט הרלוונטי.
             </p>
-            <p className="text-[var(--text-primary)] font-medium">
+            <p className="text-[var(--text-primary)] font-medium mb-2">
               המערכת נשארת יציבה – גם כשהעסק משתנה.
+            </p>
+            <p className="text-[var(--text-secondary)] leading-relaxed">
+              רוב הארגונים מתחילים מתהליך אחד,
+              <br />
+              ומוסיפים תהליכים נוספים לפי הצורך.
             </p>
           </motion.div>
         </section>
 
         {/* Diagram */}
-        <section className="mb-24" id="system-diagram">
+        <section className="mb-24 border-t border-gray-100 pt-24" id="system-diagram">
           <motion.h3
             className="text-lg font-semibold text-[var(--text-secondary)] mb-12 text-right"
             {...fadeUp}
@@ -268,7 +292,7 @@ export default function HowItWorksPage() {
             className="w-full flex justify-center mb-12 mt-8"
           >
             <div className="w-full max-w-5xl group">
-              <div className="relative rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]">
+              <div className="relative rounded-2xl border border-[var(--border-soft)] shadow-soft overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]">
                 <Image
                   src="/system-diagram.jpg"
                   alt="תרשים מערכת הבוטים – הבוט הראשי כמרכזיה, בוטים מתמחים מחוברים ל-Priority, ובוט יוזם לפי חוק עסקי"
@@ -283,15 +307,50 @@ export default function HowItWorksPage() {
             </div>
           </motion.div>
           <motion.p
-            className="text-sm text-gray-500 text-center mt-4"
+            className="text-sm text-[var(--text-secondary)] text-center mt-4"
             {...fadeUp}
           >
             המרכזיה מנתבת לבוטים מורשים בלבד, וכל בוט פועל מול מסך ייעודי ב-Priority.
           </motion.p>
+
+          {/* Use Case אמיתי */}
+          <motion.div
+            className="mt-12 p-6 rounded-xl border border-[var(--border-soft)] bg-white text-right"
+            {...fadeUp}
+          >
+            <h3 className="text-lg font-bold text-[var(--text-primary)] mb-4">
+              דוגמה אמיתית
+            </h3>
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
+              לקוח מבקש סטטוס הזמנה.
+            </p>
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
+              המרכזיה מזהה שמדובר בפנייה שירותית.
+              <br />
+              הבוט הייעודי להזמנות פתוחות נבחר.
+              <br />
+              הוא פונה למסך המתאים ב-Priority, מחלץ את הנתונים, ומחזיר תשובה מדויקת.
+            </p>
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
+              מבחינת הלקוח — זו שיחה רגילה.
+              <br />
+              מבחינת הארגון — זו שליפה מבוקרת ממערכת הליבה.
+            </p>
+          </motion.div>
+
+          {/* חיזוק ביטחון טכנולוגי */}
+          <motion.p
+            className="mt-6 text-[var(--text-secondary)] leading-relaxed text-right"
+            {...fadeUp}
+          >
+            המערכת אינה פועלת באופן פתוח או אקראי.
+            <br />
+            כל תוצאה מבוססת על אפשרויות שהוגדרו מראש בתהליך.
+          </motion.p>
         </section>
 
         {/* SECTION 3 – בוט יוזם */}
-        <section className="mb-24 text-right">
+        <section className="mb-24 text-right border-t border-gray-100 pt-24">
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
             {...fadeUp}
@@ -362,7 +421,7 @@ export default function HowItWorksPage() {
           {...fadeUp}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">
-            זו מערכת עם שליטה מלאה
+            זו מערכת עם <span className="text-[var(--primary-dark)]">שליטה מלאה</span>
           </h2>
           <ul className="space-y-3 mb-6">
             <li className="flex items-center gap-2 text-[var(--text-primary)]">
@@ -391,8 +450,80 @@ export default function HowItWorksPage() {
           </p>
         </motion.section>
 
+        {/* למי זה מתאים במיוחד */}
+        <section className="border-t border-gray-100 pt-24 mb-24 text-right">
+          <motion.h2
+            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            {...fadeUp}
+          >
+            למי המערכת מתאימה במיוחד?
+          </motion.h2>
+          <motion.ul
+            className="space-y-3 mb-6"
+            {...fadeUp}
+            transition={{ delay: 0.05 }}
+          >
+            <li className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-green)] font-bold">✔</span>
+              ארגונים שמנהלים כמה תהליכים עסקיים במקביל
+            </li>
+            <li className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-green)] font-bold">✔</span>
+              חברות שדורשות שליטה בהרשאות לפי תפקיד
+            </li>
+            <li className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-green)] font-bold">✔</span>
+              עסקים שרוצים להתרחב בלי לבנות הכל מחדש
+            </li>
+            <li className="flex items-center gap-2 text-[var(--text-primary)]">
+              <span className="text-[var(--accent-green)] font-bold">✔</span>
+              צוותים שעובדים ישירות מול Priority ורוצים בקרה מלאה
+            </li>
+          </motion.ul>
+          <motion.p
+            className="text-lg font-semibold text-[var(--text-primary)]"
+            {...fadeUp}
+            transition={{ delay: 0.1 }}
+          >
+            ככל שהארגון מורכב יותר — כך היתרון של המבנה הזה משמעותי יותר.
+          </motion.p>
+        </section>
+
+        {/* מה זה לא */}
+        <section className="mb-24">
+          <motion.div
+            className="bg-gray-50 rounded-xl p-6 md:p-8 text-right"
+            {...fadeUp}
+          >
+            <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-4">
+              זו לא מערכת של תשובות אוטומטיות
+            </h2>
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
+              זו לא מערכת שמחזירה טקסטים כלליים.
+              <br />
+              זו מערכת שמבצעת פעולות עסקיות בפועל.
+            </p>
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
+              כל בוט מחובר למסך ייעודי, עם תוצאה מוגדרת מראש.
+              <br />
+              המערכת אינה פועלת מחוץ למה שהוגדר לה.
+            </p>
+            <p className="text-[var(--text-primary)] font-semibold">
+              <span className="text-[var(--primary-dark)]">שליטה מלאה.</span> ללא הפתעות.
+            </p>
+          </motion.div>
+        </section>
+
         {/* סקשן סיום – Product Narrative */}
-        <section className="mt-24 mb-12 text-right">
+        <section className="mt-24 mb-12 text-right border-t border-gray-100 pt-24">
+          <motion.p
+            className="text-[var(--text-secondary)] leading-relaxed mb-8 max-w-2xl"
+            {...fadeUp}
+          >
+            המערכת בנויה כך שתוכל לנהל 2 תהליכים או 20 —
+            <br />
+            בלי שינוי בתשתית.
+          </motion.p>
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
             {...fadeUp}
@@ -406,7 +537,7 @@ export default function HowItWorksPage() {
           >
             <p>מערכת אחת.</p>
             <p>חלוקת תפקידים ברורה.</p>
-            <p>שליטה בהרשאות.</p>
+            <p>שליטה ב<span className="text-[var(--primary-dark)] font-medium">הרשאות</span>.</p>
             <p>חיבור עמוק ל-Priority.</p>
             <p>וגמישות שמאפשרת לכם לגדול בלי לבנות מחדש.</p>
           </motion.div>

@@ -6,11 +6,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
-/* קישורים: תהליך ההטמעה, איך זה עובד, תמחור, שאלות נפוצות – ללא כפילות */
+/* סדר: תמחור → איך זה עובד → תהליך ההטמעה → שאלות נפוצות */
 const DRAWER_LINKS = [
-  { href: "/onboarding", label: "תהליך ההטמעה" },
-  { href: "/how-it-works", label: "איך זה עובד" },
   { href: "/pricing", label: "תמחור" },
+  { href: "/how-it-works", label: "איך זה עובד" },
+  { href: "/onboarding", label: "תהליך ההטמעה" },
   { href: "/faq", label: "שאלות נפוצות" },
 ] as const;
 
@@ -53,35 +53,35 @@ export default function Header() {
       className={`navbar sticky top-0 z-50 border-b border-gray-200 ${scrolled ? "scrolled" : ""}`}
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center w-full gap-6">
-        {/* סדר: כותרת → כפתור הדגמה → תהליך ההטמעה → איך זה עובד → תמחור → שאלות נפוצות → לוגו */}
+        {/* סדר: כותרת → כפתור הדגמה → תמחור → איך זה עובד → תהליך ההטמעה → שאלות נפוצות → לוגו */}
         <Link href="/" className="header-title flex-shrink-0">
           מחולל בוטים לפריוריטי
         </Link>
         <div className="hidden md:block flex-shrink-0">
           <CalendlyModal />
         </div>
-        <nav className="hidden md:flex items-center gap-8 text-sm flex-shrink-0">
-          <Link
-            href="/onboarding"
-            className={`transition whitespace-nowrap ${pathname === "/onboarding" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
-          >
-            תהליך ההטמעה
-          </Link>
-          <Link
-            href="/how-it-works"
-            className={`transition whitespace-nowrap ${pathname === "/how-it-works" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
-          >
-            איך זה עובד
-          </Link>
+        <nav className="hidden md:flex items-center gap-6 text-sm flex-shrink-0">
           <Link
             href="/pricing"
-            className={`transition whitespace-nowrap ${pathname === "/pricing" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
+            className={`nav-link whitespace-nowrap ${pathname === "/pricing" ? "!text-[#0056FF] font-semibold" : ""}`}
           >
             תמחור
           </Link>
           <Link
+            href="/how-it-works"
+            className={`nav-link whitespace-nowrap ${pathname === "/how-it-works" ? "!text-[#0056FF] font-semibold" : ""}`}
+          >
+            איך זה עובד
+          </Link>
+          <Link
+            href="/onboarding"
+            className={`nav-link whitespace-nowrap ${pathname === "/onboarding" ? "!text-[#0056FF] font-semibold" : ""}`}
+          >
+            תהליך ההטמעה
+          </Link>
+          <Link
             href="/faq"
-            className={`transition whitespace-nowrap ${pathname === "/faq" ? "text-black font-medium" : "text-gray-600 hover:text-black"}`}
+            className={`nav-link whitespace-nowrap ${pathname === "/faq" ? "!text-[#0056FF] font-semibold" : ""}`}
           >
             שאלות נפוצות
           </Link>
@@ -129,7 +129,7 @@ export default function Header() {
 
       {/* תפריט מובייל - רקע מלא, אנימציה, CTA בולט */}
       <div
-        className={`mobile-menu fixed top-0 right-0 h-full w-full max-w-sm z-[60] ${
+        className={`mobile-menu menu-mobile fixed top-0 right-0 h-full w-full max-w-sm z-[60] ${
           menuOpen ? "open" : ""
         }`}
         role="dialog"
@@ -142,7 +142,7 @@ export default function Header() {
               <Link
                 key={label}
                 href={href}
-                className="mobile-menu-link py-4 px-0 border-b border-gray-100 text-right text-[var(--text-primary)] hover:bg-gray-50 hover:text-black transition"
+                className="nav-link mobile-menu-link py-4 px-0 border-b border-gray-100 text-right"
                 onClick={() => setMenuOpen(false)}
               >
                 {label}

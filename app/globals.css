@@ -101,6 +101,45 @@ p {
   background: transparent;
 }
 
+/* ========== ניווט – קישורים עם הובר כחול ו־underline אנימטיבי ========== */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.nav-link:hover {
+  color: #0056FF;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0056FF;
+  transition: width 0.3s ease;
+  display: block;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+/* RTL – קו תחתון מתפרס מימין */
+[dir="rtl"] .nav-link::after,
+.rtl .nav-link::after {
+  right: 0;
+  left: auto;
+}
+/* מובייל – אותו הובר כחול */
+.menu-mobile .nav-link:hover {
+  color: #0056FF;
+}
+.menu-mobile .nav-link:hover::after {
+  width: 100%;
+}
+
 /* סקשן CTA – שני הכפתורים באותו רוחב (כך זה עובד + סיום) */
 .final-cta-buttons > * {
   min-width: 0;
@@ -340,10 +379,6 @@ body.menu-open {
 .mobile-menu-link {
   padding: 16px 0;
   font-size: 18px;
-}
-
-.mobile-menu-link::after {
-  display: none;
 }
 
 .mobile-menu-cta .button-primary {

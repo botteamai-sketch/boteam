@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Header from "@/components/Header";
 import { motion } from "framer-motion";
 import CalendlyModal from "@/components/CalendlyModal";
@@ -12,74 +13,52 @@ const fadeUp = {
   transition: { duration: 0.45 },
 };
 
-type StepItem = {
+type StepCard = {
   id: number;
   title: string;
-  desc: string;
-  yours: string;
-  ours: string;
+  body: string;
 };
 
-const STEPS: StepItem[] = [
+const STEPS: StepCard[] = [
   {
     id: 1,
-    title: "שיחת היכרות והדגמה",
-    desc: "הבנת צורכי הארגון והצגת יכולת המודול כפלטפורמת Automation – בשיתוף מיישם ה-Priority של הארגון. בשלב זה נבחנת התאמת הפלטפורמה למבנה התהליכים הארגוני ולשימושים הקיימים ב-Priority.",
-    yours: "לשתף בצווארי הבקבוק התפעוליים ובתהליכים רלוונטיים.",
-    ours: "הצגת המודול כתשתית מערכתית Native ל-Priority והאפשרויות להרחבת יכולת פנימית.",
+    title: "שלב 1 – שיחת אפיון",
+    body: "נגדיר יחד תהליך אחד ממוקד (למשל: הצעת מחיר, סטטוס הזמנה, גבייה). המטרה: לבחור תהליך ברור שניתן למדידה.",
   },
   {
     id: 2,
-    title: "בחירת מסלול",
-    desc: "התאמת רישיונות המודול לקצב הצמיחה של הארגון. בחירת המסלול מגדירה את מסגרת ה-Enablement הארגוני ואת היקף ההטמעה הראשוני.",
-    yours: "חתימה על הסכם התקשרות והסדרת תשלום.",
-    ours: "הקמת החשבון ושחרור הרישיונות למודול.",
+    title: "שלב 2 – הגדרת מבנה הבוט",
+    body: "נגדיר את המסך הרלוונטי ב-Priority, את השדות הנדרשים, ואת התוצאה העסקית הצפויה.",
   },
   {
     id: 3,
-    title: "הכנת תשתית (WhatsApp Business)",
-    desc: "חיבור מאומת מול Meta נדרש לשליחת הודעות רשמיות. מתבצע בתיאום עם מיישם הארגון. החיבור מבוצע כחלק מהתשתית התקשורתית הרשמית של הארגון, בהתאם לסטנדרטים של Meta ולמדיניות הארגונית.",
-    yours: "לוודא דף פייסבוק פעיל ומאומת לארגון.",
-    ours: "הדרכה וליווי בתהליך החיבור מול Meta – העברת ידע למיישם הארגון.",
+    title: "שלב 3 – חיבור לסביבת WhatsApp או אימייל",
+    body: "נגדיר את נקודת הקשר שמול הלקוח, ונבצע בדיקות ראשוניות בסביבה מבוקרת.",
   },
   {
     id: 4,
-    title: "התקנת המודול בפריוריטי",
-    desc: "מתבצעת התקנת מודול מחולל הבוטים כחלק אינטגרלי ממערכת ה-Priority, כולל קונפיגורציה והרשאות למיישמים הרלוונטיים.",
-    yours: "מתן הרשאות גישה בסיסיות לצוות הטכני / מיישם הארגון.",
-    ours: "התקנת המודול, קונפיגורציה ראשונית והעברת יכולת תפעולית לארגון.",
+    title: "שלב 4 – בדיקות ואישור",
+    body: "נבצע בדיקות תרחישים, נאשר ניסוחים, ונוודא שהכל פועל בהתאם להגדרות.",
   },
   {
     id: 5,
-    title: "Enablement ויציאה לדרך",
-    desc: "בשלב זה מבוצעת הקמה מודרכת של תהליך הבוט הראשון, יחד עם מיישם ה-Priority של הארגון. עם סיום ה-Enablement, הפלטפורמה פעילה באופן מלא בתוך סביבת הייצור, והארגון מקבל יכולת עצמאית ליצירת תהליכי אוטומציה נוספים – ללא תלות בגורם חיצוני וללא צורך בפיתוח קוד.",
-    yours: "לבחור את התהליך הראשון לאוטומציה ולהיות שותף בהגדרה.",
-    ours: "ליווי Enablement בהקמת התהליך הראשון; המודול פעיל בסביבת הייצור והארגון יכול להקים תהליכים נוספים באופן עצמאי.",
+    title: "שלב 5 – העלאה לאוויר",
+    body: "הבוט עובר לפעילות מלאה. מתחילים למדוד תוצאות.",
   },
 ];
 
-const BENEFITS = [
-  {
-    title: "בלי לכתוב שורת קוד",
-    desc: "ממשק ידידותי, תבניות מוכנות. אפס פיתוח.",
-    icon: "code",
-  },
-  {
-    title: "שקיפות מלאה",
-    desc: "מעקב ברור אחרי ההתקדמות בכל שלב.",
-    icon: "eye",
-  },
-  {
-    title: "ליווי אנושי",
-    desc: "צוות ייעודי ללוות אתכם עד Go Live.",
-    icon: "support",
-  },
-] as const;
-
 const FAQ_ITEMS = [
   {
-    q: "כמה זמן לוקח עד שהבוט הראשון עובד?",
-    a: "בממוצע, מהשיחה הראשונה ועד בוט פעיל – בין שבועיים לארבעה, תלוי בזמינות הצדדים ובהשלמת חיבור WhatsApp Business.",
+    q: "כמה זמן לוקח עד שהבוט הראשון פעיל?",
+    a: "לרוב בין 3 ל-5 ימי עבודה, כולל בדיקות ואישור.",
+  },
+  {
+    q: "האם נדרש פיתוח מצדנו?",
+    a: "לא. המערכת בנויה כך שאין צורך בפיתוח פנימי.",
+  },
+  {
+    q: "מה קורה אחרי העלייה לאוויר?",
+    a: "ניתן למדוד תוצאות, לשפר ניסוחים ולהוסיף תהליכים נוספים.",
   },
   {
     q: "האם נדרש ידע טכני מצד הלקוח?",
@@ -90,33 +69,10 @@ const FAQ_ITEMS = [
     a: "נדרש דף פייסבוק מאומת לחיבור WhatsApp Business. אנחנו מדריכים אתכם בתהליך האימות מול Meta.",
   },
   {
-    q: "האם אפשר לשנות תהליך או להוסיף בוטים אחרי ה-Go Live?",
+    q: "האם אפשר להוסיף בוטים או תהליכים אחרי ה-Go Live?",
     a: "כן. אחרי שהבוט הראשון עובד, אפשר להרחיב לתהליכים נוספים ולהוסיף בוטים לפי הצורך.",
   },
 ] as const;
-
-function IconCode() {
-  return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-    </svg>
-  );
-}
-function IconEye() {
-  return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-    </svg>
-  );
-}
-function IconSupport() {
-  return (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-    </svg>
-  );
-}
 
 export default function OnboardingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -126,162 +82,152 @@ export default function OnboardingPage() {
       <Header />
 
       <main>
-        {/* בלוק פתיחה אסטרטגי – לפני הכותרת הראשית */}
-        <section className="pt-24 pb-10 md:pt-28 md:pb-12 border-b border-[var(--border-soft)]">
-          <div className="mx-auto max-w-4xl px-6 text-center text-right">
-            <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              תהליך הטמעה לפלטפורמת Automation בתוך Priority
-            </motion.h2>
-            <motion.div
-              className="text-[var(--text-secondary)] leading-relaxed space-y-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-            >
-              <p>
-                הטמעת מחולל הבוטים אינה רק הקמת תהליך ראשון.
-                מדובר בהתקנת מודול מערכת ארגוני ובהקניית יכולת פנימית ליצירת תהליכי Bot ואוטומציה על גבי מערכת ה-ERP הקיימת.
-              </p>
-              <p>
-                התהליך מובנה סביב שיתוף פעולה עם מיישם ה-Priority של הארגון,
-                ומטרתו לשלב את הפלטפורמה כחלק אינטגרלי מהפעילות השוטפת.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Hero – כותרת ותגית */}
-        <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-[var(--background-soft)]" />
-          <div className="relative mx-auto max-w-5xl px-6 text-center">
+        {/* HERO */}
+        <section className="pt-24 pb-12 md:pt-28 md:pb-16 border-b border-[var(--border-soft)]">
+          <div className="mx-auto max-w-4xl px-6 text-right">
             <motion.h1
-              className="text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--text-primary)] mb-4 leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6 leading-tight"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              הדרך לבוט הראשון שלכם בפריוריטי – פשוטה, מהירה וללא פיתוח
+              הטמעה מהירה של בוט ראשון שמייצר תוצאות עסקיות – בלי פיתוח
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed"
+              className="text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              מחולל הבוטים משיג את התשובות, כדי שהצוות שלכם לא יצטרך.
+              הבוט הראשון שלכם לא אמור להיות פרויקט מורכב.
+              <br />
+              התהליך בנוי כך שתוך ימים ספורים תוכלו לראות בוט פעיל שמחובר ל-Priority ומבצע פעולה עסקית אמיתית.
             </motion.p>
           </div>
         </section>
 
-        {/* Timeline / Process */}
-        <section className="py-16 md:py-24 bg-white border-t border-[var(--border-soft)]">
+        {/* פתיח בעיה-פתרון */}
+        <section className="pt-20 pb-14 md:pt-24 md:pb-20 bg-white border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-4xl px-6 text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+              {...fadeUp}
+            >
+              למה תהליך מסודר חשוב?
+            </motion.h2>
+            <motion.div
+              className="text-[var(--text-secondary)] leading-relaxed space-y-4"
+              {...fadeUp}
+              transition={{ delay: 0.05 }}
+            >
+              <p>
+                כאשר תהליכים מתנהלים ידנית –
+                <br />
+                שאלות נשארות פתוחות, אישורים מתעכבים, ומידע מתפזר בין שיחות.
+              </p>
+              <p>
+                הטמעה מסודרת של בוט ראשון יוצרת תהליך ברור, מתועד ומבוקר כבר מהיום הראשון.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* שלבי ההטמעה – כרטיסים */}
+        <section className="pt-20 pb-16 md:pt-24 md:pb-24 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-4xl px-6">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-10 text-center"
+              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center"
               {...fadeUp}
             >
               איך זה עובד – צעד אחר צעד
             </motion.h2>
-
-            {/* בלוק ערך מקדים – מה כולל תהליך ההטמעה */}
-            <motion.div
-              className="mb-14 rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] p-6 md:p-8"
-              {...fadeUp}
-            >
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 text-right">
-                מה כולל תהליך ההטמעה
-              </h3>
-              <ul className="space-y-3 text-right">
-                {[
-                  "התקנת מודול מערכת בתוך סביבת ה-Priority של הארגון",
-                  "קונפיגורציה והתאמה ללוגיקה העסקית הקיימת",
-                  "עבודה משותפת עם מיישם ה-Priority",
-                  "העברת יכולת פנימית להקמה והרחבת תהליכים",
-                  "יציאה ל-Go-Live ללא פיתוח קוד",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 justify-start flex-row-reverse">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
-                      ✔
-                    </span>
-                    <span className="text-[var(--text-primary)]">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <div className="relative">
-              <div className="absolute top-0 bottom-0 right-[19px] w-0.5 bg-[var(--primary-light)]/30 hidden md:block" />
-
+            <div className="space-y-0">
               {STEPS.map((step, i) => (
                 <motion.article
                   key={step.id}
-                  className="relative flex gap-8 md:gap-10 pb-16 last:pb-0"
+                  className="rounded-xl border border-[var(--border-soft)] bg-white p-6 mb-6 last:mb-0 text-right"
                   {...fadeUp}
-                  transition={{ delay: i * 0.08 }}
+                  transition={{ delay: i * 0.06 }}
                 >
-                  <div className="hidden md:flex shrink-0 w-10 h-10 rounded-full bg-[var(--primary-dark)] text-white items-center justify-center font-bold text-lg z-10">
-                    {step.id}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-xl md:text-2xl font-bold text-[var(--primary-dark)] mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">
-                      {step.desc}
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="rounded-xl bg-[var(--background-soft)] border border-[var(--border-soft)] p-4">
-                        <span className="inline-block text-xs font-semibold text-[var(--primary-light)] uppercase tracking-wide mb-2">
-                          החלק שלכם
-                        </span>
-                        <p className="text-[var(--text-primary)] text-sm leading-relaxed">{step.yours}</p>
-                      </div>
-                      <div className="rounded-xl bg-[var(--primary-dark)]/5 border border-[var(--primary-dark)]/10 p-4">
-                        <span className="inline-block text-xs font-semibold text-[var(--primary-dark)] uppercase tracking-wide mb-2">
-                          החלק שלנו
-                        </span>
-                        <p className="text-[var(--text-primary)] text-sm leading-relaxed">{step.ours}</p>
-                      </div>
-                    </div>
-                  </div>
+                  <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-[var(--text-secondary)] leading-relaxed">
+                    {step.body}
+                  </p>
                 </motion.article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Benefits */}
-        <section className="py-16 md:py-24 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-5xl px-6">
+        {/* תרשים תהליך – placeholder */}
+        <section className="py-16 md:py-20 bg-white border-t border-[var(--border-soft)]" id="onboarding-diagram">
+          <div className="mx-auto max-w-4xl px-6 text-right">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-14 text-center"
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8"
               {...fadeUp}
             >
-              למה התהליך שלנו כל כך פשוט?
+              כך נראה תהליך ההטמעה
             </motion.h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {BENEFITS.map((b, i) => (
-                <motion.div
-                  key={b.title}
-                  className="bg-white rounded-2xl p-8 border border-[var(--border-soft)] shadow-soft text-center"
-                  {...fadeUp}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--primary-light)]/10 text-[var(--primary-dark)] mb-4">
-                    {b.icon === "code" && <IconCode />}
-                    {b.icon === "eye" && <IconEye />}
-                    {b.icon === "support" && <IconSupport />}
-                  </div>
-                  <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">{b.title}</h3>
-                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{b.desc}</p>
-                </motion.div>
+            <motion.div
+              className="rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] h-64 flex items-center justify-center text-[var(--text-secondary)]"
+              {...fadeUp}
+            >
+              התרשים יופיע כאן
+            </motion.div>
+          </div>
+        </section>
+
+        {/* יתרונות ברורים */}
+        <section className="py-16 md:py-24 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-4xl px-6 text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8"
+              {...fadeUp}
+            >
+              למה זה עובד?
+            </motion.h2>
+            <motion.ul
+              className="space-y-3 mb-8"
+              {...fadeUp}
+              transition={{ delay: 0.05 }}
+            >
+              {["ללא פיתוח", "ללא תלות בצוות IT", "תהליך קצר וברור", "שליטה מלאה בתוצאה", "מוכנות להרחבה עתידית"].map((item, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
+                    ✔
+                  </span>
+                  <span className="text-[var(--text-primary)]">{item}</span>
+                </li>
               ))}
-            </div>
+            </motion.ul>
+            <motion.p
+              className="text-lg font-semibold text-[var(--text-primary)]"
+              {...fadeUp}
+              transition={{ delay: 0.1 }}
+            >
+              מתחילים מתהליך אחד. מתקדמים לפי הצורך.
+            </motion.p>
+
+            {/* CTA אמצע עמוד */}
+            <motion.div
+              className="mt-12 pt-10 border-t border-[var(--border-soft)] text-center"
+              {...fadeUp}
+            >
+              <p className="text-lg font-semibold text-[var(--text-primary)] mb-6">
+                רוצים להתחיל מתהליך אחד?
+              </p>
+              <CalendlyModal size="lg" variant="solid" />
+            </motion.div>
+
+            {/* Trust Booster */}
+            <motion.p
+              className="text-sm text-[var(--text-secondary)] text-center mt-6"
+              {...fadeUp}
+            >
+              ברוב הארגונים, הבוט הראשון עולה לאוויר בתוך מספר ימי עבודה.
+            </motion.p>
           </div>
         </section>
 
@@ -315,7 +261,10 @@ export default function OnboardingPage() {
                   </button>
                   {openFaq === i && (
                     <div className="px-5 pb-4 pt-0">
-                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{item.a}</p>
+                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        <span className="text-[var(--accent-green)] font-bold">✔ </span>
+                        {item.a}
+                      </p>
                     </div>
                   )}
                 </motion.div>
@@ -324,60 +273,28 @@ export default function OnboardingPage() {
           </div>
         </section>
 
-        {/* בלוק סיכום תחתון – הערך הארגוני */}
-        <section className="py-16 md:py-24 bg-gray-50 border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-4xl px-6 text-right">
-            <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8 text-center"
+        {/* CTA סופי מחוזק */}
+        <section className="py-16 md:py-20 border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6">
+            <motion.div
+              className="bg-[var(--background-soft)] rounded-2xl p-10 text-center mt-24"
               {...fadeUp}
             >
-              הערך הארגוני בסיום התהליך
-            </motion.h2>
-            <motion.p
-              className="text-[var(--text-secondary)] leading-relaxed mb-8"
-              {...fadeUp}
-            >
-              עם השלמת תהליך ההטמעה, הארגון אינו מקבל "בוט פעיל" בלבד –
-              אלא שכבת יכולת מערכתית חדשה בתוך ה-ERP.
-            </motion.p>
-            <motion.ul
-              className="space-y-3 mb-8"
-              {...fadeUp}
-            >
-              {[
-                "העברה של יכולת מערכתית מתמשכת ליצירת תהליכים",
-                "צמצום תלות ביועצים חיצוניים או בפיתוח ייעודי",
-                "שיפור יעילות תפעולית בתהליכי ליבה",
-                "אינטגרציה מלאה בתוך מערכת Priority ללא פיצול מערכות",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 justify-start flex-row-reverse">
-                  <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
-                    ✔
-                  </span>
-                  <span className="text-[var(--text-primary)]">{item}</span>
-                </li>
-              ))}
-            </motion.ul>
-            <motion.p
-              className="text-[var(--text-primary)] font-medium leading-relaxed text-center"
-              {...fadeUp}
-            >
-              התהליך מסתיים בהפעלה – אך הערך האמיתי מתחיל ביכולת העצמאית שנשארת בארגון.
-            </motion.p>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary-light)] text-white">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <motion.p
-              className="text-lg font-medium text-white/95 mb-4"
-              {...fadeUp}
-            >
-              מוכנים להתחיל?
-            </motion.p>
-            <motion.div {...fadeUp}>
-              <CalendlyModal size="lg" variant="outline" />
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">
+                מוכנים לראות את הבוט הראשון שלכם בפעולה?
+              </h2>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-8 max-w-xl mx-auto">
+                נבחר תהליך אחד, נגדיר אותו נכון, ונעלה אותו לאוויר תוך ימים ספורים.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <CalendlyModal size="lg" variant="solid" />
+                <Link
+                  href="/pricing"
+                  className="button-secondary rounded-xl px-6 py-3"
+                >
+                  צפו בתמחור
+                </Link>
+              </div>
             </motion.div>
           </div>
         </section>
