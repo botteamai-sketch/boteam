@@ -81,9 +81,14 @@ export default function PricingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-2xl md:text-4xl font-bold text-[var(--text-primary)]" dir="rtl">
-                שכבת ה-AI של Priority
+              <h1 className="text-2xl md:text-4xl font-bold text-[var(--text-primary)] mb-4" dir="rtl">
+                פלטפורמת Automation ארגונית – מודול מערכת ל-Priority
               </h1>
+              <p className="text-[var(--text-secondary)] text-base md:text-lg leading-relaxed max-w-2xl mx-auto" dir="rtl">
+                מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי ממערכת Priority.<br />
+                לא מערכת חיצונית, לא שירות צד ג׳, ולא אינטגרציה זמנית –<br />
+                אלא שכבת יכולת חדשה בתוך ה-ERP הארגוני.
+              </p>
             </motion.div>
             <motion.div
               className="w-full max-w-xl rounded-2xl border-2 border-[var(--border-soft)] bg-white p-8 md:p-10 shadow-[var(--shadow-medium)] text-right"
@@ -122,8 +127,30 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* בלוק: זו פלטפורמה, לא בוט מוכן */}
+        {/* בלוק אסטרטגי – בידול מפתרונות SaaS */}
         <section className="py-14 md:py-20 bg-gray-50 border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-right">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-6 text-center">
+                לא כלי חיצוני. שכבת יכולת מערכתית.
+              </h2>
+              <div className="text-[var(--text-secondary)] leading-relaxed space-y-4">
+                <p>בניגוד לפתרונות Bot מבוססי SaaS, מחולל הבוטים אינו פועל מחוץ למערכת ואינו תלוי בפלטפורמה חיצונית.</p>
+                <p>הוא מותקן כמודול מערכת בתוך סביבת ה-Priority של הארגון, ופועל כחלק מהארכיטקטורה הקיימת.</p>
+                <p>אין תמחור לפי כמות בוטים.<br />אין תמחור לפי משתמשים.<br />אין תלות בספק לבניית כל תהליך.</p>
+                <p>הארגון מקבל פלטפורמה פתוחה ליצירת תהליכי Bot ו-Workflow בהתאם לצורך העסקי.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* בלוק: פלטפורמה Native ל-Priority */}
+        <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -189,9 +216,8 @@ export default function PricingPage() {
               className="text-[var(--text-secondary)] leading-relaxed space-y-3"
               {...fadeUp}
             >
-              <p>ניתן להזמין הדרכות נוספות לפי צורך.</p>
-              <p>עלות: 400 ₪ + מע״מ לשעה.</p>
-              <p>מומלץ לבצע יחד עם מיישם הפריוריטי.</p>
+              <p>ניתן להזמין הדרכות עומק נוספות בהתאם לצורך הארגוני.<br />עלות: 400 ₪ + מע״מ לשעה.</p>
+              <p>ההדרכות מבוצעות יחד עם מיישם ה-Priority של הארגון, ומטרתן להרחיב ולהעמיק את היכולת הפנימית בשימוש בפלטפורמה.</p>
             </motion.div>
           </div>
         </section>
@@ -209,8 +235,8 @@ export default function PricingPage() {
               className="text-[var(--text-secondary)] leading-relaxed text-lg space-y-3"
               {...fadeUp}
             >
-              <p>אנחנו מספקים את התשתית.<br />הארגון מגדיר, שולט ומפתח תהליכי Bot באופן עצמאי –<br />באמצעות מיישם ה-Priority שלו ועל גבי המערכת הקיימת.</p>
-              <p>הערך אינו בבוט אחד.<br />הערך הוא ביכולת מערכתית מתמשכת ליצירת תהליכים חדשים לפי צורך עסקי.</p>
+              <p>אנחנו מספקים את התשתית.<br />הארגון מגדיר, שולט ומפתח תהליכי Bot באופן עצמאי – באמצעות מיישם ה-Priority שלו ועל גבי המערכת הקיימת.</p>
+              <p>הערך אינו בבוט אחד.<br />הערך הוא ביכולת מערכתית מתמשכת להרחבת תהליכים עסקיים ללא תלות בספק חיצוני.</p>
             </motion.div>
           </div>
         </section>
@@ -408,6 +434,44 @@ export default function PricingPage() {
             >
               אם Priority הוא הליבה – מחולל הבוטים הוא שכבת ה-AI שמעליו.
             </motion.p>
+          </div>
+        </section>
+
+        {/* FAQ אסטרטגי – מינימלי */}
+        <section className="py-14 md:py-20 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-10 text-center"
+              {...fadeUp}
+            >
+              שאלות נפוצות
+            </motion.h2>
+            <dl className="space-y-8">
+              <motion.div {...fadeUp}>
+                <dt className="text-base font-semibold text-[var(--text-primary)] mb-2 text-right">
+                  האם מדובר בשירות בניית בוטים?
+                </dt>
+                <dd className="text-[var(--text-secondary)] text-sm leading-relaxed text-right">
+                  לא. מדובר בהתקנת פלטפורמה ליצירת בוטים בתוך מערכת Priority. הגדרת התהליכים מתבצעת על ידי מיישם ה-Priority של הארגון.
+                </dd>
+              </motion.div>
+              <motion.div {...fadeUp} transition={{ delay: 0.05 }}>
+                <dt className="text-base font-semibold text-[var(--text-primary)] mb-2 text-right">
+                  האם יש תמחור לפי כמות בוטים או משתמשים?
+                </dt>
+                <dd className="text-[var(--text-secondary)] text-sm leading-relaxed text-right">
+                  לא. לאחר התקנת המודול, הארגון יכול ליצור מספר בלתי מוגבל של תהליכים בהתאם לצורך.
+                </dd>
+              </motion.div>
+              <motion.div {...fadeUp} transition={{ delay: 0.1 }}>
+                <dt className="text-base font-semibold text-[var(--text-primary)] mb-2 text-right">
+                  מי אחראי על הגדרת הבוטים בארגון?
+                </dt>
+                <dd className="text-[var(--text-secondary)] text-sm leading-relaxed text-right">
+                  הגדרת התהליכים מבוצעת על ידי מיישם ה-Priority של הארגון, בהתאם ללוגיקה ולמבנה העסקי הפנימי.
+                </dd>
+              </motion.div>
+            </dl>
           </div>
         </section>
 

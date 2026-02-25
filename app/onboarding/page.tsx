@@ -24,35 +24,35 @@ const STEPS: StepItem[] = [
   {
     id: 1,
     title: "שיחת היכרות והדגמה",
-    desc: "הבנת צורכי הארגון והצגת יכולת המודול כפלטפורמת Automation – בשיתוף מיישם ה-Priority של הארגון.",
+    desc: "הבנת צורכי הארגון והצגת יכולת המודול כפלטפורמת Automation – בשיתוף מיישם ה-Priority של הארגון. בשלב זה נבחנת התאמת הפלטפורמה למבנה התהליכים הארגוני ולשימושים הקיימים ב-Priority.",
     yours: "לשתף בצווארי הבקבוק התפעוליים ובתהליכים רלוונטיים.",
     ours: "הצגת המודול כתשתית מערכתית Native ל-Priority והאפשרויות להרחבת יכולת פנימית.",
   },
   {
     id: 2,
     title: "בחירת מסלול",
-    desc: "התאמת רישיונות המודול לקצב הצמיחה של הארגון.",
+    desc: "התאמת רישיונות המודול לקצב הצמיחה של הארגון. בחירת המסלול מגדירה את מסגרת ה-Enablement הארגוני ואת היקף ההטמעה הראשוני.",
     yours: "חתימה על הסכם התקשרות והסדרת תשלום.",
     ours: "הקמת החשבון ושחרור הרישיונות למודול.",
   },
   {
     id: 3,
     title: "הכנת תשתית (WhatsApp Business)",
-    desc: "חיבור מאומת מול Meta נדרש לשליחת הודעות רשמיות. מתבצע בתיאום עם מיישם הארגון.",
+    desc: "חיבור מאומת מול Meta נדרש לשליחת הודעות רשמיות. מתבצע בתיאום עם מיישם הארגון. החיבור מבוצע כחלק מהתשתית התקשורתית הרשמית של הארגון, בהתאם לסטנדרטים של Meta ולמדיניות הארגונית.",
     yours: "לוודא דף פייסבוק פעיל ומאומת לארגון.",
     ours: "הדרכה וליווי בתהליך החיבור מול Meta – העברת ידע למיישם הארגון.",
   },
   {
     id: 4,
     title: "התקנת המודול בפריוריטי",
-    desc: "התקנת מודול מערכת בסביבת ה-Priority של הארגון. מתבצעת בתיאום עם מיישם הפריוריטי – העברת שליטה לתפעול ארגוני.",
+    desc: "מתבצעת התקנת מודול מחולל הבוטים כחלק אינטגרלי ממערכת ה-Priority, כולל קונפיגורציה והרשאות למיישמים הרלוונטיים.",
     yours: "מתן הרשאות גישה בסיסיות לצוות הטכני / מיישם הארגון.",
     ours: "התקנת המודול, קונפיגורציה ראשונית והעברת יכולת תפעולית לארגון.",
   },
   {
     id: 5,
     title: "Enablement ויציאה לדרך",
-    desc: "מתבצעת הקמה מודרכת של תהליך הבוט הראשון, יחד עם מיישם ה-Priority של הארגון.",
+    desc: "בשלב זה מבוצעת הקמה מודרכת של תהליך הבוט הראשון, יחד עם מיישם ה-Priority של הארגון. עם סיום ה-Enablement, הפלטפורמה פעילה באופן מלא בתוך סביבת הייצור, והארגון מקבל יכולת עצמאית ליצירת תהליכי אוטומציה נוספים – ללא תלות בגורם חיצוני וללא צורך בפיתוח קוד.",
     yours: "לבחור את התהליך הראשון לאוטומציה ולהיות שותף בהגדרה.",
     ours: "ליווי Enablement בהקמת התהליך הראשון; המודול פעיל בסביבת הייצור והארגון יכול להקים תהליכים נוספים באופן עצמאי.",
   },
@@ -126,8 +126,37 @@ export default function OnboardingPage() {
       <Header />
 
       <main>
+        {/* בלוק פתיחה אסטרטגי – לפני הכותרת הראשית */}
+        <section className="pt-24 pb-10 md:pt-28 md:pb-12 border-b border-[var(--border-soft)]">
+          <div className="mx-auto max-w-4xl px-6 text-center text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              תהליך הטמעה לפלטפורמת Automation בתוך Priority
+            </motion.h2>
+            <motion.div
+              className="text-[var(--text-secondary)] leading-relaxed space-y-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+            >
+              <p>
+                הטמעת מחולל הבוטים אינה רק הקמת תהליך ראשון.
+                מדובר בהתקנת מודול מערכת ארגוני ובהקניית יכולת פנימית ליצירת תהליכי Bot ואוטומציה על גבי מערכת ה-ERP הקיימת.
+              </p>
+              <p>
+                התהליך מובנה סביב שיתוף פעולה עם מיישם ה-Priority של הארגון,
+                ומטרתו לשלב את הפלטפורמה כחלק אינטגרלי מהפעילות השוטפת.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Hero – כותרת ותגית */}
-        <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 overflow-hidden">
+        <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-white to-[var(--background-soft)]" />
           <div className="relative mx-auto max-w-5xl px-6 text-center">
             <motion.h1
@@ -153,11 +182,37 @@ export default function OnboardingPage() {
         <section className="py-16 md:py-24 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-4xl px-6">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-14 text-center"
+              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-10 text-center"
               {...fadeUp}
             >
               איך זה עובד – צעד אחר צעד
             </motion.h2>
+
+            {/* בלוק ערך מקדים – מה כולל תהליך ההטמעה */}
+            <motion.div
+              className="mb-14 rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] p-6 md:p-8"
+              {...fadeUp}
+            >
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 text-right">
+                מה כולל תהליך ההטמעה
+              </h3>
+              <ul className="space-y-3 text-right">
+                {[
+                  "התקנת מודול מערכת בתוך סביבת ה-Priority של הארגון",
+                  "קונפיגורציה והתאמה ללוגיקה העסקית הקיימת",
+                  "עבודה משותפת עם מיישם ה-Priority",
+                  "העברת יכולת פנימית להקמה והרחבת תהליכים",
+                  "יציאה ל-Go-Live ללא פיתוח קוד",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 justify-start flex-row-reverse">
+                    <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
+                      ✔
+                    </span>
+                    <span className="text-[var(--text-primary)]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
 
             <div className="relative">
               <div className="absolute top-0 bottom-0 right-[19px] w-0.5 bg-[var(--primary-light)]/30 hidden md:block" />
@@ -266,6 +321,49 @@ export default function OnboardingPage() {
                 </motion.div>
               ))}
             </dl>
+          </div>
+        </section>
+
+        {/* בלוק סיכום תחתון – הערך הארגוני */}
+        <section className="py-16 md:py-24 bg-gray-50 border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-4xl px-6 text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8 text-center"
+              {...fadeUp}
+            >
+              הערך הארגוני בסיום התהליך
+            </motion.h2>
+            <motion.p
+              className="text-[var(--text-secondary)] leading-relaxed mb-8"
+              {...fadeUp}
+            >
+              עם השלמת תהליך ההטמעה, הארגון אינו מקבל "בוט פעיל" בלבד –
+              אלא שכבת יכולת מערכתית חדשה בתוך ה-ERP.
+            </motion.p>
+            <motion.ul
+              className="space-y-3 mb-8"
+              {...fadeUp}
+            >
+              {[
+                "העברה של יכולת מערכתית מתמשכת ליצירת תהליכים",
+                "צמצום תלות ביועצים חיצוניים או בפיתוח ייעודי",
+                "שיפור יעילות תפעולית בתהליכי ליבה",
+                "אינטגרציה מלאה בתוך מערכת Priority ללא פיצול מערכות",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 justify-start flex-row-reverse">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
+                    ✔
+                  </span>
+                  <span className="text-[var(--text-primary)]">{item}</span>
+                </li>
+              ))}
+            </motion.ul>
+            <motion.p
+              className="text-[var(--text-primary)] font-medium leading-relaxed text-center"
+              {...fadeUp}
+            >
+              התהליך מסתיים בהפעלה – אך הערך האמיתי מתחיל ביכולת העצמאית שנשארת בארגון.
+            </motion.p>
           </div>
         </section>
 

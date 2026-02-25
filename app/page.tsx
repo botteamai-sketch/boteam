@@ -245,6 +245,19 @@ export default function Home() {
               <span>למה זה שונה מכל בוט אחר?</span>
             </h2>
 
+            <div className="max-w-4xl mb-14 text-gray-600 leading-relaxed space-y-4">
+              <p>
+                מוצר זה אינו בוט חיצוני ואינו כלי SaaS שפועל מחוץ למערכת.
+                זהו מודול מערכת המותקן כחלק אינטגרלי מ-Priority,
+                ומרחיב את יכולות ה-ERP באופן Native.
+              </p>
+              <p>
+                בניגוד לבוטים מבוססי פלטפורמות חיצוניות,
+                מחולל הבוטים פועל מתוך סביבת המערכת עצמה,
+                ומחובר ישירות לנתונים, לתהליכים וללוגיקה העסקית של הארגון.
+              </p>
+            </div>
+
             <div className="grid gap-8 md:grid-cols-3">
 
               {/* Card */}
@@ -280,7 +293,7 @@ export default function Home() {
                   מבין שפה חופשית
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  המשתמש כותב רגיל. הבוט מבין, שואל הבהרות ומעדכן את השדות הנכונים.
+                  המשתמש כותב רגיל. הבוט בתוך Priority מבין, שואל הבהרות ומעדכן את השדות הנכונים.
                 </p>
               </div>
 
@@ -324,6 +337,40 @@ export default function Home() {
               </div>
 
             </div>
+          </div>
+        </section>
+
+        {/* ערך מערכתית – ROI / Business Value */}
+        <section className="reveal py-20 bg-gray-50 border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 text-center text-right">
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8">
+              ערך מערכתית אמיתי לארגון
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-10">
+              מחולל הבוטים אינו רק כלי תקשורת.
+              <br />
+              הוא מרחיב את מערכת ה-ERP ומאפשר לה ליזום, להגיב ולהשלים תהליכים עסקיים באופן אוטומטי.
+            </p>
+            <ul className="space-y-4 mb-10 text-right">
+              {[
+                "חיסכון משמעותי בזמן תפעול ומעקב",
+                "אוטומציה של תהליכי אישור, גבייה ותיאום",
+                "הפחתת טעויות אנוש בתהליכים רגישים",
+                "ריכוז כל המידע והתיעוד בתוך Priority – ללא פיצול מערכות",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 justify-start flex-row-reverse">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] font-bold text-sm">
+                    ✔
+                  </span>
+                  <span className="text-[var(--text-primary)]">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[var(--text-primary)] font-medium leading-relaxed">
+              כל התהליך מנוהל מתוך ה-ERP הקיים –
+              <br />
+              ללא תלות בכלים חיצוניים וללא פיצול ארכיטקטוני.
+            </p>
           </div>
         </section>
 

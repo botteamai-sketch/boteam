@@ -186,7 +186,7 @@ export default function LeadModal({
             className="modal-panel bg-white w-full max-w-[calc(100vw-1.5rem)] sm:max-w-[22rem] md:max-w-[25.5rem] p-4 sm:p-5 md:p-6 text-right relative max-h-[calc(100vh-2rem)] overflow-y-auto mt-16"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 id="lead-modal-title" className="text-lg sm:text-xl font-bold mb-3 sm:mb-5 pr-0">
+            <h3 id="lead-modal-title" className="text-lg sm:text-xl font-bold mb-3 sm:mb-5 pr-0 text-gray-900">
               השאירו פרטים ונחזור אליכם
             </h3>
 
