@@ -6,10 +6,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CalendlyModal from "@/components/CalendlyModal";
 
-/* סדר: תמחור → איך זה עובד → תהליך ההטמעה → שאלות נפוצות */
+/* סדר: איך זה עובד → מחיר → תהליך ההטמעה → שאלות נפוצות */
 const DRAWER_LINKS = [
-  { href: "/pricing", label: "תמחור" },
   { href: "/how-it-works", label: "איך זה עובד" },
+  { href: "/pricing", label: "מחיר" },
   { href: "/onboarding", label: "תהליך ההטמעה" },
   { href: "/faq", label: "שאלות נפוצות" },
 ] as const;
@@ -53,7 +53,7 @@ export default function Header() {
       className={`navbar sticky top-0 z-50 border-b border-gray-200 ${scrolled ? "scrolled" : ""}`}
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center w-full gap-6">
-        {/* סדר: כותרת → כפתור הדגמה → תמחור → איך זה עובד → תהליך ההטמעה → שאלות נפוצות → לוגו */}
+        {/* סדר: כותרת → כפתור הדגמה → איך זה עובד → מחיר → תהליך ההטמעה → שאלות נפוצות → לוגו */}
         <Link href="/" className="header-title flex-shrink-0">
           מחולל בוטים לפריוריטי
         </Link>
@@ -62,16 +62,16 @@ export default function Header() {
         </div>
         <nav className="hidden md:flex items-center gap-6 text-sm flex-shrink-0">
           <Link
-            href="/pricing"
-            className={`nav-link whitespace-nowrap ${pathname === "/pricing" ? "!text-[#0056FF] font-semibold" : ""}`}
-          >
-            תמחור
-          </Link>
-          <Link
             href="/how-it-works"
             className={`nav-link whitespace-nowrap ${pathname === "/how-it-works" ? "!text-[#0056FF] font-semibold" : ""}`}
           >
             איך זה עובד
+          </Link>
+          <Link
+            href="/pricing"
+            className={`nav-link whitespace-nowrap ${pathname === "/pricing" ? "!text-[#0056FF] font-semibold" : ""}`}
+          >
+            מחיר
           </Link>
           <Link
             href="/onboarding"

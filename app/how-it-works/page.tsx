@@ -1,8 +1,42 @@
 "use client";
 
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import CalendlyModal from "@/components/CalendlyModal";
+
+/** Intersection Observer – הופעת סקשנים בעת גלילה (כמו בעמוד הבית) */
+function useRevealOnScroll() {
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    let observed: Element[] = [];
+    const t = setTimeout(() => {
+      const els = document.querySelectorAll(".reveal");
+      if (els.length === 0) return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0, rootMargin: "50px 0px 50px 0px" }
+      );
+      els.forEach((el) => {
+        observer!.observe(el);
+        observed.push(el);
+      });
+    }, 0);
+    return () => {
+      clearTimeout(t);
+      const obs = observer;
+      if (obs) observed.forEach((el) => obs.unobserve(el));
+    };
+  }, []);
+}
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -12,40 +46,16 @@ const fadeUp = {
 };
 
 export default function HowItWorksPage() {
+  useRevealOnScroll();
   return (
-    <div dir="rtl" className="min-h-screen bg-white text-[var(--text-primary)]">
+    <div dir="rtl" className="min-h-screen bg-[var(--background-soft)] text-[var(--text-primary)]">
       <Header />
 
-      <main className="mx-auto max-w-6xl px-6 py-24">
-        {/* סקשן פתיחה רגשי */}
-        <section className="mb-24 text-right">
-          <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
-            {...fadeUp}
-          >
-            כשהכל עובר דרך בוט אחד – הכל מתערבב
-          </motion.h2>
-          <motion.div
-            className="text-[var(--text-secondary)] leading-relaxed space-y-4"
-            {...fadeUp}
-            transition={{ delay: 0.05 }}
-          >
-            <p>
-              מכירות, שירות, גבייה, תזכורות, הצעות מחיר.
-              <br />
-              כשהכל מתנהל דרך בוט אחד – הגבולות מטשטשים.
-            </p>
-            <p>קשה להגדיר הרשאות.</p>
-            <p>קשה לבצע שינוי נקודתי.</p>
-            <p>קשה להתרחב בלי לגעת בכל המערכת.</p>
-            <p>זו הסיבה שמערכות פשוטות נשברות כשהעסק גדל.</p>
-          </motion.div>
-        </section>
-
+      <main className="mx-auto max-w-6xl px-6">
         {/* HERO */}
-        <section className="mb-24 mt-12 text-right">
+        <section className="section reveal text-right bg-[var(--background-soft)] border-t border-gray-100">
           <motion.h1
-            className="text-3xl md:text-5xl font-bold text-[var(--text-primary)] mb-4"
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)] mb-4"
             {...fadeUp}
           >
             לא עוד בוט. מערכת בוטים חכמה.
@@ -76,12 +86,15 @@ export default function HowItWorksPage() {
         </section>
 
         {/* SECTION 1 – הבוט הראשי */}
-        <section className="mb-24 text-right border-t border-gray-100 pt-24">
+        <section className="section reveal text-right bg-white border-t border-gray-100">
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2 justify-start text-right"
             {...fadeUp}
           >
-            הבוט הראשי – המרכזיה הדיגיטלית
+            <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+              <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+            </span>
+            <span>הבוט הראשי – המרכזיה הדיגיטלית</span>
           </motion.h2>
           <motion.div
             className="text-[var(--text-secondary)] leading-relaxed space-y-4"
@@ -117,12 +130,15 @@ export default function HowItWorksPage() {
         </section>
 
         {/* SECTION 2 – בוטים מתמחים */}
-        <section className="mb-24 text-right">
+        <section className="section reveal text-right bg-[var(--background-soft)] border-t border-gray-100">
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2 justify-start text-right"
             {...fadeUp}
           >
-            בוטים מתמחים לפי תהליך עסקי
+            <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+              <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+            </span>
+            <span>בוטים מתמחים לפי תהליך עסקי</span>
           </motion.h2>
           <motion.div
             className="text-[var(--text-secondary)] leading-relaxed space-y-4"
@@ -173,11 +189,11 @@ export default function HowItWorksPage() {
             </p>
           </motion.div>
           <motion.div
-            className="mt-8 p-5 md:p-6 rounded-xl border border-[var(--border-soft)] bg-white text-right"
+            className="mt-8 p-6 md:p-8 rounded-2xl border border-gray-100 shadow-soft bg-white text-right"
             {...fadeUp}
             transition={{ delay: 0.08 }}
           >
-            <h3 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+            <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
               כל בוט עובד מול מסך אחד ב-Priority
             </h3>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
@@ -193,9 +209,9 @@ export default function HowItWorksPage() {
         </section>
 
         {/* שאלה רטורית – למה המבנה ככה */}
-        <section className="mb-24 text-right border-t border-gray-100 pt-24">
+        <section className="mt-24 text-right border-t border-gray-100 pt-24">
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4"
+            className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-4"
             {...fadeUp}
           >
             למה בחרנו במבנה של מרכזיה ומומחים?
@@ -211,13 +227,38 @@ export default function HowItWorksPage() {
           </motion.p>
         </section>
 
-        {/* סקשן אסטרטגי – למה מחלקים לכמה בוטים */}
-        <section className="mb-24 border-t border-gray-100 pt-24">
-          <motion.div
-            className="bg-gray-50 rounded-xl p-6 md:p-8 text-right"
+        {/* סקשן רגשי – כשהכל עובר דרך בוט אחד */}
+        <section className="section reveal text-right bg-[var(--background-soft)] border-t border-gray-100">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6"
             {...fadeUp}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">
+            כשהכל עובר דרך בוט אחד – הכל מתערבב
+          </motion.h2>
+          <motion.div
+            className="text-[var(--text-secondary)] leading-relaxed space-y-4"
+            {...fadeUp}
+            transition={{ delay: 0.05 }}
+          >
+            <p>
+              מכירות, שירות, גבייה, תזכורות, הצעות מחיר.
+              <br />
+              כשהכל מתנהל דרך בוט אחד – הגבולות מטשטשים.
+            </p>
+            <p>קשה להגדיר הרשאות.</p>
+            <p>קשה לבצע שינוי נקודתי.</p>
+            <p>קשה להתרחב בלי לגעת בכל המערכת.</p>
+            <p>זו הסיבה שמערכות פשוטות נשברות כשהעסק גדל.</p>
+          </motion.div>
+        </section>
+
+        {/* סקשן אסטרטגי – למה מחלקים לכמה בוטים */}
+        <section className="section reveal bg-[var(--background-soft)] border-t border-gray-100">
+          <motion.div
+            className="bg-white rounded-2xl border border-gray-100 shadow-soft p-8 text-right"
+            {...fadeUp}
+          >
+            <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6">
               למה מחלקים לכמה בוטים?
             </h2>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
@@ -252,7 +293,7 @@ export default function HowItWorksPage() {
             <p className="text-lg font-semibold text-[var(--text-primary)]">
               גמישות היום חוסכת שכתוב מחר.
             </p>
-            <h3 className="text-lg font-bold text-[var(--text-primary)] mt-8 mb-3">
+            <h3 className="text-xl font-semibold text-[var(--text-primary)] mt-8 mb-3">
               מבנה מודולרי שמאפשר צמיחה
             </h3>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
@@ -277,13 +318,16 @@ export default function HowItWorksPage() {
         </section>
 
         {/* Diagram */}
-        <section className="mb-24 border-t border-gray-100 pt-24" id="system-diagram">
-          <motion.h3
-            className="text-lg font-semibold text-[var(--text-secondary)] mb-12 text-right"
+        <section className="section reveal bg-white border-t border-gray-100" id="system-diagram">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-8 flex items-center gap-2 justify-start text-right"
             {...fadeUp}
           >
-            כך זה נראה מאחורי הקלעים
-          </motion.h3>
+            <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+              <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+            </span>
+            <span>כך זה נראה מאחורי הקלעים</span>
+          </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -292,7 +336,7 @@ export default function HowItWorksPage() {
             className="w-full flex justify-center mb-12 mt-8"
           >
             <div className="w-full max-w-5xl group">
-              <div className="relative rounded-2xl border border-[var(--border-soft)] shadow-soft overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]">
+              <div className="relative rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]">
                 <Image
                   src="/system-diagram.jpg"
                   alt="תרשים מערכת הבוטים – הבוט הראשי כמרכזיה, בוטים מתמחים מחוברים ל-Priority, ובוט יוזם לפי חוק עסקי"
@@ -315,10 +359,10 @@ export default function HowItWorksPage() {
 
           {/* Use Case אמיתי */}
           <motion.div
-            className="mt-12 p-6 rounded-xl border border-[var(--border-soft)] bg-white text-right"
+            className="mt-12 rounded-2xl border border-gray-100 shadow-soft p-8 bg-[var(--background-soft)] text-right"
             {...fadeUp}
           >
-            <h3 className="text-lg font-bold text-[var(--text-primary)] mb-4">
+            <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-4">
               דוגמה אמיתית
             </h3>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
@@ -350,12 +394,15 @@ export default function HowItWorksPage() {
         </section>
 
         {/* SECTION 3 – בוט יוזם */}
-        <section className="mb-24 text-right border-t border-gray-100 pt-24">
+        <section className="section reveal text-right bg-[var(--background-soft)] border-t border-gray-100">
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2 justify-start text-right"
             {...fadeUp}
           >
-            לא רק מגיב. גם יוזם.
+            <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+              <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+            </span>
+            <span>לא רק מגיב. גם יוזם.</span>
           </motion.h2>
           <motion.div
             className="text-[var(--text-secondary)] leading-relaxed space-y-4"
@@ -383,12 +430,15 @@ export default function HowItWorksPage() {
         </section>
 
         {/* SECTION 4 – איך זה עובד בפועל */}
-        <section className="mb-24 text-right">
+        <section className="section reveal text-right bg-white border-t border-gray-100">
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2 justify-start text-right"
             {...fadeUp}
           >
-            איך זה עובד בפועל?
+            <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+              <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+            </span>
+            <span>איך זה עובד בפועל?</span>
           </motion.h2>
           <motion.div
             className="text-[var(--text-secondary)] leading-relaxed space-y-4"
@@ -417,10 +467,11 @@ export default function HowItWorksPage() {
 
         {/* SECTION 5 – בלוק בידול */}
         <motion.section
-          className="bg-gray-50 rounded-2xl p-8 md:p-12 text-right"
+          className="section reveal bg-[var(--background-soft)] border-t border-gray-100"
           {...fadeUp}
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6">
+          <div className="rounded-2xl border border-gray-100 shadow-soft p-8 bg-white text-right">
+          <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6">
             זו מערכת עם <span className="text-[var(--primary-dark)]">שליטה מלאה</span>
           </h2>
           <ul className="space-y-3 mb-6">
@@ -448,15 +499,19 @@ export default function HowItWorksPage() {
           <p className="text-lg font-semibold text-[var(--text-primary)]">
             כל בוט הוא יחידת אוטומציה עצמאית שמנהלת תהליך עסקי אחד.
           </p>
+          </div>
         </motion.section>
 
         {/* למי זה מתאים במיוחד */}
-        <section className="border-t border-gray-100 pt-24 mb-24 text-right">
+        <section className="section reveal bg-white border-t border-gray-100 text-right">
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2 justify-start text-right"
             {...fadeUp}
           >
-            למי המערכת מתאימה במיוחד?
+            <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+              <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+            </span>
+            <span>למי המערכת מתאימה במיוחד?</span>
           </motion.h2>
           <motion.ul
             className="space-y-3 mb-6"
@@ -490,12 +545,12 @@ export default function HowItWorksPage() {
         </section>
 
         {/* מה זה לא */}
-        <section className="mb-24">
+        <section className="mt-24">
           <motion.div
-            className="bg-gray-50 rounded-xl p-6 md:p-8 text-right"
+            className="rounded-2xl border border-gray-200 shadow-sm p-8 bg-white text-right"
             {...fadeUp}
           >
-            <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-4">
+            <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-4">
               זו לא מערכת של תשובות אוטומטיות
             </h2>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
@@ -515,7 +570,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* סקשן סיום – Product Narrative */}
-        <section className="mt-24 mb-12 text-right border-t border-gray-100 pt-24">
+        <section className="section reveal text-right bg-white border-t border-gray-100">
           <motion.p
             className="text-[var(--text-secondary)] leading-relaxed mb-8 max-w-2xl"
             {...fadeUp}
@@ -525,7 +580,7 @@ export default function HowItWorksPage() {
             בלי שינוי בתשתית.
           </motion.p>
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+            className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6"
             {...fadeUp}
           >
             זו תשתית דיגיטלית לעסק, לא רק אוטומציה.
@@ -548,6 +603,71 @@ export default function HowItWorksPage() {
           >
             ככה בונים אוטומציה שמחזיקה לאורך זמן.
           </motion.p>
+        </section>
+
+        {/* חיבור ל-Onboarding ו-Pricing */}
+        <motion.section
+          className="section reveal bg-[var(--background-soft)] border-t border-gray-100"
+          {...fadeUp}
+        >
+          <div className="rounded-2xl border border-gray-100 shadow-soft bg-white p-8 md:p-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2 justify-center text-right">
+              <span className="shrink-0 w-[22px] h-[22px] inline-block" aria-hidden>
+                <Image src="/brand/bubble-icon.svg" alt="" width={22} height={22} className="w-full h-full" />
+              </span>
+              <span>הבנתם איך המערכת בנויה. עכשיו איך מתחילים?</span>
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-6 max-w-xl mx-auto">
+              המבנה מאפשר שליטה וגמישות.
+              <br />
+              תהליך ההטמעה בנוי כך שתוך ימים ספורים תראו בוט ראשון פעיל.
+            </p>
+            <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
+              <Link
+                href="/onboarding"
+                className="button-primary flex-col"
+              >
+                <span className="text-base font-medium">תהליך ההטמעה</span>
+              </Link>
+              <Link
+                href="/pricing"
+                className="text-sm text-gray-500 hover:text-gray-700 transition flex items-center justify-center"
+              >
+                או עברו למחיר
+              </Link>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* CTA סופי – כמו בעמוד הבית */}
+        <section className="section reveal bg-gradient-to-br from-[var(--primary-light)] to-[var(--primary-dark)] text-white">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <motion.h2
+              className="text-4xl font-bold mb-6"
+              {...fadeUp}
+            >
+              רוצים לראות איך זה עובד אצלכם?
+            </motion.h2>
+            <motion.p
+              className="text-xl mb-10"
+              style={{ color: "#ffffff" }}
+              {...fadeUp}
+            >
+              מוכנים לראות את המערכת בפעולה? תאמו שיחת הדגמה או צפו בתמחור.
+            </motion.p>
+            <motion.div
+              className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto"
+              {...fadeUp}
+            >
+              <CalendlyModal size="lg" variant="outline" />
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center border border-white/80 text-white hover:bg-white/10 rounded-xl px-6 py-3 transition font-medium"
+              >
+                צפו במחיר
+              </Link>
+            </motion.div>
+          </div>
         </section>
       </main>
     </div>

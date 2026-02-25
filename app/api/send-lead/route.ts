@@ -147,10 +147,6 @@ export async function POST(req: Request) {
 ניצור איתך קשר בהקדם לתיאום הדגמה קצרה.
 </p>
 
-<p style="font-size:15px;font-weight:bold;margin-top:20px;color:#0f172a;">
-🚀 הבוט הראשון עלינו ל-3 חודשים.
-</p>
-
 <table cellpadding="0" cellspacing="0" style="margin-top:30px;">
 <tr>
 <td align="right">

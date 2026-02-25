@@ -15,18 +15,17 @@ const fadeUp = {
 };
 
 const INCLUDED = [
-  "חיבור ישיר ל-Priority",
-  "תקשורת WhatsApp דו־כיוונית",
+  "חיבור ישיר ל-Priority דו־כיווני ",
+  "תקשורת WhatsApp",
   "מנוע AI מתקדם",
   "אינדוקס מסמכים (PDF, קבצים)",
   "מנגנון RAG חכם",
-  "ניהול משתנים וטפסים דינמיים",
   "עד 1,000 שיחות בחודש",
 ] as const;
 
 const STEPS = [
   { n: "1", title: "חיבור והטמעה - 3,500 ₪" },
-  { n: "2", title: "הפעלת בוט ראשון (חינם ל-3 חודשים)" },
+  { n: "2", title: "הפעלת בוט ראשון" },
   { n: "3", title: "הרחבה חכמה לפי צורך – ₪120 לכל בוט נוסף" },
 ] as const;
 
@@ -147,20 +146,19 @@ export default function PricingPage() {
                 <span className="text-base text-[var(--text-secondary)]">לחודש</span>
               </p>
               <p className="text-sm text-[var(--text-secondary)] mb-6">
-                מודל רישוי מודולרי בהתאם להיקף הפעילות ולמספר התהליכים הפעילים.
+                מודל רישוי מודולרי בהתאם להיקף הפעילות ולמספר התהליכים הפעילים.<br />
+                אין הגבלה על כמות המשתמשים.
               </p>
 
-              <p className="text-xs text-[var(--text-secondary)] border-t border-[var(--border-soft)] pt-4 leading-relaxed">
-                אין הגבלה על כמות הבוטים.<br />
-                אין הגבלה על כמות המשתמשים.<br />
-                הניהול והשליטה מתבצעים מתוך Priority.
-              </p>
               <p className="text-sm text-[var(--text-secondary)] pt-4 leading-relaxed">
                 אין אותיות קטנות.<br />
                 המערכת פעילה במלואה מהיום הראשון – כולל חיבור ישיר ל-Priority, מנגנוני טריגרים עסקיים וביצוע אוטומציה בזמן אמת.
               </p>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                אתם משלמים רק לפי הצורך התפעולי בפועל.
+                אתם משלמים רק לפי כמות הבוטים הפעילים בפועל.
+              </p>
+              <p className="text-xs text-[var(--text-secondary)] opacity-80 mt-4 pt-4 border-t border-[var(--border-soft)]" dir="rtl">
+                * כל המחירים לפני מע״מ
               </p>
             </motion.div>
             </motion.div>
@@ -182,7 +180,7 @@ export default function PricingPage() {
               </h2>
               <div className="text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed space-y-3">
                 <p>מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי מפריוריטי.<br />לא מערכת חיצונית, אלא תפריט חדש בתוך פריוריטי –<br />כלומר שכבת יכולות חדשות בתוך ה-ERP הארגוני.</p>
-                <p>הוא מרחיב את Priority ביכולת ליזום, לנהל ולהשלים תהליכי Workflow-Bot,<br />תוך גישה מלאה לנתונים, ללוגיקה העסקית ולמבנה המערכת.</p>
+                <p>הוא מרחיב את Priority ביכולת ליזום, לנהל ולהשלים תהליכי Workflow-Bot,<br />תוך גישה לנתונים, ללוגיקה העסקית ולמבנה המערכת.</p>
               </div>
               <ul className="mt-6 space-y-2 max-w-2xl mx-auto text-[var(--text-primary)] text-sm">
                 <li className="flex items-center gap-2 justify-start">
@@ -219,7 +217,7 @@ export default function PricingPage() {
               className="text-[var(--text-secondary)] leading-relaxed space-y-3"
               {...fadeUp}
             >
-              <p>ניתן להזמין הדרכות עומק נוספות בהתאם לצורך הארגוני.<br />עלות: 400 ₪ + מע״מ לשעה.</p>
+              <p>ניתן להזמין הדרכות עומק נוספות בהתאם לצורך הארגוני.<br />עלות: 400 ₪ לשעה.</p>
               <p>ההדרכות מבוצעות יחד עם מיישם ה-Priority של הארגון, ומטרתן להרחיב ולהעמיק את היכולת הפנימית בשימוש בפלטפורמה.</p>
             </motion.div>
           </div>
@@ -239,7 +237,7 @@ export default function PricingPage() {
               {...fadeUp}
             >
               <p>אנחנו מספקים את התשתית.<br />הארגון מגדיר, שולט ומפתח תהליכי Bot באופן עצמאי - באמצעות מיישם הפריוריטי של הארגון ועל גבי המערכת הקיימת.</p>
-              <p>המטרה היא לבסס שליטה מלאה של הארגון בפלטפורמה,<br />כך שמיישם ה-Priority יוכל להגדיר, להרחיב ולהתאים באופן עצמאי<br />את יכולות מחולל הבוטים לתהליכים העסקיים של הארגון.</p>
+              <p>המטרה היא לבסס שליטה מלאה של הארגון בפלטפורמת מחולל הבוטים,<br />כך שמיישם ה-Priority יוכל להגדיר, להרחיב ולהתאים באופן עצמאי<br />את יכולות מחולל הבוטים לתהליכים העסקיים של הארגון אשר משתנים עם הזמן.</p>
               <p>הערך אינו בבוט אחד.<br />הערך הוא ביכולת מערכתית מתמשכת להרחבת תהליכים עסקיים ללא תלות בספק חיצוני.</p>
             </motion.div>
           </div>
@@ -293,7 +291,7 @@ export default function PricingPage() {
                 <li>בוט גבייה</li>
               </ul>
               <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
-                ללקוח זו שיחה אחת רציפה.
+                הלקוח מרגיש שיחה אחת רציפה.
                 <br />
                 מאחורי הקלעים – כל תהליך מנוהל בנפרד.
               </p>

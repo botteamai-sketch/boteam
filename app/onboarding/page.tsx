@@ -78,15 +78,14 @@ export default function OnboardingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[var(--background-soft)] text-[var(--text-primary)]">
+    <div dir="rtl" className="min-h-screen bg-white text-[var(--text-primary)]">
       <Header />
 
-      <main>
+      <main className="mx-auto max-w-6xl px-6 py-24">
         {/* HERO */}
-        <section className="pt-24 pb-12 md:pt-28 md:pb-16 border-b border-[var(--border-soft)]">
-          <div className="mx-auto max-w-4xl px-6 text-right">
-            <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6 leading-tight"
+        <section className="text-right">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)] mb-6"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -103,14 +102,12 @@ export default function OnboardingPage() {
               <br />
               התהליך בנוי כך שתוך ימים ספורים תוכלו לראות בוט פעיל שמחובר ל-Priority ומבצע פעולה עסקית אמיתית.
             </motion.p>
-          </div>
         </section>
 
         {/* פתיח בעיה-פתרון */}
-        <section className="pt-20 pb-14 md:pt-24 md:pb-20 bg-white border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-4xl px-6 text-right">
+        <section className="mt-24 text-right border-t border-gray-100 pt-24">
             <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6"
+              className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6"
               {...fadeUp}
             >
               למה תהליך מסודר חשוב?
@@ -129,61 +126,75 @@ export default function OnboardingPage() {
                 הטמעה מסודרת של בוט ראשון יוצרת תהליך ברור, מתועד ומבוקר כבר מהיום הראשון.
               </p>
             </motion.div>
-          </div>
         </section>
 
         {/* שלבי ההטמעה – כרטיסים */}
-        <section className="pt-20 pb-16 md:pt-24 md:pb-24 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-4xl px-6">
+        <section className="mt-24 border-t border-gray-100 pt-24">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center"
+              className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-4 text-center"
               {...fadeUp}
             >
-              איך זה עובד – צעד אחר צעד
+              תהליך ברור. תוצאה מדידה.
             </motion.h2>
-            <div className="space-y-0">
+            <motion.p
+              className="text-[var(--text-secondary)] leading-relaxed text-center mb-12 max-w-2xl mx-auto"
+              {...fadeUp}
+              transition={{ delay: 0.03 }}
+            >
+              חמישה שלבים פשוטים שמובילים לבוט פעיל שמחובר ל-Priority ומבצע פעולה עסקית אמיתית.
+            </motion.p>
+            <div className="space-y-8">
               {STEPS.map((step, i) => (
-                <motion.article
-                  key={step.id}
-                  className="rounded-xl border border-[var(--border-soft)] bg-white p-6 mb-6 last:mb-0 text-right"
-                  {...fadeUp}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-[var(--text-secondary)] leading-relaxed">
-                    {step.body}
-                  </p>
-                </motion.article>
+                <div key={step.id} className="space-y-8">
+                  <motion.article
+                    className="rounded-2xl border border-gray-200 shadow-sm bg-white p-8 text-right"
+                    {...fadeUp}
+                    transition={{ delay: i * 0.06 }}
+                  >
+                    <div
+                      className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-semibold text-sm mb-4"
+                      aria-hidden
+                    >
+                      {String(step.id).padStart(2, "0")}
+                    </div>
+                    <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-[var(--text-secondary)] leading-relaxed">
+                      {step.body}
+                    </p>
+                  </motion.article>
+                  {i === 2 && (
+                    <p className="text-sm text-gray-500 mt-4 text-center">
+                      רוצים להבין לעומק איך המבנה עובד?{" "}
+                      <Link href="/how-it-works" className="text-gray-600 hover:text-gray-800 underline">
+                        קראו על מערכת הבוטים →
+                      </Link>
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* תרשים תהליך – placeholder */}
-        <section className="py-16 md:py-20 bg-white border-t border-[var(--border-soft)]" id="onboarding-diagram">
-          <div className="mx-auto max-w-4xl px-6 text-right">
-            <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8"
-              {...fadeUp}
-            >
-              כך נראה תהליך ההטמעה
-            </motion.h2>
             <motion.div
-              className="rounded-2xl border border-[var(--border-soft)] bg-[var(--background-soft)] h-64 flex items-center justify-center text-[var(--text-secondary)]"
+              className="mt-8 rounded-2xl bg-gray-50 p-6 text-center"
               {...fadeUp}
             >
-              התרשים יופיע כאן
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                ברוב הארגונים, התהליך כולו נמשך מספר ימי עבודה בלבד.
+              </p>
             </motion.div>
-          </div>
+            <motion.p
+              className="mt-6 text-lg font-semibold text-[var(--text-primary)] text-center"
+              {...fadeUp}
+            >
+              הבוט הראשון שלכם לא נשאר בפיילוט — הוא עולה לאוויר.
+            </motion.p>
         </section>
 
         {/* יתרונות ברורים */}
-        <section className="py-16 md:py-24 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-4xl px-6 text-right">
+        <section className="mt-24 border-t border-gray-100 pt-24 text-right">
             <motion.h2
-              className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-8"
+              className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-8"
               {...fadeUp}
             >
               למה זה עובד?
@@ -212,7 +223,7 @@ export default function OnboardingPage() {
 
             {/* CTA אמצע עמוד */}
             <motion.div
-              className="mt-12 pt-10 border-t border-[var(--border-soft)] text-center"
+              className="mt-12 pt-10 border-t border-gray-100 text-center"
               {...fadeUp}
             >
               <p className="text-lg font-semibold text-[var(--text-primary)] mb-6">
@@ -228,23 +239,21 @@ export default function OnboardingPage() {
             >
               ברוב הארגונים, הבוט הראשון עולה לאוויר בתוך מספר ימי עבודה.
             </motion.p>
-          </div>
         </section>
 
         {/* FAQ */}
-        <section className="py-16 md:py-24 bg-white border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-2xl px-6">
+        <section className="mt-24 border-t border-gray-100 pt-24">
             <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center"
+              className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-12 text-center"
               {...fadeUp}
             >
               שאלות נפוצות
             </motion.h2>
-            <dl className="space-y-3">
+            <dl className="space-y-6">
               {FAQ_ITEMS.map((item, i) => (
                 <motion.div
                   key={item.q}
-                  className="rounded-xl border border-[var(--border-soft)] overflow-hidden bg-[var(--background-soft)]/50"
+                  className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden"
                   {...fadeUp}
                   transition={{ delay: i * 0.05 }}
                 >
@@ -260,7 +269,7 @@ export default function OnboardingPage() {
                     </svg>
                   </button>
                   {openFaq === i && (
-                    <div className="px-5 pb-4 pt-0">
+                    <div className="px-6 pb-6 pt-0">
                       <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                         <span className="text-[var(--accent-green)] font-bold">✔ </span>
                         {item.a}
@@ -270,31 +279,50 @@ export default function OnboardingPage() {
                 </motion.div>
               ))}
             </dl>
-          </div>
         </section>
 
-        {/* CTA סופי מחוזק */}
-        <section className="py-16 md:py-20 border-t border-[var(--border-soft)]">
-          <div className="mx-auto max-w-3xl px-6">
-            <motion.div
-              className="bg-[var(--background-soft)] rounded-2xl p-10 text-center mt-24"
+        {/* חיבור לתמחור */}
+        <motion.div
+          className="mt-24 text-center"
+          {...fadeUp}
+        >
+          <p className="text-[var(--text-secondary)] text-sm mb-2">
+            התמחור מתבצע לפי בוט מתמחה אחד לכל תהליך עסקי.
+          </p>
+          <Link
+            href="/pricing"
+            className="text-[var(--primary-dark)] font-medium hover:underline"
+          >
+            צפו בתמחור
+          </Link>
+        </motion.div>
+
+        {/* CTA סופי – כמו pricing */}
+        <section className="mt-24 py-14 md:py-20 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary-light)] text-white">
+          <div className="mx-auto max-w-3xl px-6 text-center">
+            <motion.p
+              className="text-base md:text-lg font-medium !text-white mb-4"
               {...fadeUp}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">
-                מוכנים לראות את הבוט הראשון שלכם בפעולה?
-              </h2>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-8 max-w-xl mx-auto">
-                נבחר תהליך אחד, נגדיר אותו נכון, ונעלה אותו לאוויר תוך ימים ספורים.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <CalendlyModal size="lg" variant="solid" />
-                <Link
-                  href="/pricing"
-                  className="button-secondary rounded-xl px-6 py-3"
-                >
-                  צפו בתמחור
-                </Link>
-              </div>
+              נבחר תהליך אחד, נגדיר אותו נכון, ונעלה אותו לאוויר תוך ימים ספורים.
+            </motion.p>
+            <motion.h2
+              className="text-3xl md:text-5xl font-bold text-white mb-8"
+              {...fadeUp}
+            >
+              מוכנים לראות את הבוט הראשון שלכם בפעולה?
+            </motion.h2>
+            <motion.div
+              className="mb-6 flex flex-wrap gap-4 justify-center items-center"
+              {...fadeUp}
+            >
+              <CalendlyModal size="lg" variant="outline" />
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center border border-white/80 text-white hover:bg-white/10 rounded-xl px-6 py-3 transition font-medium"
+              >
+                צפו בתמחור
+              </Link>
             </motion.div>
           </div>
         </section>
