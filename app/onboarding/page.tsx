@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { motion } from "framer-motion";
@@ -35,7 +35,7 @@ const IconArrowUp = () => (
   </svg>
 );
 
-const VALUE_ICONS: Record<string, () => JSX.Element> = {
+const VALUE_ICONS: Record<string, () => React.ReactElement> = {
   code: IconCode,
   server: IconServer,
   users: IconUsers,
