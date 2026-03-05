@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import { motion } from "framer-motion";
 import CalendlyModal from "@/components/CalendlyModal";
@@ -155,6 +156,33 @@ export default function OnboardingPage() {
             <span aria-hidden>⏱</span>
             זמן הטמעה ממוצע לבוט מתמחה ראשון: 3-5 ימי עסקים
           </motion.span>
+        </section>
+
+        {/* סקירת זרימה – תרשים אוטומציה (תחילת התהליך) */}
+        <section className="mt-12 border-t border-gray-100 pt-12">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 text-right">
+            <motion.div
+              className="flex justify-center rounded-lg shadow-md overflow-hidden bg-white"
+              {...fadeUp}
+              transition={{ delay: 0.05 }}
+            >
+              <Image
+                src="/images/botflowauto.png"
+                alt="תרשים זרימת עבודה - חיבור Priority ל-WhatsApp ואימייל דרך boteam"
+                width={900}
+                height={500}
+                className="w-full max-w-full h-auto object-contain"
+                priority
+              />
+            </motion.div>
+            <motion.p
+              className="mt-6 mb-8 text-[var(--text-secondary)] leading-relaxed max-w-3xl mx-auto text-center"
+              {...fadeUp}
+              transition={{ delay: 0.1 }}
+            >
+              המטרה שלנו היא ליצור זרימה חלקה: אירוע ב-Priority מפעיל את מנוע boteam, ששולח הודעה ללקוח ומעדכן את המערכת בחזרה באופן אוטומטי.
+            </motion.p>
+          </div>
         </section>
 
         {/* הגישה שלנו - פילוסופיית הטמעה */}
