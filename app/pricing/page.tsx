@@ -26,7 +26,7 @@ const INCLUDED = [
 const STEPS = [
   { n: "1", title: "חיבור והטמעה - 3,500 ₪" },
   { n: "2", title: "הפעלת בוט ראשון" },
-  { n: "3", title: "הרחבה חכמה לפי צורך – ₪120 לכל בוט נוסף" },
+  { n: "3", title: "הרחבה חכמה לפי צורך - ₪120 בחודש לכל בוט נוסף" },
 ] as const;
 
 const FAQ = [
@@ -82,7 +82,7 @@ export default function PricingPage() {
       <Header />
 
       <main>
-        {/* מחיר מרכזי – מסלול יחיד במסגרת */}
+        {/* מחיר מרכזי - מסלול יחיד במסגרת */}
         <section className="relative overflow-hidden bg-gradient-to-b from-[var(--background-soft)] to-white pt-10 pb-14 md:pt-14 md:pb-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(63,169,245,0.12),transparent)]" />
           <div className="relative mx-auto max-w-2xl px-6 flex flex-col items-center">
@@ -110,7 +110,7 @@ export default function PricingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              {/* התקנה חד־פעמית – עלות ראשית */}
+              {/* התקנה חד־פעמית - עלות ראשית */}
               <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
                 הטמעה ראשונית
               </p>
@@ -152,7 +152,7 @@ export default function PricingPage() {
 
               <p className="text-sm text-[var(--text-secondary)] pt-4 leading-relaxed">
                 אין אותיות קטנות.<br />
-                המערכת פעילה במלואה מהיום הראשון – כולל חיבור ישיר ל-Priority, מנגנוני טריגרים עסקיים וביצוע אוטומציה בזמן אמת.
+                המערכת פעילה במלואה מהיום הראשון - כולל חיבור ישיר ל-Priority, מנגנוני טריגרים עסקיים וביצוע אוטומציה בזמן אמת.
               </p>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                 אתם משלמים רק לפי כמות הבוטים הפעילים בפועל.
@@ -165,7 +165,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* פלטפורמת Automation ארגונית – Native ל-Priority */}
+        {/* פלטפורמת Automation ארגונית - Native ל-Priority */}
         <section className="py-14 md:py-20 bg-white border-t border-[var(--border-soft)]">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.div
@@ -179,7 +179,7 @@ export default function PricingPage() {
                 פלטפורמת Automation מובנית בתוך פריוריטי
               </h2>
               <div className="text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed space-y-3">
-                <p>מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי מפריוריטי.<br />לא מערכת חיצונית, אלא תפריט חדש בתוך פריוריטי –<br />כלומר שכבת יכולות חדשות בתוך ה-ERP הארגוני.</p>
+                <p>מחולל הבוטים הוא מודול מערכת מלא המותקן כחלק אינטגרלי מפריוריטי.<br />לא מערכת חיצונית, אלא תפריט חדש בתוך פריוריטי -<br />כלומר שכבת יכולות חדשות בתוך ה-ERP הארגוני.</p>
                 <p>הוא מרחיב את Priority ביכולת ליזום, לנהל ולהשלים תהליכי Workflow-Bot,<br />תוך גישה לנתונים, ללוגיקה העסקית ולמבנה המערכת.</p>
               </div>
               <ul className="mt-6 space-y-2 max-w-2xl mx-auto text-[var(--text-primary)] text-sm">
@@ -243,7 +243,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* SECTION 3 – מה כלול */}
+        {/* SECTION 3 - מה כלול */}
         <section className="py-14 md:py-20 bg-[var(--background-soft)]">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
@@ -281,7 +281,7 @@ export default function PricingPage() {
               <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
                 כל בוט יודע לעבוד מול מסך אחד ב-Priority.
                 <br />
-                לעבודה מול מסך נוסף – מגדירים בוט נוסף.
+                לעבודה מול מסך נוסף - מגדירים בוט נוסף.
               </p>
               <p className="text-[var(--text-secondary)] font-medium mb-2">לדוגמה:</p>
               <ul className="list-disc list-inside space-y-1 text-[var(--text-secondary)] mb-4 pr-2">
@@ -293,7 +293,7 @@ export default function PricingPage() {
               <p className="text-[var(--text-secondary)] leading-relaxed mb-6">
                 הלקוח מרגיש שיחה אחת רציפה.
                 <br />
-                מאחורי הקלעים – כל תהליך מנוהל בנפרד.
+                מאחורי הקלעים - כל תהליך מנוהל בנפרד.
               </p>
               <p className="text-[var(--text-primary)] font-medium mb-3">כל בוט כולל:</p>
               <ul className="space-y-2 mb-6">
@@ -301,6 +301,7 @@ export default function PricingPage() {
                   "ניהול שיחה חכם",
                   "חיבור למסך ייעודי ב-Priority",
                   "שמירת היסטוריה מלאה",
+                  "תיעוד ותמלול השיחה שבוצעה בנספחי התעודה הרלוונטית",
                   "החזרת נתונים אוטומטית למערכת",
                   "אפשרות ליזום שיחות לפי אירועים עסקיים",
                 ].map((item, i) => (
@@ -404,7 +405,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* SECTION 4 – איך זה עובד */}
+        {/* SECTION 4 - איך זה עובד */}
         <section className="py-14 md:py-20 bg-white">
           <div className="mx-auto max-w-3xl px-6">
             <motion.h2
@@ -468,7 +469,7 @@ export default function PricingPage() {
               className="mt-12 text-center text-xl font-semibold text-[var(--primary-dark)]"
               {...fadeUp}
             >
-              אם Priority הוא הליבה – מחולל הבוטים הוא שכבת ה-AI שמעליו.
+              אם Priority הוא הליבה - מחולל הבוטים הוא שכבת ה-AI שמעליו.
             </motion.p>
           </div>
         </section>

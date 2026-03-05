@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
 
     // ==========================================================
-    // Email 1 – Internal notification
+    // Email 1 - Internal notification
     // ==========================================================
 
     const adminHtml = `
@@ -109,7 +109,7 @@ export async function POST(req: Request) {
     }
 
     // ==========================================================
-    // Email 2 – Customer confirmation
+    // Email 2 - Customer confirmation
     // ==========================================================
 
     const customerHtml = `

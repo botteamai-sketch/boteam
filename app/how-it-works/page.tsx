@@ -47,7 +47,7 @@ const cardClass =
   "rounded-[20px] border border-gray-100 bg-white p-6 md:p-8 text-right shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(31,47,70,0.08)] transition-shadow duration-300";
 const cardTextClass = "text-[var(--text-secondary)] leading-[1.75]";
 
-/* Inline SVG icons – neutral, RTL-friendly */
+/* Inline SVG icons - neutral, RTL-friendly */
 const IconServer = () => (
   <svg className="w-10 h-10 text-[var(--primary-dark)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
     <rect x="2" y="2" width="20" height="8" rx="2" />
@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
                 {...fadeUp}
                 transition={{ delay: 0.04 }}
               >
-                הלקוח שולח הודעה אחת לווטסאפ. מאחורי הקלעים, המערכת מנתבת את השיחה למומחה הנכון, קוראת וכותבת נתונים ב-Priority, ומנהלת תהליכים עסקיים שלמים – באפס מאמץ מצד הצוות שלך.
+                הלקוח שולח הודעה אחת לווטסאפ. מאחורי הקלעים, המערכת מנתבת את השיחה למומחה הנכון, קוראת וכותבת נתונים ב-Priority, ומנהלת תהליכים עסקיים שלמים - באפס מאמץ מצד הצוות שלך.
               </motion.p>
             </div>
             {/* Right: Hero image — larger column */}
@@ -187,7 +187,7 @@ export default function HowItWorksPage() {
             >
               <Image
                 src="/how-it-works.png"
-                alt="תרשים ארכיטקטורת המערכת – איך זה עובד"
+                alt="תרשים ארכיטקטורת המערכת - איך זה עובד"
                 width={1400}
                 height={1000}
                 className="w-full h-full object-contain object-center"
@@ -199,73 +199,75 @@ export default function HowItWorksPage() {
         {/* ——— Architecture: Inbound + Outbound flows ——— */}
         <section id="architecture" className={sectionClass}>
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 md:mb-5 text-right"
+            className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 md:mb-5 text-right md:text-center"
             {...fadeUp}
           >
             מערכת ארכיטקטונית שלמה, לא סתם בוט.
           </motion.h2>
           <motion.p
-            className={`${cardTextClass} mb-8 md:mb-10 text-right max-w-3xl ms-0 me-auto`}
+            className={`${cardTextClass} mb-8 md:mb-10 text-right md:text-center max-w-3xl ms-0 me-auto md:mx-auto`}
             {...fadeUp}
             transition={{ delay: 0.04 }}
           >
-            <strong className="text-[var(--text-primary)]">הפלטפורמה – הפנים של העסק</strong>
+            <strong className="text-[var(--text-primary)] text-lg md:text-xl">הפלטפורמה - הפנים של העסק</strong>
             <br />
-            הלקוח מדבר איתכם דרך הפלטפורמה שנוחה לו (WhatsApp או אימייל). הפלטפורמה היא רק נקודת הקצה – ה&quot;פנים&quot; של המערכת. היא אינה מקבלת החלטות בעצמה, אלא מחוברת ישירות למערך בוטים חכם שפועל מאחורי הקלעים ומנהל שני תהליכים מרכזיים:
+            הלקוח מדבר איתכם דרך הפלטפורמה שנוחה לו (WhatsApp או אימייל). הפלטפורמה היא רק נקודת הקצה, היא הפנים של המערכת. היא אינה מקבלת החלטות בעצמה, אלא מחוברת ישירות למערך בוטים חכם שפועל מאחורי הקלעים ומנהל שני תהליכים מרכזיים:
           </motion.p>
 
           {/* Flow 1: Inbound */}
           <motion.h3
-            className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2 text-right"
+            className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2 text-right md:text-center"
             {...fadeUp}
             transition={{ delay: 0.06 }}
           >
             תהליך 1: הלקוח פונה אליכם (Inbound)
           </motion.h3>
           <motion.p
-            className={`${cardTextClass} mb-6 text-right`}
+            className={`${cardTextClass} mb-6 text-right md:text-center`}
             {...fadeUp}
             transition={{ delay: 0.07 }}
           >
-            כאשר הלקוח שולח הודעה לפלטפורמה, המערכת מנתבת את השיחה למומחה הנכון.
+            כאשר הלקוח שולח הודעה ראשונה (פותח שיחה), המערכת מנתבת את השיחה לבוט המומחה הנכון.
           </motion.p>
-          <div className="grid md:grid-cols-2 gap-6 mb-12 md:mb-14">
-            <motion.article
-              className={`reveal ${cardClass} border-t-4 border-green-500 bg-green-50/30`}
-              {...fadeUp}
-              transition={{ delay: 0.08 }}
-            >
-              <div className="flex flex-col text-right">
-                <div className="mb-4">
-                  <IconGatewayBot />
+          <div className="flex justify-center">
+            <div className="w-full max-w-3xl flex flex-col gap-6 mb-12 md:mb-14">
+              <motion.article
+                className={`reveal ${cardClass} w-full border-t-4 border-green-500 bg-green-50/30`}
+                {...fadeUp}
+                transition={{ delay: 0.08 }}
+              >
+                <div className="flex flex-col text-right">
+                  <div className="mb-4">
+                    <IconGatewayBot />
+                  </div>
+                  <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+                    🟢 הבוט הראשי (Gateway Bot) - המרכזייה החכמה
+                  </h4>
+                  <div className={`text-sm ${cardTextClass} space-y-2`}>
+                    <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> הבעלים של הפלטפורמה ושל השיחה.</p>
+                    <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> תמיד קיים בוט ראשי אחד לכל פלטפורמה (ווטסאפ/אימייל). ברגע שנכנסת הודעה, הוא מזהה את ההקשר ומנתב את השיחה לבוט המתמחה המתאים ביותר מתוך רשימת הבוטים המורשים.</p>
+                  </div>
                 </div>
-                <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
-                  🟢 הבוט הראשי (Gateway Bot) – המרכזייה החכמה
-                </h4>
-                <div className={`text-sm ${cardTextClass} space-y-2`}>
-                  <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> הבעלים של הפלטפורמה ושל השיחה.</p>
-                  <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> תמיד קיים בוט ראשי אחד לכל פלטפורמה. ברגע שנכנסת הודעה, הוא מזהה את ההקשר ומנתב את השיחה לבוט המתמחה המתאים ביותר מתוך רשימת הבוטים המורשים.</p>
+              </motion.article>
+              <motion.article
+                className={`reveal ${cardClass} w-full border-t-4 border-blue-500 bg-blue-50/30 border-t-blue-500`}
+                {...fadeUp}
+                transition={{ delay: 0.1 }}
+              >
+                <div className="flex flex-col text-right">
+                  <div className="mb-4">
+                    <IconSpecialistBots />
+                  </div>
+                  <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+                    🔵 בוטים מגיבים (Specialist Bots) - צוות המומחים
+                  </h4>
+                  <div className={`text-sm ${cardTextClass} space-y-2`}>
+                    <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> מומחים לתהליך עסקי מוגדר (לידים, הזמנות, תמיכה, גבייה).</p>
+                    <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> הבוט משיג את המידע הדרוש בזמן אמת, קורא וכותב נתונים למסך ייעודי בפריוריטי, ומייצר תשובה מותאמת אישית ללקוח. המערכת רודפת אחרי התשובות, כדי שהצוות שלכם לא יצטרך. נבחר רק מומחה אחד בכל רגע נתון כדי לשמור על מיקוד השיחה.</p>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-            <motion.article
-              className={`reveal ${cardClass} border-t-4 border-blue-500 bg-blue-50/30 border-t-blue-500`}
-              {...fadeUp}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="flex flex-col text-right">
-                <div className="mb-4">
-                  <IconSpecialistBots />
-                </div>
-                <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
-                  🔵 בוטים מגיבים (Specialist Bots) – צוות המומחים
-                </h4>
-                <div className={`text-sm ${cardTextClass} space-y-2`}>
-                  <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> מומחים לתהליך עסקי מוגדר (לידים, הזמנות, תמיכה, גבייה).</p>
-                  <p><strong className="text-[var(--text-primary)]">איך זה עובד?</strong> הבוט משיג את המידע הדרוש בזמן אמת, קורא וכותב נתונים למסך ייעודי בפריוריטי, ומייצר תשובה מותאמת אישית ללקוח. המערכת רודפת אחרי התשובות, כדי שהצוות שלכם לא יצטרך. נבחר רק מומחה אחד בכל רגע נתון כדי לשמור על מיקוד השיחה.</p>
-                </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </div>
           </div>
 
           {/* Visual divider */}
@@ -297,7 +299,7 @@ export default function HowItWorksPage() {
                   <IconInitiatorBot />
                 </div>
                 <h4 className="text-lg font-bold text-[var(--text-primary)] mb-3">
-                  🟣 הבוט היוזם (Initiator Bot) – הפעולה האקטיבית
+                  🟣 הבוט היוזם (Initiator Bot) - הפעולה האקטיבית
                 </h4>
                 <div className={`text-sm ${cardTextClass} space-y-2`}>
                   <p><strong className="text-[var(--text-primary)]">תפקיד:</strong> פתיחת שיחות יזומות מול הלקוח מתוך ה-Priority.</p>
@@ -325,7 +327,7 @@ export default function HowItWorksPage() {
           >
             <Image
               src="/system-diagram.jpg"
-              alt="תרשים מערכת הבוטים – הבוט הראשי כמרכזיה, בוטים מתמחים מחוברים ל-Priority"
+              alt="תרשים מערכת הבוטים - הבוט הראשי כמרכזיה, בוטים מתמחים מחוברים ל-Priority"
               width={1600}
               height={1000}
               className="w-full h-auto"
@@ -345,7 +347,7 @@ export default function HowItWorksPage() {
           >
             יתרונות מרכזיים
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 md:grid-rows-2 gap-6">
             {[
               {
                 title: "גמישות מלאה",
@@ -353,7 +355,7 @@ export default function HowItWorksPage() {
               },
               {
                 title: "מנגנון הרשאות",
-                text: "בוטים רגישים (כמו עלויות) חשופים רק למורשים.",
+                text: "בוטים רגישים (כמו עלויות) חשופים רק למורשים.\nרק נתונים רלוונטים מופיעים למשל לכל סוכן יוצגו רק ההזמנות של הלקוח שלו.",
               },
               {
                 title: "דיוק בנתונים",
@@ -364,9 +366,9 @@ export default function HowItWorksPage() {
                 text: "הוספת תהליכים חדשים ללא צורך בבנייה מחדש של המערכת.",
               },
             ].map((item, i) => (
-              <motion.article key={i} className={`reveal ${cardClass}`} {...fadeUp} transition={{ delay: i * 0.05 }}>
+              <motion.article key={i} className={`reveal ${cardClass} h-full flex flex-col min-h-0`} {...fadeUp} transition={{ delay: i * 0.05 }}>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{item.title}</h3>
-                <p className={cardTextClass}>{item.text}</p>
+                <p className={`${cardTextClass} whitespace-pre-line flex-1`}>{item.text}</p>
               </motion.article>
             ))}
           </div>
@@ -420,7 +422,7 @@ export default function HowItWorksPage() {
         <section className={sectionClass}>
           <motion.div {...fadeUp}>
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2 text-right">
-              לא רק מגיב. גם יוזם.
+              לא רק מגיב, גם יוזם.
             </h2>
             <p className={`text-lg ${cardTextClass} mb-8`}>
               הבוט יודע ליזום שיחה בעקבות אירוע עסקי:
@@ -448,7 +450,7 @@ export default function HowItWorksPage() {
             ))}
           </div>
           <p className={`mt-6 ${cardTextClass} text-sm max-w-2xl`}>
-            ברגע שהבוט יוזם – הוא מנהל את התהליך עד סיומו. בסיום, הנתונים חוזרים בצורה מסודרת ל-Priority לפי אחת התוצאות שהוגדרו לו מראש.
+            ברגע שהבוט יוזם - הוא מנהל את התהליך עד סיומו. בסיום, הנתונים חוזרים בצורה מסודרת ל-Priority לפי אחת התוצאות שהוגדרו לו מראש.
           </p>
         </section>
 
@@ -459,7 +461,7 @@ export default function HowItWorksPage() {
               <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">איך זה עובד בפועל?</h3>
               <div className={`space-y-3 ${cardTextClass} text-sm`}>
                 <p>הלקוח רואה נקודת קשר אחת עם העסק. מאחורי הקלעים פועלת מערכת עם חלוקת תפקידים.</p>
-                <p>כאשר אדם כותב – המרכזיה הדיגיטלית בוחרת את הבוט המתאים. כאשר מתקיים אירוע עסקי – הבוט הרלוונטי יוזם שיחה בעצמו.</p>
+                <p>כאשר אדם כותב - המרכזיה הדיגיטלית בוחרת את הבוט המתאים. כאשר מתקיים אירוע עסקי - הבוט הרלוונטי יוזם שיחה בעצמו.</p>
                 <p>זו לא תגובה אוטומטית פשוטה. זו מערכת ניהול שיחה שמחוברת ישירות לתהליכים שלכם.</p>
               </div>
             </motion.article>
@@ -467,7 +469,7 @@ export default function HowItWorksPage() {
               <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">זו לא מערכת של תשובות אוטומטיות</h3>
               <div className={`space-y-2 ${cardTextClass} text-sm`}>
                 <p>זו מערכת שמבצעת פעולות עסקיות בפועל. כל בוט מחובר למסך ייעודי, עם תוצאה מוגדרת מראש. המערכת אינה פועלת מחוץ למה שהוגדר לה.</p>
-                <p className="font-semibold text-[var(--text-primary)]"><span className="text-[var(--primary-dark)]">שליטה מלאה.</span> ללא הפתעות.</p>
+                <p className="font-semibold text-black">שליטה מלאה, ללא הפתעות.</p>
               </div>
             </motion.article>
           </div>
@@ -483,7 +485,7 @@ export default function HowItWorksPage() {
             {...fadeUp}
           >
             <span className="text-xl font-semibold text-[var(--text-primary)]">
-              למי המערכת מתאימה במיוחד? (לחץ לפתיחה)
+              למי המערכת מתאימה במיוחד? (לחצו לפתיחה)
             </span>
             <ChevronDown open={accordionOpen} />
           </motion.button>
@@ -513,7 +515,11 @@ export default function HowItWorksPage() {
             <p className="mb-6">המערכת בנויה כך שתוכל לנהל 2 תהליכים או 20 — בלי שינוי בתשתית.</p>
             <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-5">זו תשתית דיגיטלית לעסק, לא רק אוטומציה.</h2>
             <div className="space-y-2 mb-6">
-              <p>מערכת אחת. חלוקת תפקידים ברורה. שליטה ב<span className="text-[var(--primary-dark)] font-medium">הרשאות</span>. חיבור עמוק ל-Priority. וגמישות שמאפשרת לכם לגדול בלי לבנות מחדש.</p>
+              <p className="whitespace-pre-line">מערכת אחת.
+חלוקת תפקידים ברורה.
+שליטה בהרשאות.
+חיבור עמוק ל-Priority.
+וגמישות שמאפשרת לכם לגדול בלי לבנות מחדש.</p>
             </div>
             <p className="text-lg font-semibold text-[var(--text-primary)]">ככה בונים אוטומציה שמחזיקה לאורך זמן.</p>
           </motion.div>
@@ -533,7 +539,7 @@ export default function HowItWorksPage() {
                 <span className="text-base font-medium">תהליך ההטמעה</span>
               </Link>
               <Link href="/pricing" className="button-primary flex-col">
-                <span className="text-base font-medium">עברו למחיר</span>
+                <span className="text-base font-medium">מה המחיר?</span>
               </Link>
             </div>
           </motion.div>
@@ -544,7 +550,7 @@ export default function HowItWorksPage() {
             {...fadeUp}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-8">
-              רוצים לראות איך זה עובד אצלכם?
+              רוצים לראות את זה עובד אצלכם?
             </h2>
             <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
               <CalendlyModal size="lg" variant="outline" />

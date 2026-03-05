@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import LeadModal from "@/components/LeadModal";
 
 const bullets = [
   { text: "קיצור זמני תגובה ללקוחות", icon: "✔" },
@@ -30,10 +31,10 @@ export default function DemoCTASection({ demoHref = "/#demo" }: DemoCTASectionPr
     >
       <div className="mx-auto max-w-3xl px-6 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 text-right md:whitespace-nowrap">
-          הגיע הזמן ש-Priority יעבוד בשבילך – לא להפך
+          הגיע הזמן ש-Priority יעבוד בשבילך - לא להפך
         </h2>
         <p className="text-lg text-gray-600 mb-10 leading-relaxed text-right">
-          מחולל הבוטים מאפשר לקצר תהליכים באמצעות AI , להגדיל סגירות ולהחזיר שליטה ניהולית – בלי לשנות את המערכת הקיימת.
+          מחולל הבוטים מאפשר לקצר תהליכים באמצעות AI , להגדיל סגירות ולהחזיר שליטה ניהולית - בלי לשנות את המערכת הקיימת.
         </p>
 
         <div className="flex flex-col items-start mb-12" dir="rtl">
@@ -50,13 +51,16 @@ export default function DemoCTASection({ demoHref = "/#demo" }: DemoCTASectionPr
           </ul>
         </div>
 
-        <Link
-          href={demoHref}
-          className="button-primary flex-col text-center leading-tight inline-flex px-6 py-3"
-        >
-          <span className="text-base font-medium">לתיאום שיחת הדגמה</span>
-          <span className="text-sm opacity-90">ללא עלות</span>
-        </Link>
+        <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto justify-center">
+          <Link
+            href={demoHref}
+            className="button-primary flex-col text-center leading-tight inline-flex px-6 py-3 justify-center"
+          >
+            <span className="text-base font-medium">לתיאום שיחת הדגמה</span>
+            <span className="text-sm opacity-90">ללא עלות</span>
+          </Link>
+          <LeadModal variant="light" size="lg" />
+        </div>
 
         <p className="mt-6 text-sm text-[var(--text-primary)] opacity-60 text-right flex flex-wrap justify-center gap-x-6 gap-y-1">
           {microTrust.map((t) => (

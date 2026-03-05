@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { motion } from "framer-motion";
@@ -51,28 +51,28 @@ type StepCard = {
 const STEPS: StepCard[] = [
   {
     id: 1,
-    title: "שלב 1 – שיחת התנעה ובחירת המומחה (Kick-off)",
+    title: "שלב 1 - שיחת התנעה ובחירת המומחה (Kick-off)",
     body: "נאפיין יחד תהליך עסקי ממוקד אחד שתרצו לאטמט (למשל: אישור הצעת מחיר, גבייה, בדיקת סטטוס). נגדיר מיהו ה\"בוט המומחה\" הנדרש ומה המטרה שלו.",
   },
   {
     id: 2,
-    title: "שלב 2 – מיפוי מסכי ה-Priority",
+    title: "שלב 2 - מיפוי מסכי ה-Priority",
     body: "נחבר את הבוט המומחה ישירות למסך הרלוונטי ב-Priority. נגדיר אילו שדות המערכת צריכה לקרוא ואילו נתונים היא צריכה להחזיר.",
   },
   {
     id: 3,
-    title: "שלב 3 – הקמת הפלטפורמה והבוט הראשי",
+    title: "שלב 3 - הקמת הפלטפורמה והבוט הראשי",
     body: "נגדיר את הפלטפורמה שמול הלקוח (WhatsApp / דוא\"ל), נקים את ה\"בוט הראשי\" (המרכזייה) שיהווה את פני העסק, ונחבר אליו את הבוט המומחה שיצרנו.",
   },
   {
     id: 4,
-    title: "שלב 4 – סימולציה ובדיקות איכות",
+    title: "שלב 4 - סימולציה ובדיקות איכות",
     body: "נריץ תרחישי שיחה בסביבה מבוקרת (Test), נאשר את ניסוחי השיחה, ונוודא שהנתונים הלוך-חזור מול ה-Priority זורמים בצורה חלקה ונועלים את התהליך.",
   },
   {
     id: 5,
-    title: "שלב 5 – עולים לאוויר (Go-Live)",
-    body: "מעבירים את המערכת לסביבת ייצור. הבוט יוצא לדרך ומתחיל לנהל שיחות, לחסוך זמן לצוות, ולייצר ROI מהיום הראשון.",
+    title: "שלב 5 - עולים לאוויר (Go-Live)",
+    body: "מסמנים בפריוריטי את הבוט כפעיל. הבוט יוצא לדרך ומתחיל לנהל שיחות, לחסוך זמן לצוות, ולייצר ROI מהיום הראשון.",
   },
 ];
 
@@ -94,7 +94,7 @@ const VALUE_CARDS = [
   },
   {
     title: "מוכנות להרחבה (Scale)",
-    body: "ברגע שהתשתית (הבוט הראשי) קיימת, הוספת בוטים מתמחים נוספים בעתיד היא תהליך של שעות, לא שבועות.",
+    body: "ברגע שהתשתית (הבוט הראשי) קיימת, הוספת בוטים מתמחים נוספים בעתיד היא תהליך של דקות, לא שבועות.",
     icon: "arrow",
   },
 ];
@@ -113,12 +113,8 @@ const FAQ_ITEMS = [
     a: "ניתן למדוד תוצאות, לשפר ניסוחים ולהוסיף תהליכים נוספים.",
   },
   {
-    q: "האם נדרש ידע טכני מצד הלקוח?",
-    a: "לא. אתם מספקים הרשאות בסיסיות ומענים על שאלות. את ההתקנה, ההגדרה והחיבור עושים אנחנו.",
-  },
-  {
     q: "מה קורה אם אין לנו דף פייסבוק?",
-    a: "נדרש דף פייסבוק מאומת לחיבור WhatsApp Business. אנחנו מדריכים אתכם בתהליך האימות מול Meta.",
+    a: "לחיבור WhatsApp Business נדרש דף פייסבוק מאומת. אנחנו מדריכים אתכם בתהליך האימות מול Meta. אפשר גם להשתמש בבוט באימייל – ואז אין חובת פייסבוק.",
   },
   {
     q: "האם אפשר להוסיף בוטים או תהליכים אחרי ה-Go Live?",
@@ -127,8 +123,6 @@ const FAQ_ITEMS = [
 ] as const;
 
 export default function OnboardingPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <div dir="rtl" className="min-h-screen bg-white text-[var(--text-primary)]">
       <Header />
@@ -142,7 +136,7 @@ export default function OnboardingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            מהחלטה לבוט פעיל ב-Priority תוך ימים ספורים. 0% פיתוח.
+            מהחלטה לבוט פעיל ב-Priority תוך ימים ספורים
           </motion.h1>
           <motion.p
             className="text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl mb-6"
@@ -150,7 +144,7 @@ export default function OnboardingPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            תהליך ההטמעה שלנו בנוי כדי להוציא אתכם לדרך עם ניצחון מהיר (Quick Win). בלי פרויקטי תוכנה ארוכים, בלי להעמיס על ה-IT – פשוט בוחרים תהליך עסקי אחד, ואנחנו דואגים שהמומחה הדיגיטלי שלכם יעלה לאוויר.
+            תהליך ההטמעה שלנו בנוי כדי להוציא אתכם לדרך עם ניצחון מהיר (Quick Win). בלי פרויקטי תוכנה ארוכים, בלי להעמיס על ה-IT - פשוט בוחרים תהליך עסקי אחד, ואנחנו דואגים שהמומחה הדיגיטלי שלכם יעלה לאוויר.
           </motion.p>
           <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-light)]/15 text-[var(--primary-dark)] px-4 py-2 text-sm font-medium"
@@ -163,24 +157,26 @@ export default function OnboardingPage() {
           </motion.span>
         </section>
 
-        {/* הגישה שלנו – פילוסופיית הטמעה */}
-        <section className="mt-24 text-right border-t border-gray-100 pt-24">
-          <motion.h2
-            className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6"
-            {...fadeUp}
-          >
-            הגישה שלנו: מתחילים קטן, צומחים חכם
-          </motion.h2>
-          <motion.p
-            className="text-[var(--text-secondary)] leading-relaxed max-w-3xl"
-            {...fadeUp}
-            transition={{ delay: 0.05 }}
-          >
-            המתודולוגיה שלנו דוגלת בלא לנסות לאטמט את כל הארגון ביום אחד. אנחנו מקימים את התשתית (הבוט הראשי), בוחרים תהליך עסקי אחד שכואב לכם (בוט מומחה אחד), פותרים אותו ומקבלים ביטחון. משם – קל מאוד להוסיף עוד מומחים לאותה תשתית מוכנה.
-          </motion.p>
+        {/* הגישה שלנו - פילוסופיית הטמעה */}
+        <section className="py-14 md:py-20 bg-[var(--background-soft)] border-t border-[var(--border-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-right">
+            <motion.h2
+              className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6"
+              {...fadeUp}
+            >
+              הגישה שלנו: מתחילים קטן, צומחים חכם.
+            </motion.h2>
+            <motion.p
+              className="text-[var(--text-secondary)] leading-relaxed"
+              {...fadeUp}
+              transition={{ delay: 0.05 }}
+            >
+              המתודולוגיה שלנו דוגלת בלא לנסות לאטמט את כל הארגון ביום אחד. אנחנו מקימים את התשתית (הבוט הראשי), בוחרים תהליך עסקי אחד שכואב לכם (בוט מומחה אחד), פותרים אותו ומקבלים ביטחון. משם - קל מאוד להוסיף עוד מומחים לאותה תשתית מוכנה.
+            </motion.p>
+          </div>
         </section>
 
-        {/* שלבי ההטמעה – כרטיסים */}
+        {/* שלבי ההטמעה - כרטיסים */}
         <section className="mt-24 border-t border-gray-100 pt-24">
             <motion.h2
               className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-4 text-center"
@@ -245,7 +241,7 @@ export default function OnboardingPage() {
             </motion.p>
         </section>
 
-        {/* כרטיסי ערך – 4 כרטיסים */}
+        {/* כרטיסי ערך - 4 כרטיסים */}
         <section className="mt-24 border-t border-gray-100 pt-24 text-right">
           <motion.h2
             className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-10"
@@ -301,10 +297,11 @@ export default function OnboardingPage() {
             </motion.div>
         </section>
 
-        {/* FAQ */}
-        <section className="mt-24 border-t border-gray-100 pt-24">
+        {/* שאלות נפוצות – סגנון כמו בעמוד pricing */}
+        <section className="py-14 md:py-20 bg-[var(--background-soft)]">
+          <div className="mx-auto max-w-3xl px-6 text-right">
             <motion.h2
-              className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-12 text-center"
+              className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-14 text-center"
               {...fadeUp}
             >
               שאלות נפוצות
@@ -313,32 +310,20 @@ export default function OnboardingPage() {
               {FAQ_ITEMS.map((item, i) => (
                 <motion.div
                   key={item.q}
-                  className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden"
+                  className="bg-white rounded-2xl p-6 md:p-8 shadow-soft border border-[var(--border-soft)]"
                   {...fadeUp}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <button
-                    type="button"
-                    className="w-full px-5 py-4 text-right flex items-center justify-between gap-4"
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    aria-expanded={openFaq === i}
-                  >
-                    <span className="font-semibold text-[var(--text-primary)]">{item.q}</span>
-                    <svg className="shrink-0 w-5 h-5 text-[var(--primary-light)] transition-transform duration-200" style={{ transform: openFaq === i ? "rotate(180deg)" : "rotate(0deg)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openFaq === i && (
-                    <div className="px-6 pb-6 pt-0">
-                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                        <span className="text-[var(--accent-green)] font-bold">✔ </span>
-                        {item.a}
-                      </p>
-                    </div>
-                  )}
+                  <dt className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+                    {item.q}
+                  </dt>
+                  <dd className="text-[var(--text-secondary)] leading-relaxed">
+                    {item.a}
+                  </dd>
                 </motion.div>
               ))}
             </dl>
+          </div>
         </section>
 
         {/* חיבור לתמחור */}
@@ -357,7 +342,7 @@ export default function OnboardingPage() {
           </Link>
         </motion.div>
 
-        {/* CTA סופי – כמו pricing */}
+        {/* CTA סופי - כמו pricing */}
         <section className="mt-24 py-14 md:py-20 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary-light)] text-white">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <motion.p
@@ -377,12 +362,7 @@ export default function OnboardingPage() {
               {...fadeUp}
             >
               <CalendlyModal size="lg" variant="outline" />
-              <Link
-                href="/pricing"
-                className="inline-flex items-center justify-center border border-white/80 text-white hover:bg-white/10 rounded-xl px-6 py-3 transition font-medium"
-              >
-                צפו בתמחור
-              </Link>
+              <LeadModal size="lg" variant="dark" />
             </motion.div>
           </div>
         </section>

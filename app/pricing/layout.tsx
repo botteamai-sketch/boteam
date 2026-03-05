@@ -6,7 +6,7 @@ const description =
   "מחיר פשוט וברור: ₪120 לחודש לכל בוט פעיל. דמי הקמה חד פעמיים. מערכת מלאה מהיום הראשון.";
 
 export const metadata: Metadata = {
-  title: "מחיר – שכבת ה-AI של Priority",
+  title: "מחיר - שכבת ה-AI של Priority",
   description,
   alternates: {
     canonical: canonicalUrl,

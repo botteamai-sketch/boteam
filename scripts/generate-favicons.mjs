@@ -19,12 +19,13 @@ const faviconDir = join(publicDir, "favicon");
 const sourcePng = join(faviconDir, "source.png");
 const sourceSvg = join(publicDir, "brand", "bubble-icon.svg");
 
-const PADDING_RATIO = 0.01; // 1% padding → icon fills ~98% of canvas (נראה גדול יותר בטאב)
+const PADDING_RATIO = 0; // ללא padding - הסמל ממלא את כל הריבוע (נראה גדול בטאב)
 
 const sizes = [
   { name: "favicon-16x16.png", w: 16, h: 16 },
   { name: "favicon-32x32.png", w: 32, h: 32 },
   { name: "favicon-48x48.png", w: 48, h: 48 },
+  { name: "favicon-64x64.png", w: 64, h: 64 },
   { name: "apple-touch-icon.png", w: 180, h: 180 },
   { name: "android-chrome-192x192.png", w: 192, h: 192 },
   { name: "android-chrome-512x512.png", w: 512, h: 512 },
@@ -56,6 +57,27 @@ async function main() {
   const pngBuffers = { 16: null, 32: null, 48: null };
 
   for (const { name, w, h } of sizes) {
+    if (name.startsWith("android-chrome") || name.startsWith("apple-touch") || name === "favicon-64x64.png") {
+      const padding = Math.round(Math.min(w, h) * PADDING_RATIO);
+      const iconW = Math.max(1, w - 2 * padding);
+      const iconH = Math.max(1, h - 2 * padding);
+      const buf = await input
+        .clone()
+        .resize(iconW, iconH)
+        .extend({
+          top: padding,
+          bottom: padding,
+          left: padding,
+          right: padding,
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        })
+        .png()
+        .toBuffer();
+      const outPath = join(faviconDir, name);
+      writeFileSync(outPath, buf);
+      console.log("Written: favicon/" + name);
+      continue;
+    }
     const padding = Math.round(Math.min(w, h) * PADDING_RATIO);
     const iconW = Math.max(1, w - 2 * padding);
     const iconH = Math.max(1, h - 2 * padding);

@@ -19,9 +19,9 @@ export default function Footer() {
       className="bg-[var(--primary-dark)] text-white/80 py-20"
       role="contentinfo"
     >
-      <div className="mx-auto w-full max-w-[100%] px-10 md:px-[4.25rem] lg:px-24">
+      <div className="mx-auto w-full max-w-6xl px-6">
         <div className="flex flex-wrap justify-between gap-x-12 gap-y-10 text-right">
-          {/* Column 1 – המוצר */}
+          {/* Column 1 - המוצר */}
           <div>
             <h3 className="text-white font-semibold mb-4">המוצר</h3>
             <p className="text-white/80 mb-3 text-right">
@@ -40,7 +40,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Column 2 – שימושים */}
+          {/* Column 2 - שימושים */}
           <div>
             <h3 className="text-white font-semibold mb-4">שימושים</h3>
             <nav className="flex flex-col" aria-label="שימושים">
@@ -62,7 +62,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Column 3 – משאבים */}
+          {/* Column 3 - משאבים */}
           <div>
             <h3 className="text-white font-semibold mb-4">משאבים</h3>
             <nav className="flex flex-col" aria-label="משאבים">
@@ -76,7 +76,7 @@ export default function Footer() {
                 type="button"
                 onClick={() => setContactOpen(true)}
                 className={linkClass + " cursor-pointer border-0 bg-transparent p-0 font-inherit text-right w-full"}
-                aria-label="יצירת קשר – השארת פרטים"
+                aria-label="יצירת קשר - השארת פרטים"
               >
                 יצירת קשר
               </button>
@@ -97,7 +97,7 @@ export default function Footer() {
           onClose={() => setShowSuccessToast(false)}
         />
 
-        {/* Bottom section – זכויות יוצרים */}
+        {/* Bottom section - זכויות יוצרים */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center text-sm text-white/80 text-right">
           <span className="inline-flex items-center gap-2 flex-wrap justify-end">
             <span>© {currentYear} Boteam. כל הזכויות שמורות.</span>

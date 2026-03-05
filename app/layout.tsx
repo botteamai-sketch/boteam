@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon/favicon-64x64.png", sizes: "64x64", type: "image/png" },
       { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
 const videoStructuredData = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  name: "מחולל הבוטים לפריוריטי – אוטומציה בוואטסאפ שמחזירה נתונים ל-ERP",
+  name: "מחולל הבוטים לפריוריטי - אוטומציה בוואטסאפ שמחזירה נתונים ל-ERP",
   description:
     "דמו מוצר: איך מחולל הבוטים של Boteam מחבר את פריוריטי ERP לוואטסאפ, מאפשר למערכת ליזום שיחות, לאסוף מידע ולעדכן שדות אוטומטית. פתרון enterprise לארגונים.",
   thumbnailUrl: youtubeThumbnailUrl,

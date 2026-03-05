@@ -46,7 +46,7 @@ export default function VideoSection() {
           <span>סרטון הדגמה מתוך פריוריטי</span>
         </h2>
         <p className="text-lg text-gray-600 mb-14 max-w-2xl me-auto ms-0 text-right">
-          תהליך עסקי מלא – מהאירוע במערכת, דרך שיחת וואטסאפ חכמה ועד לעדכון אוטומטי של השדות הנכונים בפריוריטי.
+          תהליך עסקי מלא - מהאירוע במערכת, דרך שיחת וואטסאפ חכמה ועד לעדכון אוטומטי של השדות הנכונים בפריוריטי.
         </p>
 
         <div className="rounded-3xl border border-gray-200 shadow-xl bg-white overflow-hidden">
@@ -60,7 +60,7 @@ export default function VideoSection() {
             <iframe
               ref={iframeRef}
               src={EMBED_URL}
-              title="מחולל הבוטים לפריוריטי – הדגמה"
+              title="מחולל הבוטים לפריוריטי - הדגמה"
               loading="lazy"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

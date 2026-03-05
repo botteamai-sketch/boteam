@@ -11,7 +11,7 @@ export default function HeroVideo() {
 
   return (
     <>
-      <section className="hero relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden">
+      <section className="hero relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden">
         {/* Background image + Ken Burns (slow zoom) */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -32,10 +32,10 @@ export default function HeroVideo() {
         />
         <div className="absolute inset-0 bg-black/40" aria-hidden />
 
-        {/* Overlay כהה לקריאות – WCAG AA */}
+        {/* Overlay כהה לקריאות - WCAG AA */}
         <div className="hero-overlay absolute inset-0 z-[1]" aria-hidden />
 
-        {/* עומק – gradient כחול עדין מעל ה-overlay */}
+        {/* עומק - gradient כחול עדין מעל ה-overlay */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
@@ -46,7 +46,7 @@ export default function HeroVideo() {
 
         {/* Content: כניסה אחת fade-up, כפתור play, טיפוגרפיה */}
         <div className="hero-content relative z-10 flex flex-col items-center justify-center text-center px-6 pt-20 pb-20 opacity-0">
-          {/* Play – אינדיקציה ברורה לסרטון */}
+          {/* Play - אינדיקציה ברורה לסרטון */}
           <button
             type="button"
             onClick={() => setModalOpen(true)}
@@ -73,7 +73,7 @@ export default function HeroVideo() {
           </p>
         </div>
 
-        {/* Scroll indicator – fade-in after 2s, gentle bounce */}
+        {/* Scroll indicator - fade-in after 2s, gentle bounce */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

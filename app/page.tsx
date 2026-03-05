@@ -14,7 +14,7 @@ import HeroVideo from "@/components/HeroVideo";
 import DemoCTASection from "@/components/DemoCTASection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 
-/** Intersection Observer – הופעת סקשנים בעת גלילה (חד־פעמי) */
+/** Intersection Observer - הופעת סקשנים בעת גלילה (חד־פעמי) */
 function useRevealOnScroll() {
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
@@ -57,13 +57,13 @@ export default function Home() {
       <main className="min-h-screen">
         <ScrollTracker />
 
-        {/* Hero קולנועי – לא לשנות */}
+        {/* Hero קולנועי - לא לשנות */}
         <HeroVideo />
 
         {/* Funnel: CTA להדגמה */}
         <DemoCTASection />
 
-        {/* הסבר טכני – איך עובד בוט AI */}
+        {/* הסבר טכני - איך עובד בוט AI */}
         <HowItWorksSection />
 
         <VideoSection />
@@ -74,7 +74,7 @@ export default function Home() {
           className="section reveal bg-white border-t border-gray-100"
         >
           <div className="mx-auto max-w-6xl px-6 text-right">
-            {/* כותרת + תמונה – ימין: כותרת, שמאל: תמונה */}
+            {/* כותרת + תמונה - ימין: כותרת, שמאל: תמונה */}
             <div className="grid gap-10 md:grid-cols-2 md:gap-12 items-center mb-16">
               <div className="order-2 md:order-1">
                 <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2 justify-start text-right">
@@ -157,7 +157,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* INCOMING FLOW – בוט מגיב (הרחבה, לא החלפת המסר המרכזי) */}
+        {/* INCOMING FLOW - בוט מגיב (הרחבה, לא החלפת המסר המרכזי) */}
         <section className="section reveal bg-[var(--background-soft)] border-t border-gray-100">
           <div className="mx-auto max-w-6xl px-6 text-right">
             <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2 justify-start text-right">
@@ -184,9 +184,9 @@ export default function Home() {
               כל שיחה - בין אם יזומה על ידי המערכת ובין אם נפתחה על ידי אדם - הופכת לחלק מתהליך עסקי מובנה בתוך Priority.
             </p>
 
-            {/* שני מסלולים – ויזואל מינימלי */}
-            <div className="grid gap-12 md:grid-cols-2 mb-20">
-              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-soft">
+            {/* שני מסלולים - ויזואל מינימלי (me-auto ב-RTL מיישב לימין עם שאר הטקסט) */}
+            <div className="grid gap-6 md:grid-cols-2 mb-20 max-w-3xl me-auto">
+              <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-6 pb-2 border-b border-gray-200">
                   בוט יוזם
                 </h3>
@@ -200,7 +200,7 @@ export default function Home() {
                   <span className="font-medium text-[var(--text-primary)]">Priority מתעדכן</span>
                 </div>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-soft">
+              <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-6 pb-2 border-b border-gray-200">
                   בוט מגיב
                 </h3>
@@ -247,9 +247,9 @@ export default function Home() {
 
             <div className="max-w-4xl mb-14 text-gray-600 leading-relaxed space-y-4">
               <p>
-                מוצר זה אינו בוט חיצוני ואינו כלי SaaS שפועל מחוץ למערכת.
-                זהו מודול מערכת המותקן כחלק אינטגרלי מ-Priority,
-                ומרחיב את יכולות ה-ERP באופן Native.
+                מוצר זה אינו כלי חיצוני
+                אלא מודול מערכת המותקן כחלק אינטגרלי מפריוריטי,
+                ומרחיב את יכולות ה-ERP, בהתאם להתליכים העסקיים הקיימים.
               </p>
               <p>
                 בניגוד לבוטים מבוססי פלטפורמות חיצוניות,

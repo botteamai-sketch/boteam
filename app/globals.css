@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ========== Design System – משתנים גלובליים ========== */
+/* ========== Design System - משתנים גלובליים ========== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -94,14 +94,14 @@ p {
   color: var(--primary-light);
 }
 
-/* לוגו בכותרת – רקע שקוף תמיד */
+/* לוגו בכותרת - רקע שקוף תמיד */
 .header-logo-wrap,
 .header-logo-wrap img,
 .header-logo-img {
   background: transparent;
 }
 
-/* ========== ניווט – קישורים עם הובר כחול ו־underline אנימטיבי ========== */
+/* ========== ניווט - קישורים עם הובר כחול ו־underline אנימטיבי ========== */
 .nav-link {
   position: relative;
   font-weight: 500;
@@ -126,13 +126,13 @@ p {
 .nav-link:hover::after {
   width: 100%;
 }
-/* RTL – קו תחתון מתפרס מימין */
+/* RTL - קו תחתון מתפרס מימין */
 [dir="rtl"] .nav-link::after,
 .rtl .nav-link::after {
   right: 0;
   left: auto;
 }
-/* מובייל – אותו הובר כחול */
+/* מובייל - אותו הובר כחול */
 .menu-mobile .nav-link:hover {
   color: #0056FF;
 }
@@ -140,7 +140,7 @@ p {
   width: 100%;
 }
 
-/* סקשן CTA – שני הכפתורים באותו רוחב (כך זה עובד + סיום) */
+/* סקשן CTA - שני הכפתורים באותו רוחב (כך זה עובד + סיום) */
 .final-cta-buttons > * {
   min-width: 0;
   width: 100%;
@@ -201,7 +201,7 @@ p {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
 }
 
-/* ========== סקשן כהה – קריאות ========== */
+/* ========== סקשן כהה - קריאות ========== */
 .section-dark {
   background: var(--primary-dark);
   color: white;
@@ -210,7 +210,7 @@ p {
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* סקשן CTA עם רקע כחול – טקסט לבן (how-it-works) */
+/* סקשן CTA עם רקע כחול - טקסט לבן (how-it-works) */
 .cta-blue-bg,
 .cta-blue-bg h2,
 .cta-blue-bg p {
@@ -234,13 +234,13 @@ p {
 .shadow-medium { box-shadow: var(--shadow-medium); }
 .shadow-strong { box-shadow: var(--shadow-strong); }
 
-/* Modals – radius large */
+/* Modals - radius large */
 .modal-panel {
   border-radius: var(--radius-large);
   box-shadow: var(--shadow-strong);
 }
 
-/* כרטיסי "למה זה שונה" – hover עדין על האייקון */
+/* כרטיסי "למה זה שונה" - hover עדין על האייקון */
 .feature-card:hover .feature-card-icon {
   transform: translateY(-3px);
 }
@@ -248,7 +248,7 @@ p {
   transition: transform 0.2s ease;
 }
 
-/* Hero – overlay כהה, כפתור play, טיפוגרפיה, כניסה */
+/* Hero - overlay כהה, כפתור play, טיפוגרפיה, כניסה */
 .hero {
   background: radial-gradient(
     circle at 70% 30%,
@@ -276,7 +276,7 @@ p {
   transform: scale(1.05);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 12px 32px rgba(0, 0, 0, 0.25);
 }
-/* משולש Play – הדגשה מודרנית */
+/* משולש Play - הדגשה מודרנית */
 .hero-play-icon {
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
 }
@@ -308,7 +308,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Reveal בעת גלילה – חד־פעמי */
+/* Reveal בעת גלילה - חד־פעמי */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -319,7 +319,7 @@ html {
   transform: translateY(0);
 }
 
-/* כפתורים – תגובתיות */
+/* כפתורים - תגובתיות */
 button,
 .primary-button,
 a.primary-button {
@@ -335,7 +335,7 @@ button:active,
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) inset;
 }
 
-/* ניווט – scroll effect */
+/* ניווט - scroll effect */
 .navbar {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(4px);
@@ -347,7 +347,7 @@ button:active,
   box-shadow: var(--shadow-soft);
 }
 
-/* תפריט מובייל – רק במסכים קטנים, סגור כברירת מחדל */
+/* תפריט מובייל - רק במסכים קטנים, סגור כברירת מחדל */
 body.menu-open {
   overflow: hidden;
 }
@@ -393,7 +393,7 @@ body.menu-open {
   justify-content: center;
 }
 
-/* המבורגר – 3 קווים → X באנימציה חלקה */
+/* המבורגר - 3 קווים → X באנימציה חלקה */
 .hamburger {
   width: 28px;
   height: 22px;
@@ -430,7 +430,7 @@ body.menu-open {
   transform: translateY(-9px) rotate(-45deg);
 }
 
-/* קישורים – underline אנימטיבי */
+/* קישורים - underline אנימטיבי */
 a {
   position: relative;
   text-decoration: none;
@@ -448,7 +448,7 @@ a::after {
 a:hover::after {
   width: 100%;
 }
-/* יוצאים מהכלל: ניווט ופוטר – בלי underline אנימטיבי */
+/* יוצאים מהכלל: ניווט ופוטר - בלי underline אנימטיבי */
 header a::after,
 footer a::after {
   display: none;

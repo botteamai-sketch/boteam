@@ -12,7 +12,7 @@ type Props = {
   faqs: FAQItem[];
 };
 
-// Hebrew nikud (vowel points) Unicode range – remove for normalized matching
+// Hebrew nikud (vowel points) Unicode range - remove for normalized matching
 const NIKUD_REGEX = /[\u0591-\u05BD\u05BF-\u05C7]/g;
 
 /**
@@ -216,7 +216,7 @@ export default function FAQSearch({ faqs }: Props) {
         </div>
       )}
 
-      {/* FAQ list – all items remain in DOM; visibility and order via CSS for SEO */}
+      {/* FAQ list - all items remain in DOM; visibility and order via CSS for SEO */}
       <div className="space-y-0 border-b border-gray-200">
         {categoryOrder.map((cat) => {
           const items = byCategory.get(cat) ?? [];

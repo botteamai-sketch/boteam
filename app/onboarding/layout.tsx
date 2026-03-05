@@ -6,7 +6,7 @@ const description =
   "תהליך הטמעה פשוט ומהיר: משלב האפיון ועד שהבוט הראשון עובד. אפס קוד, מקסימום תוצאות. מחולל הבוטים לפריוריטי.";
 
 export const metadata: Metadata = {
-  title: "תהליך ההטמעה – הדרך לבוט הראשון",
+  title: "תהליך ההטמעה - הדרך לבוט הראשון",
   description,
   alternates: { canonical: canonicalUrl },
   openGraph: { title, description, url: canonicalUrl, type: "website" },

@@ -15,10 +15,10 @@ type LeadModalProps = {
   variant?: "light" | "dark";
   /** טקסט שורה שנייה בכפתור (ברירת מחדל: "ונדבר בטלפון") */
   triggerSubLabel?: string;
-  /** כשמועבר – המודל נשלט מבחוץ (open/onOpenChange) */
+  /** כשמועבר - המודל נשלט מבחוץ (open/onOpenChange) */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  /** כשמופעל – לא מציג את כפתור ההפעלה (לפתיחה מקישור/כפתור אחר) */
+  /** כשמופעל - לא מציג את כפתור ההפעלה (לפתיחה מקישור/כפתור אחר) */
   hideTrigger?: boolean;
   /** נקרא לאחר שליחה מוצלחת (לפני סגירת המודל) */
   onSuccess?: () => void;

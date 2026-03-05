@@ -38,7 +38,7 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop – fade only */}
+          {/* Backdrop - fade only */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -50,7 +50,7 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
             aria-modal="true"
             aria-label="צפייה בסרטון"
           />
-          {/* Content – fade + scale */}
+          {/* Content - fade + scale */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -77,7 +77,7 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
                 <iframe
                   key="yt-embed"
                   src={EMBED_URL}
-                  title="סרטון הדגמה – מחולל הבוטים לפריוריטי"
+                  title="סרטון הדגמה - מחולל הבוטים לפריוריטי"
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

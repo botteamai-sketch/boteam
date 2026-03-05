@@ -89,7 +89,7 @@ export default function Header() {
         <Link
           href="/"
           className="header-logo-wrap flex-shrink-0 md:ms-auto flex items-center transition-opacity duration-200 hover:opacity-85"
-          aria-label="Boteam – דף הבית"
+          aria-label="Boteam - דף הבית"
         >
           <Image
             src="/boteam-logo.svg"
