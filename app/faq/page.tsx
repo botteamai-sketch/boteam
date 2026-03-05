@@ -269,17 +269,6 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Minimal footer */}
-      <footer className="border-t border-gray-200 bg-white py-8">
-        <div className="mx-auto max-w-4xl px-6 text-center text-sm text-gray-500">
-          <Link href="/" className="hover:text-[var(--primary-light)] transition">
-            מחולל הבוטים לפריוריטי
-          </Link>
-          <span className="mx-2">·</span>
-          <span>© {new Date().getFullYear()} Boteam. כל הזכויות שמורות.</span>
-        </div>
-      </footer>
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
