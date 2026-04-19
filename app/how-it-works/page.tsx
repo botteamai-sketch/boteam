@@ -542,6 +542,9 @@ export default function HowItWorksPage() {
                 <span className="text-base font-medium">מה המחיר?</span>
               </Link>
             </div>
+            <p className={`${cardTextClass} mt-4 text-sm opacity-90`}>
+              מנוי חודשי — ללא התחייבות ארוכת טווח; ניתן להפסיק בהתאם לצורך.
+            </p>
           </motion.div>
 
           <motion.section

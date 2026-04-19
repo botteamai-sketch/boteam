@@ -52,7 +52,11 @@ const FAQ = [
   },
   {
     q: "האם יש התחייבות ארוכת טווח?",
-    a: "לא. החיוב הינו חודשי וניתן להפסיק את הרישוי בהתאם לצורך הארגוני.",
+    a: "לא. אין חוזה שנתי או תקופת מינימום מחייבת. החיוב הוא חודשי בלבד, וניתן להפסיק או לצמצם את הרישוי בהתאם לצורך הארגוני — בלי התחייבות ארוכת טווח מצד הלקוח.",
+  },
+  {
+    q: "איך מבטלים או מפסיקים את הרישוי?",
+    a: "מספיק לפנות אלינו לפני תחילת מחזור החיוב הבא. נעדכן את הרישוי בהתאם (הפסקה מלאה או הסרת בוטים) כך שלא תחויבו עבור מה שאינכם צריכים.",
   },
   {
     q: "האם קיימות מגבלות שימוש?",
@@ -162,6 +166,9 @@ export default function PricingPage() {
               </p>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                 ללא דמי הקמה חד-פעמיים — התמחור החודשי משקף את רישיון המערכת ואת מספר הבוטים הפעילים.
+              </p>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                <span className="font-medium text-[var(--text-primary)]">ללא התחייבות ארוכת טווח:</span> מנוי חודשי שניתן להפסיק — אין חוזה שנתי מחייב מצד הלקוח.
               </p>
               <p className="text-xs text-[var(--text-secondary)] opacity-80 mt-4 pt-4 border-t border-[var(--border-soft)]" dir="rtl">
                 * כל המחירים לפני מע״מ
@@ -351,6 +358,8 @@ export default function PricingPage() {
               {...fadeUp}
             >
               מבנה תמחור ברור, שקוף וללא תלות נסתרת.
+              <br />
+              <span className="text-[var(--text-primary)] font-medium">המנוי חודשי — ניתן להפסיק בלי התחייבות ארוכת טווח.</span>
             </motion.p>
             <div className="space-y-6">
               <motion.div
