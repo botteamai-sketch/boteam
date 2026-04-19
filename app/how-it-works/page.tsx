@@ -158,7 +158,7 @@ export default function HowItWorksPage() {
       <Header />
 
       <main className="mx-auto max-w-5xl px-6">
-        {/* ——— HERO (title above, then text + image) ——— */}
+        {/* --- HERO (title above, then text + image) --- */}
         <section className={`${sectionClass} border-b border-gray-100`}>
           <motion.h1
             className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text-primary)] mb-8 md:mb-10 text-right"
@@ -167,7 +167,7 @@ export default function HowItWorksPage() {
              ארכיטקטורה שלמה שעובדת בשבילך.
           </motion.h1>
           <div className="grid grid-cols-1 lg:grid-cols-[0.55fr_1.45fr] gap-10 lg:gap-12 items-start">
-            {/* Left: Subtitle — aligned to top */}
+            {/* Left: Subtitle - aligned to top */}
             <div className="order-2 lg:order-1 flex flex-col justify-start min-h-0">
               <motion.p
                 className={`text-lg md:text-xl ${cardTextClass} leading-relaxed max-w-xl`}
@@ -177,7 +177,7 @@ export default function HowItWorksPage() {
                 הלקוח שולח הודעה אחת לווטסאפ. מאחורי הקלעים, המערכת מנתבת את השיחה למומחה הנכון, קוראת וכותבת נתונים ב-Priority, ומנהלת תהליכים עסקיים שלמים - באפס מאמץ מצד הצוות שלך.
               </motion.p>
             </div>
-            {/* Right: Hero image — larger column */}
+            {/* Right: Hero image - larger column */}
             <motion.div
               className="order-1 lg:order-2 rounded-2xl overflow-hidden border border-gray-100 shadow-[0_4px_24px_rgba(31,47,70,0.08)] flex items-stretch min-h-[260px] md:min-h-[380px] lg:min-h-[420px]"
               initial={{ opacity: 0, y: 20 }}
@@ -196,7 +196,7 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* ——— Architecture: Inbound + Outbound flows ——— */}
+        {/* --- Architecture: Inbound + Outbound flows --- */}
         <section id="architecture" className={sectionClass}>
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 md:mb-5 text-right md:text-center"
@@ -339,7 +339,7 @@ export default function HowItWorksPage() {
           </p>
         </section>
 
-        {/* ——— SECTION 3: Key Benefits (2x2 Grid) ——— */}
+        {/* --- SECTION 3: Key Benefits (2x2 Grid) --- */}
         <section className={sectionClass}>
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6 md:mb-8 text-right"
@@ -374,7 +374,7 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* ——— למה בחרנו במבנה הזה? (Comparison Card) ——— */}
+        {/* --- למה בחרנו במבנה הזה? (Comparison Card) --- */}
         <section className={sectionClass}>
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-6 md:mb-8 text-right"
@@ -418,7 +418,7 @@ export default function HowItWorksPage() {
           </motion.p>
         </section>
 
-        {/* ——— SECTION 4: Active Capabilities (Icon Bar) ——— */}
+        {/* --- SECTION 4: Active Capabilities (Icon Bar) --- */}
         <section className={sectionClass}>
           <motion.div {...fadeUp}>
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2 text-right">
@@ -475,7 +475,7 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* ——— SECTION 5: Target Audience (Accordion) ——— */}
+        {/* --- SECTION 5: Target Audience (Accordion) --- */}
         <section className={sectionClass}>
           <motion.button
             type="button"
@@ -503,16 +503,16 @@ export default function HowItWorksPage() {
                 <li>צוותים שעובדים ישירות מול Priority.</li>
               </ul>
               <p className="mt-4 font-semibold text-[var(--text-primary)]">
-                ככל שהארגון מורכב יותר — כך היתרון של המבנה הזה משמעותי יותר.
+                ככל שהארגון מורכב יותר - כך היתרון של המבנה הזה משמעותי יותר.
               </p>
             </div>
           </motion.div>
         </section>
 
-        {/* ——— SUMMARY & CTA ——— */}
+        {/* --- SUMMARY & CTA --- */}
         <section className={`${sectionClass} pb-12`}>
           <motion.div className={`reveal rounded-[20px] border border-gray-100 bg-white p-8 md:p-10 ${cardTextClass}`} {...fadeUp}>
-            <p className="mb-6">המערכת בנויה כך שתוכל לנהל 2 תהליכים או 20 — בלי שינוי בתשתית.</p>
+            <p className="mb-6">המערכת בנויה כך שתוכל לנהל 2 תהליכים או 20 - בלי שינוי בתשתית.</p>
             <h2 className="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-5">זו תשתית דיגיטלית לעסק, לא רק אוטומציה.</h2>
             <div className="space-y-2 mb-6">
               <p className="whitespace-pre-line">מערכת אחת.
@@ -543,7 +543,7 @@ export default function HowItWorksPage() {
               </Link>
             </div>
             <p className={`${cardTextClass} mt-4 text-sm opacity-90`}>
-              מנוי חודשי — ללא התחייבות ארוכת טווח; ניתן להפסיק בהתאם לצורך.
+              מנוי חודשי - ללא התחייבות. ניתן להפסיק בהתאם לצורך.
             </p>
           </motion.div>
 

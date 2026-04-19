@@ -529,7 +529,7 @@ export default function Home() {
             </p>
 
             <p className="text-base mb-8 opacity-95 max-w-xl mx-auto" style={{ color: "#ffffff" }}>
-              מנוי חודשי — ללא התחייבות ארוכת טווח. ניתן להפסיק את הרישוי בהתאם לצורך הארגוני.
+              מנוי חודשי - ללא התחייבות. ניתן להפסיק את הרישוי בהתאם לצורך הארגוני.
             </p>
 
             <div className="final-cta-buttons grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
