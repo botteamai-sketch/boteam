@@ -24,9 +24,9 @@ const INCLUDED = [
 ] as const;
 
 const STEPS = [
-  { n: "1", title: "חיבור והטמעה - 3,500 ₪" },
+  { n: "1", title: "חיבור והטמעה בסביבת Priority" },
   { n: "2", title: "הפעלת בוט ראשון" },
-  { n: "3", title: "הרחבה חכמה לפי צורך - ₪120 בחודש לכל בוט נוסף" },
+  { n: "3", title: "רישיון חודשי: ₪500 למערכת + ₪120 לכל בוט פעיל" },
 ] as const;
 
 const FAQ = [
@@ -43,12 +43,12 @@ const FAQ = [
     a: "הגדרת התהליכים והרחבתם מבוצעת על ידי מיישם ה-Priority של הארגון, בהתאם ללוגיקה ולמבנה העסקי הפנימי.",
   },
   {
-    q: "למה יש דמי הקמה?",
-    a: "דמי ההקמה (₪3,500 חד-פעמי) כוללים התקנת מודול מלא בסביבת Priority, קונפיגורציה ראשונית, הרשאות למיישמים והדרכת Enablement הכוללת הקמת תהליך ראשון.",
+    q: "מה כלול ברישיון המערכת החודשי (₪500)?",
+    a: "רישיון המערכת כולל התקנת מודול מלא בסביבת Priority, קונפיגורציה ראשונית, הרשאות למיישמים, שעתיים הדרכה כולל ליווי בהקמת תהליך בוט ראשון, ותמיכה מקצועית במייל ללא הגבלה. אין דמי הקמה חד-פעמיים.",
   },
   {
     q: "כיצד עובד המודל החודשי?",
-    a: "הרישוי הינו ₪120 לחודש לכל תהליך Bot פעיל. המודל מודולרי וניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון.",
+    a: "חיוב חודשי של ₪500 עבור רישיון המערכת, ובנוסף ₪120 לחודש לכל בוט פעיל. לדוגמה: בוט אחד — ₪620 לחודש לפני מע״מ; שלושה בוטים — ₪860 לחודש לפני מע״מ. ניתן להרחיב לפי מספר התהליכים הפעילים.",
   },
   {
     q: "האם יש התחייבות ארוכת טווח?",
@@ -60,7 +60,7 @@ const FAQ = [
   },
   {
     q: "האם ניתן להוסיף בוטים נוספים?",
-    a: "כן. ניתן להוסיף תהליכים פעילים בכל שלב בהתאם לצורך הארגוני.",
+    a: "כן. ניתן להוסיף תהליכים פעילים בכל שלב. כל בוט נוסף — ₪120 לחודש, לצד רישיון המערכת ₪500 לחודש.",
   },
   {
     q: "האם יש תמחור לפי משתמשים?",
@@ -110,13 +110,13 @@ export default function PricingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              {/* התקנה חד־פעמית - עלות ראשית */}
+              {/* רישיון מערכת חודשי */}
               <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                הטמעה ראשונית
+                רישיון מערכת (חודשי)
               </p>
               <p className="flex flex-wrap items-baseline gap-x-2 mb-4">
-                <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪3,500</span>
-                <span className="text-base text-[var(--text-secondary)]">חד פעמי</span>
+                <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪500</span>
+                <span className="text-base text-[var(--text-secondary)]">לחודש</span>
               </p>
               <ul className="mt-3 space-y-2.5 mb-6">
                 {[
@@ -137,17 +137,23 @@ export default function PricingPage() {
 
               <hr className="border-t border-[var(--border-soft)] my-6" />
 
-              {/* רישוי חודשי */}
+              {/* רישיון לבוט */}
               <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                רישיון חודשי לתהליך Bot פעיל
+                רישיון לבוט פעיל
               </p>
               <p className="flex flex-wrap items-baseline gap-x-2 mb-2">
                 <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪120</span>
-                <span className="text-base text-[var(--text-secondary)]">לחודש</span>
+                <span className="text-base text-[var(--text-secondary)]">לחודש לכל בוט</span>
               </p>
-              <p className="text-sm text-[var(--text-secondary)] mb-6">
-                מודל רישוי מודולרי בהתאם להיקף הפעילות ולמספר התהליכים הפעילים.<br />
+              <p className="text-sm text-[var(--text-secondary)] mb-4">
+                מודל רישוי מודולרי לפי מספר הבוטים הפעילים.<br />
                 אין הגבלה על כמות המשתמשים.
+              </p>
+              <p className="text-sm text-[var(--text-primary)] font-medium mb-6 rounded-xl bg-[var(--background-soft)] px-4 py-3 border border-[var(--border-soft)]">
+                מינימום עם בוט אחד: <span className="text-[var(--primary-dark)]">₪620</span> לחודש לפני מע״מ
+                <span className="block mt-2 font-normal text-[var(--text-secondary)]">
+                  דוגמה לשלושה בוטים: <span className="font-medium text-[var(--text-primary)]">₪860</span> לחודש לפני מע״מ (500 + 3×120)
+                </span>
               </p>
 
               <p className="text-sm text-[var(--text-secondary)] pt-4 leading-relaxed">
@@ -155,7 +161,7 @@ export default function PricingPage() {
                 המערכת פעילה במלואה מהיום הראשון - כולל חיבור ישיר ל-Priority, מנגנוני טריגרים עסקיים וביצוע אוטומציה בזמן אמת.
               </p>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                אתם משלמים רק לפי כמות הבוטים הפעילים בפועל.
+                ללא דמי הקמה חד-פעמיים — התמחור החודשי משקף את רישיון המערכת ואת מספר הבוטים הפעילים.
               </p>
               <p className="text-xs text-[var(--text-secondary)] opacity-80 mt-4 pt-4 border-t border-[var(--border-soft)]" dir="rtl">
                 * כל המחירים לפני מע״מ
@@ -312,9 +318,8 @@ export default function PricingPage() {
                 ))}
               </ul>
               <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
-                הבוט הראשי (המרכזיה) אינו מחויב ברישוי חודשי.
-                <br />
-                הרישוי מתייחס לבוטים המתמחים בלבד.
+                כל בוט פעיל נספר ברישוי: <span className="font-medium text-[var(--text-primary)]">₪120 לחודש לכל בוט</span>, בתוספת{" "}
+                <span className="font-medium text-[var(--text-primary)]">₪500 לחודש</span> עבור רישיון המערכת.
               </p>
               <p className="text-[var(--text-primary)] font-semibold">
                 רישוי בוט (₪120 לחודש) הוא רישוי לתהליך עסקי אחד מלא.
@@ -352,13 +357,13 @@ export default function PricingPage() {
                 className="rounded-2xl border border-slate-300 bg-[var(--background-soft)] p-6 md:p-8"
                 {...fadeUp}
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">התקנת מודול מערכת</h3>
-                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪3,500 חד־פעמי</p>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">רישיון מערכת (חודשי)</h3>
+                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪500 לחודש</p>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
-                  כולל התקנת מחולל הבוטים כחלק אינטגרלי ממערכת Priority, קונפיגורציה ראשונית, הרשאות למיישמים והדרכת Enablement הכוללת הקמת תהליך ראשון.
+                  כולל התקנת מחולל הבוטים כחלק אינטגרלי ממערכת Priority, קונפיגורציה ראשונית, הרשאות למיישמים והדרכת Enablement הכוללת הקמת תהליך ראשון — ללא דמי הקמה חד-פעמיים.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  תשלום חד־פעמי להטמעת שכבת ה-Automation בארגון.
+                  התשתית וההטמעה משולמות במסגרת הרישיון החודשי למערכת.
                 </p>
               </motion.div>
               <motion.div
@@ -366,10 +371,13 @@ export default function PricingPage() {
                 {...fadeUp}
                 transition={{ delay: 0.05 }}
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">רישיון חודשי לתהליך Bot פעיל</h3>
-                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪120 לחודש לכל תהליך פעיל</p>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">רישיון חודשי לבוט פעיל</h3>
+                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪120 לחודש לכל בוט</p>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
-                  מודל רישוי מודולרי הניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון.
+                  מודל רישוי מודולרי הניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון. הסכום החודשי הכולל הוא ₪500 + (₪120 × מספר הבוטים הפעילים).
+                </p>
+                <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
+                  דוגמאות לפני מע״מ: בוט אחד — ₪620 לחודש; שלושה בוטים — ₪860 לחודש.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
                    התמחור אינו לפי משתמשים.<br />התמחור אינו לפי נפח הודעות.
