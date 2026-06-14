@@ -101,6 +101,10 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center text-sm text-white/80 text-right">
           <span className="inline-flex items-center gap-2 flex-wrap justify-end">
             <span>© {currentYear} Boteam. כל הזכויות שמורות.</span>
+            <span aria-hidden="true">·</span>
+            <Link href="/privacy" className="hover:text-white transition">
+              מדיניות פרטיות
+            </Link>
           </span>
           <span>מערכת אוטומציה מתקדמת לפריוריטי ERP</span>
         </div>
