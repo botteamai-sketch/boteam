@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 const canonicalUrl = "https://boteam.org/pricing";
 const title = "מחיר | שכבת ה-AI של Priority | Boteam";
 const description =
-  "מחיר פשוט: ₪500 לחודש רישיון מערכת + ₪120 לחודש לכל בוט פעיל. ללא דמי הקמה. דוגמה: בוט אחד ₪620, שלושה בוטים ₪860 (לפני מע״מ).";
+  "הקמה חד-פעמית ₪550, בוטים לפי מדרגות יורדות מ-₪290 לחודש. החודש הראשון חינם. לדוגמה: 3 בוטים - ₪730 לחודש (לפני מע״מ). ללא התחייבות.";
 
 export const metadata: Metadata = {
   title: "מחיר - שכבת ה-AI של Priority",

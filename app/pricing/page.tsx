@@ -14,19 +14,70 @@ const fadeUp = {
   transition: { duration: 0.5 },
 };
 
+const SETUP_BASE = 550;
+const WHATSAPP_SETUP = 400;
+const BOT_TIERS = [
+  { label: "בוט 1 (הראשון)", price: 290 },
+  { label: "בוט 2", price: 240 },
+  { label: "בוט 3", price: 200 },
+  { label: "בוט 4", price: 180 },
+  { label: "בוט 5 ואילך", price: 160 },
+] as const;
+
+function calculateMonthlyCost(botCount: number): number {
+  if (botCount <= 0) return 0;
+  const tierPrices = [290, 240, 200, 180];
+  let total = 0;
+  for (let i = 0; i < botCount; i++) {
+    total += i < tierPrices.length ? tierPrices[i] : 160;
+  }
+  return total;
+}
+
+function formatPrice(amount: number): string {
+  return `₪${amount.toLocaleString("he-IL")}`;
+}
+
+const SETUP_INCLUDES = [
+  "התקנת מודול מחולל הבוטים בסביבת ה-Priority של הארגון",
+  "המודול מותקן כחלק אינטגרלי ומובנה ממערכת ה-ERP של הארגון",
+  "קונפיגורציה מלאה והגדרת הרשאות למיישמי ה-Priority של החברה",
+  "הדרכה מעשית על המערכת הכוללת ליווי צמוד בהקמת תהליך הבוט הראשון",
+  "תמיכה מקצועית במייל ללא הגבלה",
+] as const;
+
+const HIGHLIGHTS = [
+  {
+    title: "ללא הגבלת שיחות מצד Boteam",
+    text: "המערכת פתוחה ומאפשרת שימוש חופשי ללא הגבלת כמות הודעות או שיחות.",
+  },
+  {
+    title: "בוט רב-ערוצי נחשב כבוט אחד",
+    text: "בוט שהוגדר לעבודה במספר ערוצים במקביל (למשל: גם בוואטסאפ וגם אימייל) נספר כבוט אחד בלבד לפי התהליך העסקי מול מסך הפריוריטי.",
+  },
+  {
+    title: "פעיל במלואה מהיום הראשון",
+    text: "כולל חיבור ישיר ומאובטח ל-Priority, הפעלת מנגנוני אירועים עסקיים (Triggers) מובנים, וביצוע אוטומציות מורכבות בזמן אמת.",
+  },
+  {
+    title: "ללא התחייבות וחוזים כובלים",
+    text: "המנוי חודשי וגמיש לחלוטין. ניתן להפסיק או לשנות את כמות הבוטים בכל עת ללא חוזים שנתיים מחייבים וללא קנסות יציאה.",
+  },
+] as const;
+
 const INCLUDED = [
-  "חיבור ישיר ל-Priority דו־כיווני ",
+  "חיבור ישיר ל-Priority דו־כיווני",
   "תקשורת WhatsApp",
   "מנוע AI מתקדם",
   "אינדוקס מסמכים (PDF, קבצים)",
   "מנגנון RAG חכם",
-  "עד 1,000 שיחות בחודש",
+  "ללא הגבלת שיחות מצד Boteam",
 ] as const;
 
 const STEPS = [
   { n: "1", title: "חיבור והטמעה בסביבת Priority" },
   { n: "2", title: "הפעלת בוט ראשון" },
-  { n: "3", title: "רישיון חודשי: ₪500 למערכת + ₪120 לכל בוט פעיל" },
+  { n: "3", title: "רישיון חודשי לפי מדרגות יורדות לפי כמות הבוטים הפעילים" },
 ] as const;
 
 const FAQ = [
@@ -43,12 +94,16 @@ const FAQ = [
     a: "הגדרת התהליכים והרחבתם מבוצעת על ידי מיישם ה-Priority של הארגון, בהתאם ללוגיקה ולמבנה העסקי הפנימי.",
   },
   {
-    q: "מה כלול ברישיון המערכת החודשי (₪500)?",
-    a: "רישיון המערכת כולל התקנת מודול מלא בסביבת Priority, קונפיגורציה ראשונית, הרשאות למיישמים, שעתיים הדרכה כולל ליווי בהקמת תהליך בוט ראשון, ותמיכה מקצועית במייל ללא הגבלה. אין דמי הקמה חד-פעמיים.",
+    q: "מה כלול בעלות ההקמה החד-פעמית?",
+    a: "עלות ההקמה (₪550 לפני מע״מ) כוללת התקנת מודול מלא בסביבת Priority, קונפיגורציה והרשאות למיישמים, הדרכה מעשית עם ליווי צמוד בהקמת תהליך הבוט הראשון, ותמיכה מקצועית במייל ללא הגבלה.",
+  },
+  {
+    q: "מה כולל החודש הראשון?",
+    a: "בחודש הראשון משלמים אך ורק את עלות ההקמה החד-פעמית. אין שום עלות חודשית שוטפת על הבוט או הבוטים שמוקמים במהלך החודש הראשון לפעילות - הבוטים פעילים בחינם.",
   },
   {
     q: "כיצד עובד המודל החודשי?",
-    a: "חיוב חודשי של ₪500 עבור רישיון המערכת, ובנוסף ₪120 לחודש לכל בוט פעיל. לדוגמה: בוט אחד - ₪620 לחודש לפני מע״מ; שלושה בוטים - ₪860 לחודש לפני מע״מ. ניתן להרחיב לפי מספר התהליכים הפעילים.",
+    a: "התמחור החודשי מחושב אוטומטית לפי כמות הבוטים הפעילים בפועל, במודל מדרגות יורד: בוט ראשון ₪290, בוט שני ₪240, בוט שלישי ₪200, בוט רביעי ₪180, ובוט חמישי ואילך ₪160 לכל בוט. לדוגמה: 3 בוטים - ₪730 לחודש לפני מע״מ (290+240+200).",
   },
   {
     q: "האם יש התחייבות ארוכת טווח?",
@@ -60,11 +115,19 @@ const FAQ = [
   },
   {
     q: "האם קיימות מגבלות שימוש?",
-    a: "ברירת המחדל כוללת עד 1,000 שיחות חודשיות לכל בוט פעיל. ניתן להרחיב בהתאם לדרישות הארגון.",
+    a: "לא. אין הגבלת כמות הודעות או שיחות מצד Boteam. המערכת פתוחה לשימוש חופשי.",
+  },
+  {
+    q: "האם בוט רב-ערוצי נספר כמספר בוטים?",
+    a: "לא. בוט שהוגדר לעבודה במספר ערוצים במקביל (למשל וואטסאפ ואימייל) נספר כבוט אחד בלבד, לפי התהליך העסקי מול מסך הפריוריטי.",
   },
   {
     q: "האם ניתן להוסיף בוטים נוספים?",
-    a: "כן. ניתן להוסיף תהליכים פעילים בכל שלב. כל בוט נוסף - ₪120 לחודש, לצד רישיון המערכת ₪500 לחודש.",
+    a: "כן. ניתן להוסיף תהליכים פעילים בכל שלב. כל בוט נוסף מתומחר לפי מדרגת המיקום שלו - ככל שיש יותר בוטים, המחיר לבוט נוסף יורד.",
+  },
+  {
+    q: "מה עלות חיבור WhatsApp?",
+    a: "חיבור לערוץ הוואטסאפ הוא אופציונלי וכרוך בתוספת חד-פעמית של ₪400 לסנכרון והגדרת ה-API מול Meta. סה״כ הקמה כולל וואטסאפ: ₪950 לפני מע״מ.",
   },
   {
     q: "האם יש תמחור לפי משתמשים?",
@@ -78,6 +141,97 @@ const WHO_IS_IT_FOR = [
   "חברות שרוצות להוסיף שכבת AI אמיתית למערכת",
 ] as const;
 
+function PricingCalculator() {
+  const [botCount, setBotCount] = useState(1);
+  const [withWhatsApp, setWithWhatsApp] = useState(false);
+
+  const setupCost = SETUP_BASE + (withWhatsApp ? WHATSAPP_SETUP : 0);
+  const monthlyCost = calculateMonthlyCost(botCount);
+  const firstMonthTotal = setupCost;
+
+  return (
+    <div className="rounded-2xl border-2 border-[var(--primary-dark)]/20 bg-white p-6 md:p-8 shadow-[var(--shadow-medium)]">
+      <h3 className="text-xl font-bold text-[var(--text-primary)] mb-6">
+        מחשבון עלויות
+      </h3>
+
+      <div className="space-y-6">
+        <div>
+          <label
+            htmlFor="bot-count"
+            className="block text-sm font-semibold text-[var(--text-primary)] mb-2"
+          >
+            כמות בוטים פעילים: <span className="text-[var(--primary-dark)]">{botCount}</span>
+          </label>
+          <input
+            id="bot-count"
+            type="range"
+            min={1}
+            max={10}
+            value={botCount}
+            onChange={(e) => setBotCount(Number(e.target.value))}
+            className="w-full accent-[var(--primary-dark)]"
+          />
+          <div className="flex justify-between text-xs text-[var(--text-secondary)] mt-1">
+            <span>1</span>
+            <span>10</span>
+          </div>
+        </div>
+
+        <label className="flex items-center gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={withWhatsApp}
+            onChange={(e) => setWithWhatsApp(e.target.checked)}
+            className="w-5 h-5 accent-[var(--primary-dark)] rounded"
+          />
+          <span className="text-sm text-[var(--text-primary)]">
+            כולל חיבור WhatsApp (+{formatPrice(WHATSAPP_SETUP)} חד-פעמי)
+          </span>
+        </label>
+
+        <div className="rounded-xl bg-[var(--background-soft)] border border-[var(--border-soft)] p-5 space-y-4">
+          <div className="flex justify-between items-baseline gap-4">
+            <span className="text-sm text-[var(--text-secondary)]">עלות הקמה (חד-פעמי)</span>
+            <span className="text-lg font-bold text-[var(--primary-dark)]">
+              {formatPrice(setupCost)}
+            </span>
+          </div>
+          <div className="flex justify-between items-baseline gap-4 border-t border-[var(--border-soft)] pt-4">
+            <span className="text-sm font-medium text-[var(--text-primary)]">
+              חודש ראשון (בוטים בחינם)
+            </span>
+            <span className="text-lg font-bold text-[var(--accent-green)]">
+              {formatPrice(firstMonthTotal)}
+            </span>
+          </div>
+          <div className="flex justify-between items-baseline gap-4 border-t border-[var(--border-soft)] pt-4">
+            <span className="text-sm text-[var(--text-secondary)]">
+              מחודש שני ואילך (חודשי)
+            </span>
+            <span className="text-lg font-bold text-[var(--primary-dark)]">
+              {formatPrice(monthlyCost)}
+            </span>
+          </div>
+          {botCount > 1 && (
+            <p className="text-xs text-[var(--text-secondary)] pt-2 border-t border-[var(--border-soft)]">
+              פירוט:{" "}
+              {Array.from({ length: botCount }, (_, i) => {
+                const price = i < 4 ? [290, 240, 200, 180][i] : 160;
+                return `בוט ${i + 1} - ${formatPrice(price)}`;
+              }).join(" · ")}
+            </p>
+          )}
+        </div>
+
+        <p className="text-xs text-[var(--text-secondary)]">
+          * כל המחירים לפני מע״מ. בחודש הראשון אין עלות חודשית שוטפת על הבוטים.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function PricingPage() {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
 
@@ -86,7 +240,7 @@ export default function PricingPage() {
       <Header />
 
       <main>
-        {/* מחיר מרכזי - מסלול יחיד במסגרת */}
+        {/* מחיר מרכזי */}
         <section className="relative overflow-hidden bg-gradient-to-b from-[var(--background-soft)] to-white pt-10 pb-14 md:pt-14 md:pb-20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(63,169,245,0.12),transparent)]" />
           <div className="relative mx-auto max-w-2xl px-6 flex flex-col items-center">
@@ -108,72 +262,86 @@ export default function PricingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-            <motion.div
-              className="w-full max-w-xl mx-auto rounded-2xl border-2 border-[var(--border-soft)] bg-white p-8 md:p-10 shadow-[var(--shadow-medium)] text-right"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* רישיון מערכת חודשי */}
-              <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                רישיון מערכת (חודשי)
-              </p>
-              <p className="flex flex-wrap items-baseline gap-x-2 mb-4">
-                <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪500</span>
-                <span className="text-base text-[var(--text-secondary)]">לחודש</span>
-              </p>
-              <ul className="mt-3 space-y-2.5 mb-6">
-                {[
-                  "התקנת מודול מחולל הבוטים בסביבת Priority",
-                  "המודול מותקן כחלק אינטגרלי ממערכת ה-ERP של הארגון",
-                  "קונפיגורציה והרשאות למיישמים",
-                  "שעתיים הדרכה על המערכת הכוללים ליווי בהקמת תהליך בוט ראשון",
-                  "תמיכה מקצועית במייל ללא הגבלה",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 justify-start">
-                    <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">
-                      ✔
-                    </span>
-                    <span className="text-[var(--text-primary)] text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <motion.div
+                className="w-full max-w-xl mx-auto rounded-2xl border-2 border-[var(--border-soft)] bg-white p-8 md:p-10 shadow-[var(--shadow-medium)] text-right"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* עלות הקמה */}
+                <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
+                  עלות הקמה (חד-פעמי)
+                </p>
+                <p className="flex flex-wrap items-baseline gap-x-2 mb-4">
+                  <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">
+                    {formatPrice(SETUP_BASE)}
+                  </span>
+                </p>
+                <ul className="mt-3 space-y-2.5 mb-6">
+                  {SETUP_INCLUDES.map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 justify-start">
+                      <span className="shrink-0 w-5 h-5 rounded-full bg-[var(--accent-green)]/20 flex items-center justify-center text-[var(--accent-green)] text-xs font-bold">
+                        ✔
+                      </span>
+                      <span className="text-[var(--text-primary)] text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <hr className="border-t border-[var(--border-soft)] my-6" />
+                <p className="text-sm text-[var(--text-secondary)] mb-6 rounded-xl bg-[var(--background-soft)] px-4 py-3 border border-[var(--border-soft)]">
+                  <span className="font-medium text-[var(--text-primary)]">תוספת חיבור WhatsApp (אופציונלי):</span>{" "}
+                  {formatPrice(WHATSAPP_SETUP)} חד-פעמי לסנכרון והגדרת ה-API מול Meta.
+                  <span className="block mt-2 font-medium text-[var(--text-primary)]">
+                    סה״כ הקמה כולל וואטסאפ: {formatPrice(SETUP_BASE + WHATSAPP_SETUP)}
+                  </span>
+                </p>
 
-              {/* רישיון לבוט */}
-              <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                רישיון לבוט פעיל
-              </p>
-              <p className="flex flex-wrap items-baseline gap-x-2 mb-2">
-                <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">₪120</span>
-                <span className="text-base text-[var(--text-secondary)]">לחודש לכל בוט</span>
-              </p>
-              <p className="text-sm text-[var(--text-secondary)] mb-4">
-                מודל רישוי מודולרי לפי מספר הבוטים הפעילים.<br />
-                אין הגבלה על כמות המשתמשים.
-              </p>
-              <p className="text-sm text-[var(--text-primary)] font-medium mb-6 rounded-xl bg-[var(--background-soft)] px-4 py-3 border border-[var(--border-soft)]">
-                מינימום עם בוט אחד: <span className="text-[var(--primary-dark)]">₪620</span> לחודש לפני מע״מ
-                <span className="block mt-2 font-normal text-[var(--text-secondary)]">
-                  דוגמה לשלושה בוטים: <span className="font-medium text-[var(--text-primary)]">₪860</span> לחודש לפני מע״מ (500 + 3×120)
-                </span>
-              </p>
+                <hr className="border-t border-[var(--border-soft)] my-6" />
 
-              <p className="text-sm text-[var(--text-secondary)] pt-4 leading-relaxed">
-                אין אותיות קטנות.<br />
-                המערכת פעילה במלואה מהיום הראשון - כולל חיבור ישיר ל-Priority, מנגנוני טריגרים עסקיים וביצוע אוטומציה בזמן אמת.
-              </p>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                ללא דמי הקמה חד-פעמיים - התמחור החודשי משקף את רישיון המערכת ואת מספר הבוטים הפעילים.
-              </p>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                <span className="font-medium text-[var(--text-primary)]"> ללא התחייבות:</span> מנוי חודשי שניתן להפסיק - אין חוזה שנתי מחייב מצד הלקוח.
-              </p>
-              <p className="text-xs text-[var(--text-secondary)] opacity-80 mt-4 pt-4 border-t border-[var(--border-soft)]" dir="rtl">
-                * כל המחירים לפני מע״מ
-              </p>
-            </motion.div>
+                {/* עלות חודשית */}
+                <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
+                  עלות חודשית שוטפת (לפי בוטים פעילים)
+                </p>
+                <p className="text-sm text-[var(--text-secondary)] mb-4">
+                  התמחור מחושב מדי חודש לפי כמות הבוטים הפעילים בפועל, במודל מדרגות יורד:
+                </p>
+                <ul className="space-y-2 mb-6">
+                  {BOT_TIERS.map((tier) => (
+                    <li
+                      key={tier.label}
+                      className="flex justify-between items-center text-sm bg-[var(--background-soft)] rounded-lg px-4 py-2.5 border border-[var(--border-soft)]"
+                    >
+                      <span className="text-[var(--text-primary)]">{tier.label}</span>
+                      <span className="font-bold text-[var(--primary-dark)]">
+                        {formatPrice(tier.price)} לחודש
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="text-sm text-[var(--text-primary)] font-medium mb-6 rounded-xl bg-[var(--accent-green)]/10 px-4 py-3 border border-[var(--accent-green)]/30">
+                  הטבה לחודש הראשון: החודש הראשון של הבוטים - חינם!
+                  <span className="block mt-2 font-normal text-[var(--text-secondary)]">
+                    בחודש הראשון משלמים אך ורק את עלות ההקמה. אין עלות חודשית שוטפת על הבוטים שמוקמים במהלך החודש הראשון.
+                  </span>
+                  <span className="block mt-2 font-normal text-[var(--text-secondary)]">
+                    דוגמה: 3 בוטים מחודש שני - {formatPrice(calculateMonthlyCost(3))} לחודש לפני מע״מ (290+240+200)
+                  </span>
+                </p>
+
+                <div className="space-y-3 pt-2">
+                  {HIGHLIGHTS.map((item) => (
+                    <p key={item.title} className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                      <span className="font-medium text-[var(--text-primary)]">{item.title}:</span>{" "}
+                      {item.text}
+                    </p>
+                  ))}
+                </div>
+
+                <p className="text-xs text-[var(--text-secondary)] opacity-80 mt-6 pt-4 border-t border-[var(--border-soft)]" dir="rtl">
+                  * כל המחירים לפני מע״מ
+                </p>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -296,6 +464,10 @@ export default function PricingPage() {
                 <br />
                 לעבודה מול מסך נוסף - מגדירים בוט נוסף.
               </p>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4 rounded-xl bg-[var(--background-soft)] px-4 py-3 border border-[var(--border-soft)]">
+                <span className="font-medium text-[var(--text-primary)]">בוט רב-ערוצי נחשב כבוט אחד:</span>{" "}
+                בוט שעובד במספר ערוצים במקביל (וואטסאפ, אימייל ועוד) נספר כבוט אחד בלבד לפי התהליך העסקי מול מסך הפריוריטי.
+              </p>
               <p className="text-[var(--text-secondary)] font-medium mb-2">לדוגמה:</p>
               <ul className="list-disc list-inside space-y-1 text-[var(--text-secondary)] mb-4 pr-2">
                 <li>בוט שירות להזמנות פתוחות</li>
@@ -325,11 +497,10 @@ export default function PricingPage() {
                 ))}
               </ul>
               <p className="text-[var(--text-secondary)] leading-relaxed mb-3">
-                כל בוט פעיל נספר ברישוי: <span className="font-medium text-[var(--text-primary)]">₪120 לחודש לכל בוט</span>, בתוספת{" "}
-                <span className="font-medium text-[var(--text-primary)]">₪500 לחודש</span> עבור רישיון המערכת.
+                כל בוט פעיל מתומחר לפי מדרגת המיקום שלו במודל המדרגות היורד - החל מ-{formatPrice(290)} לבוט הראשון, ועד {formatPrice(160)} לבוט חמישי ואילך.
               </p>
               <p className="text-[var(--text-primary)] font-semibold">
-                רישוי בוט (₪120 לחודש) הוא רישוי לתהליך עסקי אחד מלא.
+                רישוי בוט הוא רישוי לתהליך עסקי אחד מלא - ללא הגבלת שיחות.
               </p>
             </motion.div>
             <motion.p
@@ -357,22 +528,27 @@ export default function PricingPage() {
               className="text-sm text-[var(--text-secondary)] text-center mb-8"
               {...fadeUp}
             >
-              מבנה תמחור ברור, שקוף וללא תלות נסתרת.
+              מבנה תמחור ברור, שקוף וללא אותיות קטנות.
               <br />
               <span className="text-[var(--text-primary)] font-medium">המנוי חודשי - ניתן להפסיק בלי התחייבות.</span>
             </motion.p>
+
+            <motion.div className="mb-8" {...fadeUp}>
+              <PricingCalculator />
+            </motion.div>
+
             <div className="space-y-6">
               <motion.div
                 className="rounded-2xl border border-slate-300 bg-[var(--background-soft)] p-6 md:p-8"
                 {...fadeUp}
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">רישיון מערכת (חודשי)</h3>
-                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪500 לחודש</p>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">עלות הקמה (חד-פעמי)</h3>
+                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">{formatPrice(SETUP_BASE)}</p>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
-                  כולל התקנת מחולל הבוטים כחלק אינטגרלי ממערכת Priority, קונפיגורציה ראשונית, הרשאות למיישמים והדרכת Enablement הכוללת הקמת תהליך ראשון - ללא דמי הקמה חד-פעמיים.
+                  כולל התקנת מחולל הבוטים כחלק אינטגרלי ממערכת Priority, קונפיגורציה מלאה, הרשאות למיישמים, הדרכה מעשית עם ליווי צמוד בהקמת תהליך הבוט הראשון, ותמיכה מקצועית במייל ללא הגבלה.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  התשתית וההטמעה משולמות במסגרת הרישיון החודשי למערכת.
+                  תוספת אופציונלית לחיבור WhatsApp: {formatPrice(WHATSAPP_SETUP)} (סה״כ {formatPrice(SETUP_BASE + WHATSAPP_SETUP)} כולל וואטסאפ).
                 </p>
               </motion.div>
               <motion.div
@@ -380,22 +556,38 @@ export default function PricingPage() {
                 {...fadeUp}
                 transition={{ delay: 0.05 }}
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">רישיון חודשי לבוט פעיל</h3>
-                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">₪120 לחודש לכל בוט</p>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">עלות חודשית שוטפת</h3>
+                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">מדרגות יורדות לפי בוטים פעילים</p>
+                <ul className="space-y-2 mb-4">
+                  {BOT_TIERS.map((tier) => (
+                    <li key={tier.label} className="flex justify-between text-sm text-[var(--text-secondary)]">
+                      <span>{tier.label}</span>
+                      <span className="font-semibold text-[var(--text-primary)]">{formatPrice(tier.price)} לחודש</span>
+                    </li>
+                  ))}
+                </ul>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
-                  מודל רישוי מודולרי הניתן להרחבה בהתאם למספר התהליכים הפעילים בארגון. הסכום החודשי הכולל הוא ₪500 + (₪120 × מספר הבוטים הפעילים).
-                </p>
-                <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
-                  דוגמאות לפני מע״מ: בוט אחד - ₪620 לחודש; שלושה בוטים - ₪860 לחודש.
+                  דוגמאות לפני מע״מ: בוט אחד - {formatPrice(290)} לחודש; שלושה בוטים - {formatPrice(730)} לחודש; חמישה בוטים - {formatPrice(calculateMonthlyCost(5))} לחודש.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                   התמחור אינו לפי משתמשים.<br />התמחור אינו לפי נפח הודעות.
+                  התמחור אינו לפי משתמשים. התמחור אינו לפי נפח הודעות. אין הגבלת שיחות מצד Boteam.
+                </p>
+              </motion.div>
+              <motion.div
+                className="rounded-2xl border-2 border-[var(--accent-green)]/40 bg-[var(--accent-green)]/5 p-6 md:p-8"
+                {...fadeUp}
+                transition={{ delay: 0.1 }}
+              >
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-3">הטבה לחודש הראשון</h3>
+                <p className="text-base font-semibold text-[var(--accent-green)] mb-3">החודש הראשון של הבוטים - חינם!</p>
+                <p className="text-[var(--text-secondary)] leading-relaxed">
+                  בחודש הראשון הלקוח משלם אך ורק את עלות ההקמה החד-פעמית. אין שום עלות חודשית שוטפת על הבוט או הבוטים שמוקמים במהלך החודש הראשון לפעילות.
                 </p>
               </motion.div>
               <motion.div
                 className="rounded-2xl border border-slate-300 bg-[var(--background-soft)] p-6 md:p-8"
                 {...fadeUp}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.15 }}
               >
                 <h3 className="text-lg font-bold text-[var(--text-primary)] mb-3">עלויות תשתית WhatsApp Business (Meta)</h3>
                 <div className="text-[var(--text-secondary)] leading-relaxed space-y-2">
@@ -407,7 +599,7 @@ export default function PricingPage() {
               <motion.div
                 className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 md:p-8"
                 {...fadeUp}
-                transition={{ delay: 0.15 }}
+                transition={{ delay: 0.2 }}
               >
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-1">תמיכה והדרכות נוספות (אופציונלי)</h3>
                 <p className="text-base font-semibold text-[var(--text-primary)] mb-3">₪400 לשעה</p>
