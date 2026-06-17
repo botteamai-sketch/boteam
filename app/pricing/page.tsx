@@ -6,6 +6,18 @@ import { motion } from "framer-motion";
 import CalendlyModal from "@/components/CalendlyModal";
 import LeadModal from "@/components/LeadModal";
 import SuccessToast from "@/components/SuccessToast";
+import PromoPrice from "@/components/PromoPrice";
+import {
+  formatPrice,
+  getEffectiveSetupBase,
+  getEffectiveWhatsAppSetup,
+  getSetupCost,
+  isSetupPromoActive,
+  PROMO_VALIDITY,
+  PROMO_LABEL,
+  SETUP_BASE_REGULAR,
+  WHATSAPP_SETUP_REGULAR,
+} from "@/lib/pricing";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -14,8 +26,6 @@ const fadeUp = {
   transition: { duration: 0.5 },
 };
 
-const SETUP_BASE = 550;
-const WHATSAPP_SETUP = 400;
 const BOT_TIERS = [
   { label: "בוט 1 (הראשון)", price: 290 },
   { label: "בוט 2", price: 240 },
@@ -32,10 +42,6 @@ function calculateMonthlyCost(botCount: number): number {
     total += i < tierPrices.length ? tierPrices[i] : 160;
   }
   return total;
-}
-
-function formatPrice(amount: number): string {
-  return `₪${amount.toLocaleString("he-IL")}`;
 }
 
 const SETUP_INCLUDES = [
@@ -76,7 +82,7 @@ const STEPS = [
   { n: "3", title: "רישיון חודשי לפי מדרגות יורדות לפי כמות הבוטים הפעילים" },
 ] as const;
 
-const FAQ = [
+const FAQ_REGULAR = [
   {
     q: "מהו מחולל הבוטים?",
     a: "מחולל הבוטים הוא מודול מערכת המותקן בתוך Priority ומאפשר יצירת תהליכי Automation ו-Workflow חכמים המחוברים ישירות לנתוני הארגון.",
@@ -91,7 +97,7 @@ const FAQ = [
   },
   {
     q: "מה כלול בעלות ההקמה החד-פעמית?",
-    a: "עלות ההקמה (₪550 לפני מע״מ) כוללת התקנת מודול מלא בסביבת Priority, קונפיגורציה והרשאות למיישמים, הדרכה מעשית עם ליווי צמוד בהקמת תהליך הבוט הראשון, ותמיכה מקצועית במייל ללא הגבלה.",
+    a: `עלות ההקמה (${formatPrice(SETUP_BASE_REGULAR)} לפני מע״מ) כוללת התקנת מודול מלא בסביבת Priority, קונפיגורציה והרשאות למיישמים, הדרכה מעשית עם ליווי צמוד בהקמת תהליך הבוט הראשון, ותמיכה מקצועית במייל ללא הגבלה.`,
   },
   {
     q: "מה כולל החודש הראשון?",
@@ -123,13 +129,33 @@ const FAQ = [
   },
   {
     q: "מה עלות חיבור WhatsApp?",
-    a: "חיבור לערוץ הוואטסאפ הוא אופציונלי וכרוך בתוספת חד-פעמית של ₪400 לסנכרון והגדרת ה-API מול Meta. סה״כ הקמה כולל וואטסאפ: ₪950 לפני מע״מ.",
+    a: `חיבור לערוץ הוואטסאפ הוא אופציונלי וכרוך בתוספת חד-פעמית של ${formatPrice(WHATSAPP_SETUP_REGULAR)} לסנכרון והגדרת ה-API מול Meta. סה״כ הקמה כולל וואטסאפ: ${formatPrice(SETUP_BASE_REGULAR + WHATSAPP_SETUP_REGULAR)} לפני מע״מ.`,
   },
   {
     q: "האם יש תמחור לפי משתמשים?",
     a: "לא. אין תמחור לפי מספר משתמשים במערכת.",
   },
 ] as const;
+
+function getFaqItems() {
+  if (!isSetupPromoActive()) return FAQ_REGULAR;
+
+  return FAQ_REGULAR.map((item) => {
+    if (item.q === "מה כלול בעלות ההקמה החד-פעמית?") {
+      return {
+        ...item,
+        a: `${PROMO_LABEL} (${PROMO_VALIDITY}): עלות ההקמה ${formatPrice(0)} לפני מע״מ, במקום ${formatPrice(SETUP_BASE_REGULAR)}. כולל התקנת מודול מלא בסביבת Priority, קונפיגורציה והרשאות למיישמים, הדרכה מעשית עם ליווי צמוד בהקמת תהליך הבוט הראשון, ותמיכה מקצועית במייל ללא הגבלה.`,
+      };
+    }
+    if (item.q === "מה עלות חיבור WhatsApp?") {
+      return {
+        ...item,
+        a: `${PROMO_LABEL} (${PROMO_VALIDITY}): חיבור WhatsApp כלול ללא תוספת. לאחר המבצע, חיבור לערוץ הוואטסאפ הוא אופציונלי וכרוך בתוספת חד-פעמית של ${formatPrice(WHATSAPP_SETUP_REGULAR)} לסנכרון והגדרת ה-API מול Meta.`,
+      };
+    }
+    return item;
+  });
+}
 
 const WHO_IS_IT_FOR = [
   "חברות שעובדות עם Priority (לא zoom)",
@@ -138,10 +164,14 @@ const WHO_IS_IT_FOR = [
 ] as const;
 
 function PricingCalculator() {
+  const promoActive = isSetupPromoActive();
   const [botCount, setBotCount] = useState(1);
   const [withWhatsApp, setWithWhatsApp] = useState(false);
 
-  const setupCost = SETUP_BASE + (withWhatsApp ? WHATSAPP_SETUP : 0);
+  const setupCost = getSetupCost(withWhatsApp);
+  const setupCostOriginal = promoActive
+    ? SETUP_BASE_REGULAR + WHATSAPP_SETUP_REGULAR
+    : SETUP_BASE_REGULAR + (withWhatsApp ? WHATSAPP_SETUP_REGULAR : 0);
   const monthlyCost = calculateMonthlyCost(botCount);
   const firstMonthTotal = setupCost;
 
@@ -174,31 +204,44 @@ function PricingCalculator() {
           </div>
         </div>
 
-        <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={withWhatsApp}
-            onChange={(e) => setWithWhatsApp(e.target.checked)}
-            className="w-5 h-5 accent-[var(--primary-dark)] rounded"
-          />
-          <span className="text-sm text-[var(--text-primary)]">
-            כולל חיבור WhatsApp (+{formatPrice(WHATSAPP_SETUP)} חד-פעמי)
-          </span>
-        </label>
+        {promoActive ? (
+          <p className="text-sm text-[var(--text-primary)] rounded-xl bg-[var(--accent-green)]/10 px-4 py-3 border border-[var(--accent-green)]/30">
+            חיבור WhatsApp - כלול במבצע, ללא תוספת
+          </p>
+        ) : (
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={withWhatsApp}
+              onChange={(e) => setWithWhatsApp(e.target.checked)}
+              className="w-5 h-5 accent-[var(--primary-dark)] rounded"
+            />
+            <span className="text-sm text-[var(--text-primary)]">
+              כולל חיבור WhatsApp (+{formatPrice(WHATSAPP_SETUP_REGULAR)} חד-פעמי)
+            </span>
+          </label>
+        )}
 
         <div className="rounded-xl bg-[var(--background-soft)] border border-[var(--border-soft)] p-5 space-y-4">
           <div className="flex justify-between items-baseline gap-4">
             <span className="text-sm text-[var(--text-secondary)]">עלות הקמה (חד-פעמי)</span>
-            <span className="text-lg font-bold text-[var(--primary-dark)]">
-              {formatPrice(setupCost)}
-            </span>
+            <PromoPrice
+              amount={setupCost}
+              original={promoActive ? setupCostOriginal : undefined}
+              size="md"
+            />
           </div>
           <div className="flex justify-between items-baseline gap-4 border-t border-[var(--border-soft)] pt-4">
             <span className="text-sm font-medium text-[var(--text-primary)]">
               חודש ראשון (בוטים בחינם)
             </span>
             <span className="text-lg font-bold text-[var(--accent-green)]">
-              {formatPrice(firstMonthTotal)}
+              <PromoPrice
+                amount={firstMonthTotal}
+                original={promoActive ? setupCostOriginal : undefined}
+                size="md"
+                currentClassName="text-[var(--accent-green)]"
+              />
             </span>
           </div>
           <div className="flex justify-between items-baseline gap-4 border-t border-[var(--border-soft)] pt-4">
@@ -230,6 +273,12 @@ function PricingCalculator() {
 
 export default function PricingPage() {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const promoActive = isSetupPromoActive();
+  const setupBase = getEffectiveSetupBase();
+  const whatsappSetup = getEffectiveWhatsAppSetup();
+  const setupWithWhatsappTotal = setupBase + whatsappSetup;
+  const setupWithWhatsappOriginal = SETUP_BASE_REGULAR + WHATSAPP_SETUP_REGULAR;
+  const faqItems = getFaqItems();
 
   return (
     <div dir="rtl" className="min-h-screen bg-white text-[var(--text-primary)]">
@@ -265,13 +314,20 @@ export default function PricingPage() {
                 transition={{ duration: 0.5 }}
               >
                 {/* עלות הקמה */}
+                {promoActive && (
+                  <p className="text-sm font-semibold text-[var(--accent-green)] mb-3 rounded-xl bg-[var(--accent-green)]/10 px-4 py-2 border border-[var(--accent-green)]/30">
+                    {PROMO_LABEL} — {PROMO_VALIDITY}
+                  </p>
+                )}
                 <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
                   עלות הקמה (חד-פעמי)
                 </p>
-                <p className="flex flex-wrap items-baseline gap-x-2 mb-4">
-                  <span className="text-2xl md:text-3xl font-bold text-[var(--primary-dark)]">
-                    {formatPrice(SETUP_BASE)}
-                  </span>
+                <p className="mb-4">
+                  <PromoPrice
+                    amount={setupBase}
+                    original={promoActive ? SETUP_BASE_REGULAR : undefined}
+                    size="lg"
+                  />
                 </p>
                 <ul className="mt-3 space-y-2.5 mb-6">
                   {SETUP_INCLUDES.map((item, i) => (
@@ -286,9 +342,20 @@ export default function PricingPage() {
 
                 <p className="text-sm text-[var(--text-secondary)] mb-6 rounded-xl bg-[var(--background-soft)] px-4 py-3 border border-[var(--border-soft)]">
                   <span className="font-medium text-[var(--text-primary)]">תוספת חיבור WhatsApp (אופציונלי):</span>{" "}
-                  {formatPrice(WHATSAPP_SETUP)} חד-פעמי לסנכרון והגדרת ה-API מול Meta.
+                  {promoActive ? (
+                    <>חיבור WhatsApp - כלול במבצע, ללא תוספת.</>
+                  ) : (
+                    <>
+                      {formatPrice(WHATSAPP_SETUP_REGULAR)} חד-פעמי לסנכרון והגדרת ה-API מול Meta.
+                    </>
+                  )}
                   <span className="block mt-2 font-medium text-[var(--text-primary)]">
-                    סה״כ הקמה כולל וואטסאפ: {formatPrice(SETUP_BASE + WHATSAPP_SETUP)}
+                    סה״כ הקמה כולל וואטסאפ:{" "}
+                    <PromoPrice
+                      amount={setupWithWhatsappTotal}
+                      original={promoActive ? setupWithWhatsappOriginal : undefined}
+                      size="sm"
+                    />
                   </span>
                 </p>
 
@@ -539,12 +606,32 @@ export default function PricingPage() {
                 {...fadeUp}
               >
                 <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">עלות הקמה (חד-פעמי)</h3>
-                <p className="text-base font-semibold text-[var(--primary-dark)] mb-3">{formatPrice(SETUP_BASE)}</p>
+                <p className="mb-3">
+                  <PromoPrice
+                    amount={setupBase}
+                    original={promoActive ? SETUP_BASE_REGULAR : undefined}
+                    size="md"
+                  />
+                </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed mb-2">
                   כולל התקנת מחולל הבוטים כחלק אינטגרלי ממערכת Priority, קונפיגורציה מלאה, הרשאות למיישמים, הדרכה מעשית עם ליווי צמוד בהקמת תהליך הבוט הראשון, ותמיכה מקצועית במייל ללא הגבלה.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  תוספת אופציונלית לחיבור WhatsApp: {formatPrice(WHATSAPP_SETUP)} (סה״כ {formatPrice(SETUP_BASE + WHATSAPP_SETUP)} כולל וואטסאפ).
+                  {promoActive ? (
+                    <>
+                      חיבור WhatsApp - כלול במבצע, ללא תוספת (סה״כ הקמה כולל וואטסאפ:{" "}
+                      <PromoPrice
+                        amount={setupWithWhatsappTotal}
+                        original={setupWithWhatsappOriginal}
+                        size="sm"
+                      />
+                      ).
+                    </>
+                  ) : (
+                    <>
+                      תוספת אופציונלית לחיבור WhatsApp: {formatPrice(WHATSAPP_SETUP_REGULAR)} (סה״כ {formatPrice(SETUP_BASE_REGULAR + WHATSAPP_SETUP_REGULAR)} כולל וואטסאפ).
+                    </>
+                  )}
                 </p>
               </motion.div>
               <motion.div
@@ -689,7 +776,7 @@ export default function PricingPage() {
               שאלות נפוצות
             </motion.h2>
             <dl className="space-y-6">
-              {FAQ.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <motion.div
                   key={item.q}
                   className="bg-white rounded-2xl p-6 md:p-8 shadow-soft border border-[var(--border-soft)]"
