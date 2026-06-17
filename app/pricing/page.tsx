@@ -238,7 +238,7 @@ function PricingCalculator() {
             <span className="text-lg font-bold text-[var(--accent-green)]">
               <PromoPrice
                 amount={firstMonthTotal}
-                original={promoActive ? setupCostOriginal : undefined}
+                original={promoActive && monthlyCost > 0 ? monthlyCost : undefined}
                 size="md"
                 currentClassName="text-[var(--accent-green)]"
               />
